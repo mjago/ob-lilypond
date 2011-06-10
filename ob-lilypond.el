@@ -1,13 +1,5 @@
 (defalias 'lilypond-mode 'LilyPond-mode)
 
-(defun lilypond-tangle ()
-  (interactive)
-  (save-buffer "test.org")
-  (eval-buffer "ob-lilypond.el")
-  (org-babel-tangle-file "/home/martyn/.emacs.d/martyn/martyn/ob-lilypond/test.org"))
-
-(global-set-key [f12] 'lilypond-tangle)
-  
 (require 'ob)
 (require 'ob-eval)
 
@@ -68,7 +60,7 @@ This function is called by `org-babel-execute-src-block'."
 
 ;;; ob-lilypond.el ends here
 
-(defun ly-execute-tangled ()
+(defun org-babel-execute-tangled-ly ()
   (interactive)
   (let ((ly-temp-file "all.ly")
         (ly-eps nil))
@@ -103,5 +95,3 @@ This function is called by `org-babel-execute-src-block'."
           (message "Error in Compilation"))
         )))
   
-(provide 'ly-execute-tangled)
-(require 'ly-execute-tangled)
