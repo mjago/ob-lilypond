@@ -7,9 +7,9 @@
 #+BEGIN_SRC emacs-lisp
 
 (add-to-list 'load-path
-             (concat dotfiles-dir  "martyn/martyn/ob-lilypond/"))
+             (concat dotfiles-dir  "ob-lilypond/"))
 (add-to-list 'load-path
-             (concat dotfiles-dir  "martyn/lilypond/"))
+             (concat dotfiles-dir  "lilypond/"))
 (require 'ob-lilypond)
 (require 'lilypond-mode)
 (add-hook 'org-babel-post-tangle-hook 'org-babel-execute-tangled-ly)
