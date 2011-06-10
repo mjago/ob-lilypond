@@ -1,0 +1,18 @@
+* Emacs Org Babel LilyPond Mode
+
+(ob-Lilypond.el)
+
+** Setup (add to emacs init file)
+
+#+BEGIN_SRC emacs-lisp
+
+(add-to-list 'load-path
+             (concat dotfiles-dir  "martyn/martyn/ob-lilypond/"))
+(add-to-list 'load-path
+             (concat dotfiles-dir  "martyn/lilypond/"))
+(require 'ob-lilypond)
+(require 'lilypond-mode)
+(add-hook 'org-babel-post-tangle-hook 'org-babel-execute-tangled-ly)
+
+#+END_SRC
+
