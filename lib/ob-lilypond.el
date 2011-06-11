@@ -115,18 +115,28 @@ This function is called by `org-babel-execute-src-block'."
         (if (not (search-forward "error:" nil t))
             (progn
               (when ob-ly-draw-pdf-post-tangle
-                (shell-command
-                 (concat "open "
-                         (file-name-nondirectory
-                          (file-name-sans-extension
-                           ly-temp-file))
-                         ".pdf"))) 
+                (if (file-exists-p
+                     (concat 
+                      (file-name-sans-extension
+                       ly-temp-file)
+                      ".pdf"))
+                    (shell-command
+                     (concat "open "
+                             (file-name-sans-extension
+                              ly-temp-file)
+                             ".pdf"))
+                  (message "No pdf file generated so can't display!")))
               (when ob-ly-play-midi-post-tangle
-                (shell-command
-                 (concat "open "
-                         (file-name-nondirectory
-                          (file-name-sans-extension
-                           ly-temp-file))
-                         ".midi"))))
+                (if (file-exists-p
+                     (concat 
+                      (file-name-sans-extension
+                       ly-temp-file)
+                      ".midi"))
+                    (shell-command
+                     (concat "open "
+                             (file-name-sans-extension
+                              ly-temp-file)
+                             ".midi"))
+                  (message "No midi file generated so can't play!"))))
           (message "Error in Compilation"))))))
   

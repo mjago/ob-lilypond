@@ -2,7 +2,6 @@
 * ob-lilypond
 ** Stages
 *** DONE Get something working ish! 
-*** DONE Get in Github
 *** DONE Decide directory Structure
 *** DONE Decide LilyPond-mode and lilypond-hook integration wrt ob-lilypond
 Use seperate hook in ob-lilypond to auto draw / play under preferences
@@ -20,13 +19,23 @@ Use defvar rather than defcustom for now
 If ob-ly-play-midi-post-tangle is true play generated midi file of tangled ly file given the
 compilation didn't fail.
 Use defvar rather than defcustom for now
-
+*** DONE Test whether we need to explicitly check for 
+    existance of pdf and MIDI files before auto display or play
+Done with warnings if lilypond doesn't generate
 *** TODO Decide How to handle OS dependencies
  - midi player
  - pdf viewer
  - LilyPond location
  - LilyPond API (OSX needs special treatment at the very least
+*** TODO Need to get tests going
+*** TODO Take post-tangle hook out of init file and only burden post-tangle hook
+    when we are tangling lilypond files
+*** TODO Refactor org-babel-execute-tangled-ly to smaller chunks
+*** TODO Figure out why Emacs occasionally auto-loads filename.lilypond!
 *** SOMEDAY Consider drawing vector graphic output as opposed to pdf for viewing?
+*** SOMEDAY Consider the option to embed resultant partial musical output into org file 
+    (I did get this working but it looked a little strange)
+
 ** Setup
 *** Add dev switch hook
 
