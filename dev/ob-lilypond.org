@@ -22,8 +22,10 @@ Use defvar rather than defcustom for now
 *** DONE Test whether we need to explicitly check for 
     existance of pdf and MIDI files before auto display or play
 Done with warnings if lilypond doesn't generate
-*** TODO Figure out why Emacs occasionally auto-loads filename.lilypond!
-    Reduced scope of (save-excursion) to avoid this
+*** DONE Refactor org-babel-execute-tangled-ly to smaller chunks
+*** Figure out why Emacs occasionally auto-loads filename.lilypond!
+**** DONE Reduced scope of (save-excursion) to avoid this - doesn't help
+**** TODO Perhaps need unwind-protection
 *** TODO Decide How to handle OS dependencies
  - midi player
  - pdf viewer
@@ -32,7 +34,6 @@ Done with warnings if lilypond doesn't generate
 *** TODO Need to get tests going
 *** TODO Take post-tangle hook out of init file and only burden post-tangle hook
     when we are tangling lilypond files
-*** TODO Refactor org-babel-execute-tangled-ly to smaller chunks
 *** SOMEDAY Consider drawing vector graphic output as opposed to pdf for viewing?
 *** SOMEDAY Consider the option to embed resultant partial musical output into org file 
     (I did get this working but it looked a little strange)

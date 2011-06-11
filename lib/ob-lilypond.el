@@ -89,8 +89,7 @@ This function is called by `org-babel-execute-src-block'."
                           (file-name-sans-extension
                            (buffer-file-name)))
                          ".ly"))
-          (ly-eps nil)
-          (ly-compiled nil))
+          (ly-eps nil))
     
       (if (file-exists-p ly-tangled-file)
           (progn
@@ -99,48 +98,44 @@ This function is called by `org-babel-execute-src-block'."
             (rename-file ly-tangled-file
                          ly-temp-file))
         (error "ERROR: Tangle Failed!")t)
-      (message "Compiling LilyPond...")
-      (save-excursion
-        (switch-to-buffer-other-window "*lilypond*")
-        (set-buffer "*lilypond*")
-        (erase-buffer)
-        (call-process
-         ly-app-path nil
-         "*lilypond*"
-         t
-         (if ly-eps
-             "-dbackend=eps"
-           "")
-         ly-temp-file)
-        (goto-char (point-min))
-        (if (not (search-forward "error:" nil t))
-            (setq ly-compiled t)
-          (message "Error in Compilation!")))
+      (if (ly-compile-lilyfile ly-temp-file)
+          (progn
+            (ly-attempt-to-open-pdf ly-temp-file)
+            (ly-attempt-to-play-midi ly-temp-file))
+        (message "Error in Compilation!")))))
+
+(defun ly-compile-lilyfile (file-name)
+  (message "Compiling LilyPond...")
+  (save-excursion
+    (switch-to-buffer-other-window "*lilypond*")
+    (set-buffer "*lilypond*")
+    (erase-buffer)
+    (call-process
+     ly-app-path nil "*lilypond*" t 
+     (if ly-eps
+         "-dbackend=eps"
+       "")
+     file-name)
+    (goto-char (point-min))
+    (if (not (search-forward "error:" nil t)) t nil)))
       
-      (when ly-compiled
-        (progn
-          (when ob-ly-draw-pdf-post-tangle
-            (if (file-exists-p
-                 (concat 
-                  (file-name-sans-extension
-                   ly-temp-file)
-                  ".pdf"))
-                (shell-command
-                 (concat "open "
-                         (file-name-sans-extension
-                          ly-temp-file)
-                         ".pdf"))
-              (message "No pdf file generated so can't display!")))
-          (when ob-ly-play-midi-post-tangle
-            (if (file-exists-p
-                 (concat 
-                  (file-name-sans-extension
-                   ly-temp-file)
-                  ".midi"))
-                (shell-command
-                 (concat "open "
-                         (file-name-sans-extension
-                          ly-temp-file)
-                         ".midi"))
-              (message "No midi file generated so can't play!"))))))))
+(defun ly-attempt-to-open-pdf (file-name)
+  (when ob-ly-draw-pdf-post-tangle
+    (let ((pdf-file (concat 
+                     (file-name-sans-extension
+                      file-name)
+                     ".pdf")))
+      (if (file-exists-p pdf-file)
+          (shell-command (concat "open " pdf-file))
+        (error  "No pdf file generated so can't display!")))))
+
+(defun ly-attempt-to-play-midi (file-name)
+  (when ob-ly-play-midi-post-tangle
+    (let ((midi-file (concat 
+                      (file-name-sans-extension
+                       file-name)
+                      ".midi")))
+      (if (file-exists-p midi-file)
+          (shell-command (concat "open " midi-file))
+        (message "No midi file generated so can't play!")))))
   
