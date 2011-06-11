@@ -1,17 +1,25 @@
 * Emacs Org Babel LilyPond Mode
+** Purpose
 
-(ob-Lilypond.el)
+Enable Emacs Org-Babel mode to be used in a LilyPond Score Generation
+Setting.
+
+** Features
+ 1. Optional Automated LilyPond Compilation following the "Tangling" of
+    a "Literate Org LilyPond" file
+ 2. Optional Automated display of resultant Musical Score
+ 3. Optional Automated playing of the resultant MIDI file
 
 ** Setup (add to emacs init file)
+
+The Files need to be downloaded to your relevant dotfiles directory
+and the following placed in your Emacs init file...
 
 #+BEGIN_SRC emacs-lisp
 
 (add-to-list 'load-path
-             (concat dotfiles-dir  "ob-lilypond/"))
-(add-to-list 'load-path
-             (concat dotfiles-dir  "lilypond/"))
+             (concat dotfiles-dir  "ob-lilypond/lib"))
 (require 'ob-lilypond)
-(require 'lilypond-mode)
 (add-hook 'org-babel-post-tangle-hook 'org-babel-execute-tangled-ly)
 
 #+END_SRC
