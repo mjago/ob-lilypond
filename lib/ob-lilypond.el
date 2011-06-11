@@ -17,7 +17,11 @@ OB-LY-DRAW-PDF-POST-TANGLE determines whether to automate the
 drawing / redrawing of the resultant pdf. If the value is nil,
 the pdf is not automatically redrawn. Default value is t")
 
-(setq ob-ly-draw-pdf-post-tangle t)
+(defvar ob-ly-play-midi-post-tangle t
+  "Following a successful LilyPond compilation
+OB-LY-PLAY-MIDI-POST-TANGLE determines whether to automate the
+playing of the resultant midi file. If the value is nil,
+the midi file is not automatically played. Default value is t")
 
 (defvar org-babel-default-header-args:lilypond
   '((:results . "file") (:exports . "results"))
@@ -117,11 +121,12 @@ This function is called by `org-babel-execute-src-block'."
                           (file-name-sans-extension
                            ly-temp-file))
                          ".pdf"))) 
-              (shell-command
-               (concat "open "
-                       (file-name-nondirectory
-                        (file-name-sans-extension
-                         ly-temp-file))
-                       ".midi")))
+              (when ob-ly-play-midi-post-tangle
+                (shell-command
+                 (concat "open "
+                         (file-name-nondirectory
+                          (file-name-sans-extension
+                           ly-temp-file))
+                         ".midi"))))
           (message "Error in Compilation"))))))
   

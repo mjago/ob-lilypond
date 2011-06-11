@@ -16,8 +16,8 @@ If ob-ly-draw-pdf-post-tangle is true draw pdf of tangled ly file given the
 compilation didn't fail.
 Use defvar rather than defcustom for now
 
-*** TODO Add ob-ly-draw-pdf-post-tangle user variable (default t)
-If ob-ly-draw-pdf-post-tangle is true draw pdf of tangled ly file given the
+*** DONE Add ob-ly-play-midi-post-tangle user variable (default t)
+If ob-ly-play-midi-post-tangle is true play generated midi file of tangled ly file given the
 compilation didn't fail.
 Use defvar rather than defcustom for now
 
