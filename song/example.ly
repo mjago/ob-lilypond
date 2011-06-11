@@ -5,7 +5,7 @@ PianoVoiceOneIntro = {
   g'8( bes b d' c' ees' g' d'' |
   < c' ees' f' bes' > 2) bes'4 g' |
 }
-
+ 
 PianoVoiceTwoIntro = {
   r1 |
   r2 < c' d' > 2 |

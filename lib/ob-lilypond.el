@@ -9,13 +9,10 @@
   '((:results . "file") (:exports . "results"))
   "Default arguments to use when evaluating a lilypond source block.")
 
-(defvar lilypond-build-dir "./build/"
-  "Build directory for lilypad build artifacts")
- 
 (defun org-babel-expand-body:lilypond (body params)
   "Expand BODY according to PARAMS, return the expanded body."
 
-    (let ((vars (mapcar #'cdr (org-babel-get-header params :var))))
+  (let ((vars (mapcar #'cdr (org-babel-get-header params :var))))
     (mapc
      (lambda (pair)
        (let ((name (symbol-name (car pair)))
@@ -34,6 +31,8 @@
   "Execute a block of LilyPond syntax with org-babel.
 This function is called by `org-babel-execute-src-block'."
 
+  (error "doesn't get here!!")
+  
   (let* ((result-params (cdr (assoc :result-params params)))
 	 (out-file (cdr (assoc :file params)))
 	 (cmdline (or (cdr (assoc :cmdline params))
@@ -43,7 +42,6 @@ This function is called by `org-babel-execute-src-block'."
 
     (with-temp-file in-file
       (insert (org-babel-expand-body:lilypond body params)))
-    
 
     (org-babel-eval
      (concat cmd ""
@@ -62,8 +60,25 @@ This function is called by `org-babel-execute-src-block'."
 
 (defun org-babel-execute-tangled-ly ()
   (interactive)
-  (let ((ly-temp-file "all.ly")
+  (let ((ly-tangled-file (concat
+                          (file-name-nondirectory
+                           (file-name-sans-extension
+                            (buffer-file-name)))
+                          ".lilypond"))
+        (ly-temp-file (concat
+                       (file-name-nondirectory
+                        (file-name-sans-extension
+                         (buffer-file-name)))
+                       ".ly"))
         (ly-eps nil))
+    
+    (if (file-exists-p ly-tangled-file)
+        (progn
+          (when (file-exists-p ly-temp-file)
+            (delete-file ly-temp-file))
+          (rename-file ly-tangled-file
+                       ly-temp-file))
+      (error "ERROR: Tangle Failed!")t)
     (message "Compiling LilyPond...")
     (save-excursion
       (switch-to-buffer-other-window "*lilypond*")

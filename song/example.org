@@ -1,7 +1,11 @@
 * Example Tangled LilyPond file (Misty - Errol Garner)
+** Babel file block settings
+
+#+BABEL: :tangle yes
+
 ** Version
- 
-#+begin_src lilypond :tangle "all.ly"
+  
+#+begin_src lilypond
 
 \version "2.12.3"
  
@@ -10,13 +14,13 @@
 ** Note Entry
 *** Piano
 
-#+begin_src lilypond :tangle "all.ly"
+#+begin_src lilypond
 
 PianoVoiceOneIntro = {
   g'8( bes b d' c' ees' g' d'' |
   < c' ees' f' bes' > 2) bes'4 g' |
 }
-
+ 
 PianoVoiceTwoIntro = {
   r1 |
   r2 < c' d' > 2 |
@@ -223,7 +227,7 @@ PianoVoiceFourVerseThree = {
 
 *** DrumBeats
 
-#+begin_src lilypond :tangle "all.ly"
+#+begin_src lilypond
 
 DrumBeats = {
         \drummode {
@@ -269,7 +273,7 @@ DrumBeats = {
 
 ** Paper
 
-#+begin_src lilypond :tangle "all.ly"
+#+begin_src lilypond
 
 \paper {
   #(define dump-extents #t) 
@@ -285,7 +289,7 @@ DrumBeats = {
 
 ** Header
 
-#+begin_src lilypond :tangle "all.ly"
+#+begin_src lilypond
 
 \header {
   title = \markup \center-column {"Misty"} 
@@ -298,7 +302,7 @@ DrumBeats = {
 ** Structure
 *** ShowLastLength
 
-#+begin_src lilypond :tangle "all.ly"
+#+begin_src lilypond
   
   %showLastLength = R1*8
 
@@ -306,7 +310,7 @@ DrumBeats = {
 
 *** Score
 
-#+begin_src lilypond :tangle "all.ly"
+#+begin_src lilypond
 
   \score {
         
@@ -317,7 +321,7 @@ DrumBeats = {
 **** Piano
 ***** Init
 
-#+begin_src lilypond :tangle "all.ly"
+#+begin_src lilypond
 
 %      \new PianoStaff  \key ees \major
   
@@ -333,7 +337,7 @@ DrumBeats = {
 
 ***** Voice One
   
-#+begin_src lilypond :tangle "all.ly"
+#+begin_src lilypond
 
             \new Voice = "Voice One" {
               \voiceOne 
@@ -348,7 +352,7 @@ DrumBeats = {
 
 ***** Voice Two
 
-#+begin_src lilypond :tangle "all.ly"
+#+begin_src lilypond
 
             \new Voice= "Voice Two" { 
               \voiceTwo 
@@ -363,7 +367,7 @@ DrumBeats = {
 
 ***** Voice Three
 
-#+begin_src lilypond :tangle "all.ly"
+#+begin_src lilypond
 
           >>
   
@@ -390,7 +394,7 @@ DrumBeats = {
 
 ***** Voice Four
 
-#+begin_src lilypond :tangle "all.ly"
+#+begin_src lilypond
             
             \new Voice= "Voice Four" { 
               \voiceTwo 
@@ -411,7 +415,7 @@ DrumBeats = {
 
 **** Drums
 
-#+begin_src lilypond :tangle "all.ly"
+#+begin_src lilypond
 
       \new DrumStaff {
         \DrumBeats
@@ -421,7 +425,7 @@ DrumBeats = {
 
 **** Layout
 
-#+begin_src lilypond :tangle "all.ly"
+#+begin_src lilypond
 
     >> 
      

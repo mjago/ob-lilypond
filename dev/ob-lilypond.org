@@ -4,7 +4,9 @@
 *** DONE Get something working ish! 
 *** DONE Get in Github
 *** DONE Decide directory Structure
-*** NEXT Decide LilyPond-mode and lilypond-hook integration
+*** DONE Decide LilyPond-mode and lilypond-hook integration wrt ob-lilypond
+Use seperate hook in ob-lilypond to auto draw / play under preferences
+*** DONE Get correct basename on build files
 *** TODO Decide How to handle OS dependencies
  - midi player
  - pdf viewer
@@ -97,3 +99,4 @@
 : lilypond-project
 
 
+    
