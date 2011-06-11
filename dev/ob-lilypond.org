@@ -23,14 +23,14 @@ Use defvar rather than defcustom for now
     existance of pdf and MIDI files before auto display or play
 Done with warnings if lilypond doesn't generate
 *** DONE Refactor org-babel-execute-tangled-ly to smaller chunks
-*** Figure out why Emacs occasionally auto-loads filename.lilypond!
-**** DONE Reduced scope of (save-excursion) to avoid this - doesn't help
-**** TODO Perhaps need unwind-protection
 *** TODO Decide How to handle OS dependencies
  - midi player
  - pdf viewer
- - LilyPond location
+ - LilyPond location (Set up seperate binary paths relative to OS)
  - LilyPond API (OSX needs special treatment at the very least
+*** Figure out why Emacs occasionally auto-loads filename.lilypond!
+**** DONE Reduced scope of (save-excursion) to avoid this - doesn't help
+**** TODO Perhaps need unwind-protection
 *** TODO Need to get tests going
 *** TODO Take post-tangle hook out of init file and only burden post-tangle hook
     when we are tangling lilypond files

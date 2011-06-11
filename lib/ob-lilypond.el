@@ -23,6 +23,11 @@ OB-LY-PLAY-MIDI-POST-TANGLE determines whether to automate the
 playing of the resultant midi file. If the value is nil,
 the midi file is not automatically played. Default value is t")
 
+(defvar ob-ly-OSX-app-path
+  "/Applications/lilypond.app/Contents/Resources/bin/lilypond")
+(defvar ob-ly-unix-app-path "")
+(defvar ob-ly-win32-app-path "")
+  
 (defvar org-babel-default-header-args:lilypond
   '((:results . "file") (:exports . "results"))
   "Default arguments to use when evaluating a lilypond source block.")
@@ -43,7 +48,6 @@ the midi file is not automatically played. Default value is t")
      vars)
     body))
 
-(setq ly-app-path  "/Applications/lilypond.app/Contents/Resources/bin/lilypond")
 
 (defun org-babel-execute:lilypond (body params)
   "Execute a block of LilyPond syntax with org-babel.
@@ -106,18 +110,24 @@ This function is called by `org-babel-execute-src-block'."
 
 (defun ly-compile-lilyfile (file-name)
   (message "Compiling LilyPond...")
-  (save-excursion
-    (switch-to-buffer-other-window "*lilypond*")
-    (set-buffer "*lilypond*")
-    (erase-buffer)
-    (call-process
-     ly-app-path nil "*lilypond*" t 
-     (if ly-eps
-         "-dbackend=eps"
-       "")
-     file-name)
-    (goto-char (point-min))
-    (if (not (search-forward "error:" nil t)) t nil)))
+  (let ((ly-app-path
+         (cond ((string= system-type  "darwin")
+                ob-ly-OSX-app-path)
+               ((string= system-type "win32")
+                ob-ly-win32-app-path)
+               (t ob-ly-unix-app-path))))
+    (save-excursion
+      (switch-to-buffer-other-window "*lilypond*")
+      (set-buffer "*lilypond*")
+      (erase-buffer)
+      (call-process
+       ly-app-path nil "*lilypond*" t 
+       (if ly-eps
+           "-dbackend=eps"
+         "")
+       file-name)
+      (goto-char (point-min))
+      (if (not (search-forward "error:" nil t)) t nil))))
       
 (defun ly-attempt-to-open-pdf (file-name)
   (when ob-ly-draw-pdf-post-tangle

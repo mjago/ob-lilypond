@@ -228,7 +228,7 @@ PianoVoiceFourVerseThree = {
 *** DrumBeats
 
 #+begin_src lilypond
-
+ 
 DrumBeats = {
         \drummode {
         r1 r1 
