@@ -7,11 +7,21 @@
 *** DONE Decide LilyPond-mode and lilypond-hook integration wrt ob-lilypond
 Use seperate hook in ob-lilypond to auto draw / play under preferences
 *** DONE Get correct basename on build files
+*** TODO Add ob-ly-compile-post-tangle user variable (default t)
+If ob-ly-compile-post-tangle flag set compile tangled file
+Use defvar rather than defcustom for now
+
+*** TODO Add ob-ly-draw-pdf user variable (default t)
+If ob-ly-draw-pdf is true draw pdf of tangled ly file given the
+compilation didn't fail.
+Use defvar rather than defcustom for now
+
 *** TODO Decide How to handle OS dependencies
  - midi player
  - pdf viewer
  - LilyPond location
  - LilyPond API (OSX needs special treatment at the very least
+*** SOMEDAY Consider drawing vector graphic output as opposed to pdf for viewing?
 ** Setup
 *** Add dev switch hook
 

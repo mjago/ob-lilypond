@@ -1,10 +1,14 @@
 (defalias 'lilypond-mode 'LilyPond-mode)
+(defvar ob-ly-compile-post-tangle t
+    "Following the org-babel-tangle (C-c C-v t) command,
+OB-LY-COMPILE-POST-TANGLE determines whether ob-lilypond should
+automatically attempt to compile the resultant tangled file.
+If the value is nil, no automated compilation takes place.")
 
 (require 'ob)
 (require 'ob-eval)
 
 (add-to-list 'org-babel-tangle-lang-exts '("LilyPond" . "ly"))
-
 (defvar org-babel-default-header-args:lilypond
   '((:results . "file") (:exports . "results"))
   "Default arguments to use when evaluating a lilypond source block.")
@@ -60,28 +64,29 @@ This function is called by `org-babel-execute-src-block'."
 
 (defun org-babel-execute-tangled-ly ()
   (interactive)
-  (let ((ly-tangled-file (concat
-                          (file-name-nondirectory
-                           (file-name-sans-extension
-                            (buffer-file-name)))
-                          ".lilypond"))
-        (ly-temp-file (concat
-                       (file-name-nondirectory
-                        (file-name-sans-extension
-                         (buffer-file-name)))
-                       ".ly"))
-        (ly-eps nil))
+  (when ob-ly-compile-post-tangle
+    (let ((ly-tangled-file (concat
+                            (file-name-nondirectory
+                             (file-name-sans-extension
+                              (buffer-file-name)))
+                            ".lilypond"))
+          (ly-temp-file (concat
+                         (file-name-nondirectory
+                          (file-name-sans-extension
+                           (buffer-file-name)))
+                         ".ly"))
+          (ly-eps nil))
     
-    (if (file-exists-p ly-tangled-file)
-        (progn
-          (when (file-exists-p ly-temp-file)
-            (delete-file ly-temp-file))
-          (rename-file ly-tangled-file
-                       ly-temp-file))
-      (error "ERROR: Tangle Failed!")t)
-    (message "Compiling LilyPond...")
-    (save-excursion
-      (switch-to-buffer-other-window "*lilypond*")
+      (if (file-exists-p ly-tangled-file)
+          (progn
+            (when (file-exists-p ly-temp-file)
+              (delete-file ly-temp-file))
+            (rename-file ly-tangled-file
+                         ly-temp-file))
+        (error "ERROR: Tangle Failed!")t)
+      (message "Compiling LilyPond...")
+      (save-excursion
+        (switch-to-buffer-other-window "*lilypond*")
         (set-buffer "*lilypond*")
         (erase-buffer)
         (call-process
@@ -107,6 +112,5 @@ This function is called by `org-babel-execute-src-block'."
                         (file-name-sans-extension
                          ly-temp-file))
                        ".midi")))
-          (message "Error in Compilation"))
-        )))
+          (message "Error in Compilation"))))))
   
