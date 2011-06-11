@@ -89,7 +89,8 @@ This function is called by `org-babel-execute-src-block'."
                           (file-name-sans-extension
                            (buffer-file-name)))
                          ".ly"))
-          (ly-eps nil))
+          (ly-eps nil)
+          (ly-compiled nil))
     
       (if (file-exists-p ly-tangled-file)
           (progn
@@ -113,30 +114,33 @@ This function is called by `org-babel-execute-src-block'."
          ly-temp-file)
         (goto-char (point-min))
         (if (not (search-forward "error:" nil t))
-            (progn
-              (when ob-ly-draw-pdf-post-tangle
-                (if (file-exists-p
-                     (concat 
-                      (file-name-sans-extension
-                       ly-temp-file)
-                      ".pdf"))
-                    (shell-command
-                     (concat "open "
-                             (file-name-sans-extension
-                              ly-temp-file)
-                             ".pdf"))
-                  (message "No pdf file generated so can't display!")))
-              (when ob-ly-play-midi-post-tangle
-                (if (file-exists-p
-                     (concat 
-                      (file-name-sans-extension
-                       ly-temp-file)
-                      ".midi"))
-                    (shell-command
-                     (concat "open "
-                             (file-name-sans-extension
-                              ly-temp-file)
-                             ".midi"))
-                  (message "No midi file generated so can't play!"))))
-          (message "Error in Compilation"))))))
+            (setq ly-compiled t)
+          (message "Error in Compilation!")))
+      
+      (when ly-compiled
+        (progn
+          (when ob-ly-draw-pdf-post-tangle
+            (if (file-exists-p
+                 (concat 
+                  (file-name-sans-extension
+                   ly-temp-file)
+                  ".pdf"))
+                (shell-command
+                 (concat "open "
+                         (file-name-sans-extension
+                          ly-temp-file)
+                         ".pdf"))
+              (message "No pdf file generated so can't display!")))
+          (when ob-ly-play-midi-post-tangle
+            (if (file-exists-p
+                 (concat 
+                  (file-name-sans-extension
+                   ly-temp-file)
+                  ".midi"))
+                (shell-command
+                 (concat "open "
+                         (file-name-sans-extension
+                          ly-temp-file)
+                         ".midi"))
+              (message "No midi file generated so can't play!"))))))))
   
