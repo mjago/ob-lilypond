@@ -1,14 +1,24 @@
+(require 'ob)
+(require 'ob-eval)
+
 (defalias 'lilypond-mode 'LilyPond-mode)
+(add-to-list 'org-babel-tangle-lang-exts '("LilyPond" . "ly"))
+
 (defvar ob-ly-compile-post-tangle t
     "Following the org-babel-tangle (C-c C-v t) command,
 OB-LY-COMPILE-POST-TANGLE determines whether ob-lilypond should
 automatically attempt to compile the resultant tangled file.
-If the value is nil, no automated compilation takes place.")
+If the value is nil, no automated compilation takes place.
+Default value is t")
 
-(require 'ob)
-(require 'ob-eval)
+(defvar ob-ly-draw-pdf-post-tangle t
+  "Following a successful LilyPond compilation
+OB-LY-DRAW-PDF-POST-TANGLE determines whether to automate the
+drawing / redrawing of the resultant pdf. If the value is nil,
+the pdf is not automatically redrawn. Default value is t")
 
-(add-to-list 'org-babel-tangle-lang-exts '("LilyPond" . "ly"))
+(setq ob-ly-draw-pdf-post-tangle t)
+
 (defvar org-babel-default-header-args:lilypond
   '((:results . "file") (:exports . "results"))
   "Default arguments to use when evaluating a lilypond source block.")
@@ -100,12 +110,13 @@ This function is called by `org-babel-execute-src-block'."
         (goto-char (point-min))
         (if (not (search-forward "error:" nil t))
             (progn
-              (shell-command
-               (concat "open "
-                       (file-name-nondirectory
-                        (file-name-sans-extension
-                         ly-temp-file))
-                       ".pdf")) 
+              (when ob-ly-draw-pdf-post-tangle
+                (shell-command
+                 (concat "open "
+                         (file-name-nondirectory
+                          (file-name-sans-extension
+                           ly-temp-file))
+                         ".pdf"))) 
               (shell-command
                (concat "open "
                        (file-name-nondirectory
