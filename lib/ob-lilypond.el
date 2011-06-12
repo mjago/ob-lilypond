@@ -29,7 +29,7 @@ the midi file is not automatically played. Default value is t")
 (defvar ly-win32-app-path "")
 
 (defvar org-babel-default-header-args:lilypond
-  '((:results . "file") (:exports . "results"))
+  '((:tangle . "yes") (:results . "file") (:exports . "results") )
   "Default arguments to use when evaluating a lilypond source block.")
 
 (defun org-babel-expand-body:lilypond (body params)
@@ -49,16 +49,17 @@ the midi file is not automatically played. Default value is t")
     body))
 
 (defun org-babel-execute:lilypond (body params)
-  "In terms of ob-lilypond, ORG-BABEL-EXECUTE
-performs the following...
-1) adds org-babel-execute-tangled-ly to org-babel-post-tangle-hook
-2) tangles all lilypond blocks
-3) removes hook
-This function is called by `org-babel-execute-src-block'."
+  "This function is called by `org-babel-execute-src-block'."
 
-  (add-hook 'org-babel-post-tangle-hook 'org-babel-execute-tangled-ly)
-  (org-babel-tangle)
-  (remove-hook 'org-babel-post-tangle-hook 'org-babel-execute-tangled-ly))
+  ;;  (let* ((result-params (cdr (assoc :result-params params))))
+  
+  ;;   (error "%s" params)
+
+  ;;  (add-hook 'org-babel-post-tangle-hook 'ly-execute-tangled-ly)
+  (if (org-babel-tangle nil "lilypond")
+      (ly-execute-tangled-ly)))
+
+;;  (remove-hook 'org-babel-post-tangle-hook 'ly-execute-tangled-ly))
 
 (defun org-babel-prep-session:lilypond (session params)
   "Return an error because LilyPond exporter does not support sessions."
@@ -66,7 +67,7 @@ This function is called by `org-babel-execute-src-block'."
 
 (provide 'ob-lilypond)
 
-(defun org-babel-execute-tangled-ly ()
+(defun ly-execute-tangled-ly ()
   (interactive)
   (when ly-compile-post-tangle
     (let ((ly-tangled-file (concat
@@ -81,28 +82,27 @@ This function is called by `org-babel-execute-src-block'."
                          ".ly"))
           (ly-eps nil))
       
-      (unwind-protect
-          (progn
-            (if (file-exists-p ly-tangled-file)
-                (progn
-                  (when (file-exists-p ly-temp-file)
-                    (delete-file ly-temp-file))
-                  (rename-file ly-tangled-file
-                               ly-temp-file))
-              (error "Error: Tangle Failed!")t)
-            (if (ly-compile-lilyfile ly-temp-file)
-                (progn
-                  (ly-attempt-to-open-pdf ly-temp-file)
-                  (ly-attempt-to-play-midi ly-temp-file))
-              (message "Error in Compilation!")))
-        (kill-buffer ly-tangled-file)))))
+      ;;      (unwind-protect
+      (progn
+        (if (file-exists-p ly-tangled-file)
+            (progn
+              (when (file-exists-p ly-temp-file)
+                (delete-file ly-temp-file))
+              (rename-file ly-tangled-file
+                           ly-temp-file))
+          (error "Error: Tangle Failed!") t)
+        (if (ly-compile-lilyfile ly-temp-file)
+            (progn
+              (ly-attempt-to-open-pdf ly-temp-file)
+              (ly-attempt-to-play-midi ly-temp-file))
+          (error "Error in Compilation!"))))))
+;;        (kill-buffer ly-tangled-file)))))
 
 (defun ly-compile-lilyfile (file-name)
   (message "Compiling LilyPond...")
   (let ((ly-app-path (ly-determine-app-path)))
     (save-excursion
       (switch-to-buffer-other-window "*lilypond*")
-      (set-buffer "*lilypond*")
       (erase-buffer)
       (call-process
        ly-app-path nil "*lilypond*" t 
@@ -111,7 +111,9 @@ This function is called by `org-babel-execute-src-block'."
          "")
        file-name)
       (goto-char (point-min))
-      (if (not (search-forward "error:" nil t)) t nil))))
+      (if (not (search-forward "error:" nil t))
+          (not (other-window -1))
+        nil))))
 
 (defun ly-attempt-to-open-pdf (file-name)
   (when ly-display-pdf-post-tangle
