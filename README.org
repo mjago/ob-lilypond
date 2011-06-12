@@ -10,17 +10,24 @@ Setting.
  2. Optional Automated display of resultant Musical Score
  3. Optional Automated playing of the resultant MIDI file
 
-** Setup (add to emacs init file)
+** Use
+Hitting C-c C-c within a lilypond block inatiates tangling of all
+lilypond blocks. Depending on the feature settings, ob-lilypond will 
+then either display a pdf of the score, play the generated midi file,
+or both.
 
+Hitting C-c C-c t (org-babel-tangle) will tangle blocks (where tangle
+is not disabled), but will not perform the additional options.
+
+** Setup (add to emacs init file)
 The Files need to be downloaded to your relevant dotfiles directory
-and the following placed in your Emacs init file...
+and something similar to the following placed in your Emacs init file...
 
 #+BEGIN_SRC emacs-lisp
 
 (add-to-list 'load-path
              (concat dotfiles-dir  "ob-lilypond/lib"))
 (require 'ob-lilypond)
-(add-hook 'org-babel-post-tangle-hook 'org-babel-execute-tangled-ly)
 
 #+END_SRC
 
