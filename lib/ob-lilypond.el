@@ -110,12 +110,7 @@ This function is called by `org-babel-execute-src-block'."
 
 (defun ly-compile-lilyfile (file-name)
   (message "Compiling LilyPond...")
-  (let ((ly-app-path
-         (cond ((string= system-type  "darwin")
-                ob-ly-OSX-app-path)
-               ((string= system-type "win32")
-                ob-ly-win32-app-path)
-               (t ob-ly-unix-app-path))))
+  (let ((ly-app-path (ly-determine-app-path)))
     (save-excursion
       (switch-to-buffer-other-window "*lilypond*")
       (set-buffer "*lilypond*")
@@ -149,3 +144,9 @@ This function is called by `org-babel-execute-src-block'."
           (shell-command (concat "open " midi-file))
         (message "No midi file generated so can't play!")))))
   
+(defun ly-determine-app-path ()
+  (cond ((string= system-type  "darwin")
+         ob-ly-OSX-app-path)
+        ((string= system-type "win32")
+         ob-ly-win32-app-path)
+        (t ob-ly-unix-app-path)))
