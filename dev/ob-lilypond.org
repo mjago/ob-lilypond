@@ -23,6 +23,21 @@ Use defvar rather than defcustom for now
     existance of pdf and MIDI files before auto display or play
 Done with warnings if lilypond doesn't generate
 *** DONE Refactor org-babel-execute-tangled-ly to smaller chunks
+*** DONE ly-determine-app-path refactoring
+*** DONE Modify org-babel-execute:lilypond to actually perform tangle
+Since ob-lilypond is currently all about tangling, modify C-c C-c
+action to perform tangling and subsequent processing. This way we
+no longer need to use post-tangle-hook and differentiates between
+simple tangling, and tangle + processing.
+*** DONE Add command to toggle playing of midi file
+*** DONE Add command to toggle displaying pdf file
+*** DONE Modify so that given a syntax error ob-lilypond will attempt 
+    to highlight the line containing the error in the original
+    pre-tangled org file (rather than the generated ly file)
+*** TODO Remove the need to explicitly indicate tangled lilypond blocks
+This will mean that all lilypond blocks are :tangle: yes by default,
+which currently makes sense
+
 *** TODO Decide How to handle OS dependencies
  - midi player
  - pdf viewer

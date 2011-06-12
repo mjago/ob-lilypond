@@ -49,26 +49,17 @@ the midi file is not automatically played. Default value is t")
     body))
 
 (defun org-babel-execute:lilypond (body params)
-  "This function is called by `org-babel-execute-src-block'."
+  "This function is called by `org-babel-execute-src-block'.
+Tangle all lilypond blocks and process the result"
 
-  ;;  (let* ((result-params (cdr (assoc :result-params params))))
-  
-  ;;   (error "%s" params)
-
-  ;;  (add-hook 'org-babel-post-tangle-hook 'ly-execute-tangled-ly)
   (if (org-babel-tangle nil "lilypond")
       (ly-execute-tangled-ly)))
-
-;;  (remove-hook 'org-babel-post-tangle-hook 'ly-execute-tangled-ly))
 
 (defun org-babel-prep-session:lilypond (session params)
   "Return an error because LilyPond exporter does not support sessions."
   (error "Sorry, LilyPond does not currently support sessions!"))
 
-(provide 'ob-lilypond)
-
 (defun ly-execute-tangled-ly ()
-  (interactive)
   (when ly-compile-post-tangle
     (let ((ly-tangled-file (concat
                             (file-name-nondirectory
@@ -81,8 +72,6 @@ the midi file is not automatically played. Default value is t")
                            (buffer-file-name)))
                          ".ly"))
           (ly-eps nil))
-      
-      ;;      (unwind-protect
       (progn
         (if (file-exists-p ly-tangled-file)
             (progn
@@ -96,7 +85,6 @@ the midi file is not automatically played. Default value is t")
               (ly-attempt-to-open-pdf ly-temp-file)
               (ly-attempt-to-play-midi ly-temp-file))
           (error "Error in Compilation!"))))))
-;;        (kill-buffer ly-tangled-file)))))
 
 (defun ly-compile-lilyfile (file-name)
   (message "Compiling LilyPond...")
@@ -115,21 +103,23 @@ the midi file is not automatically played. Default value is t")
 (defun ly-check-for-compile-error ()
   (if (not (search-forward "error:" nil t))
       (not (other-window -1))
-    (progn
-      (goto-char (point-at-bol))
-      (forward-line 2)
-      (let ((bol (point)))
-        (goto-char (point-at-eol))
-        (let ((snippet (buffer-substring bol (point))))
-          (other-window -1)
-          (let ((temp (point)))
-            (goto-char (point-min))
-            (if (search-forward snippet nil t)
-                (progn
-                  (set-mark (point))
-                  (goto-char (point-at-bol)))
-              (goto-char temp))
-            nil))))))
+    (ly-process-compile-error)))
+
+(defun ly-process-compile-error ()
+  (goto-char (point-at-bol))
+  (forward-line 2)
+  (let ((bol (point)))
+    (goto-char (point-at-eol))
+    (let ((snippet (buffer-substring bol (point))))
+      (other-window -1)
+      (let ((temp (point)))
+        (goto-char (point-min))
+        (if (search-forward snippet nil t)
+            (progn
+              (set-mark (point))
+              (goto-char (point-at-bol)))
+          (goto-char temp)
+          nil)))))
 
 (defun ly-attempt-to-open-pdf (file-name)
   (when ly-display-pdf-post-tangle
@@ -167,6 +157,8 @@ the midi file is not automatically played. Default value is t")
   (interactive)
   (setq ly-display-pdf-post-tangle
         (not ly-display-pdf-post-tangle)))
+
+(provide 'ob-lilypond)
 
 ;;; ob-lilypond.el ends here
 
