@@ -83,30 +83,33 @@ This function is called by `org-babel-execute-src-block'."
 (defun org-babel-execute-tangled-ly ()
   (interactive)
   (when ob-ly-compile-post-tangle
-    (let ((ly-tangled-file (concat
-                            (file-name-nondirectory
-                             (file-name-sans-extension
-                              (buffer-file-name)))
-                            ".lilypond"))
-          (ly-temp-file (concat
-                         (file-name-nondirectory
-                          (file-name-sans-extension
-                           (buffer-file-name)))
-                         ".ly"))
-          (ly-eps nil))
-    
-      (if (file-exists-p ly-tangled-file)
-          (progn
-            (when (file-exists-p ly-temp-file)
-              (delete-file ly-temp-file))
-            (rename-file ly-tangled-file
-                         ly-temp-file))
-        (error "ERROR: Tangle Failed!")t)
-      (if (ly-compile-lilyfile ly-temp-file)
-          (progn
-            (ly-attempt-to-open-pdf ly-temp-file)
-            (ly-attempt-to-play-midi ly-temp-file))
-        (message "Error in Compilation!")))))
+        (let ((ly-tangled-file (concat
+                                (file-name-nondirectory
+                                 (file-name-sans-extension
+                                  (buffer-file-name)))
+                                ".lilypond"))
+              (ly-temp-file (concat
+                             (file-name-nondirectory
+                              (file-name-sans-extension
+                               (buffer-file-name)))
+                             ".ly"))
+              (ly-eps nil))
+          
+          (unwind-protect
+              (progn
+                (if (file-exists-p ly-tangled-file)
+                    (progn
+                      (when (file-exists-p ly-temp-file)
+                        (delete-file ly-temp-file))
+                      (rename-file ly-tangled-file
+                                   ly-temp-file))
+                  (error "Error: Tangle Failed!")t)
+                (if (ly-compile-lilyfile ly-temp-file)
+                    (progn
+                      (ly-attempt-to-open-pdf ly-temp-file)
+                      (ly-attempt-to-play-midi ly-temp-file))
+                  (message "Error in Compilation!")))
+            (kill-buffer ly-tangled-file)))))
 
 (defun ly-compile-lilyfile (file-name)
   (message "Compiling LilyPond...")
