@@ -29,7 +29,7 @@
   
   PianoVoiceOneVerseOne = {
     <g bes d'> 2.( bes8) c' |
-    sdafdes'8 c'' c'' c'' c'' bes' g' ees' |
+    des'8 c'' c'' c'' c'' bes' g' ees' |
     c'2  \times 2/3 { r8 g aes } \times 2/3 { c'8 ees' g' } |
     bes'8 bes' bes' aes' bes'4. aes'8 |
     g'4 ~ \times 2/3 { g'8 aes' bes' }  

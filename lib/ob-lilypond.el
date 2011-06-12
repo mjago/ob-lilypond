@@ -101,19 +101,35 @@ the midi file is not automatically played. Default value is t")
 (defun ly-compile-lilyfile (file-name)
   (message "Compiling LilyPond...")
   (let ((ly-app-path (ly-determine-app-path)))
-    (save-excursion
-      (switch-to-buffer-other-window "*lilypond*")
-      (erase-buffer)
-      (call-process
-       ly-app-path nil "*lilypond*" t 
-       (if ly-eps
-           "-dbackend=eps"
-         "")
-       file-name)
-      (goto-char (point-min))
-      (if (not (search-forward "error:" nil t))
-          (not (other-window -1))
-        nil))))
+    (switch-to-buffer-other-window "*lilypond*")
+    (erase-buffer)
+    (call-process
+     ly-app-path nil "*lilypond*" t 
+     (if ly-eps
+         "-dbackend=eps"
+       "")
+     file-name)
+    (goto-char (point-min))
+    (ly-check-for-compile-error)))
+
+(defun ly-check-for-compile-error ()
+  (if (not (search-forward "error:" nil t))
+      (not (other-window -1))
+    (progn
+      (goto-char (point-at-bol))
+      (forward-line 2)
+      (let ((bol (point)))
+        (goto-char (point-at-eol))
+        (let ((snippet (buffer-substring bol (point))))
+          (other-window -1)
+          (let ((temp (point)))
+            (goto-char (point-min))
+            (if (search-forward snippet nil t)
+                (progn
+                  (set-mark (point))
+                  (goto-char (point-at-bol)))
+              (goto-char temp))
+            nil))))))
 
 (defun ly-attempt-to-open-pdf (file-name)
   (when ly-display-pdf-post-tangle
