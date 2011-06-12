@@ -34,9 +34,10 @@ simple tangling, and tangle + processing.
 *** DONE Modify so that given a syntax error ob-lilypond will attempt 
     to highlight the line containing the error in the original
     pre-tangled org file (rather than the generated ly file)
-*** TODO Remove the need to explicitly indicate tangled lilypond blocks
+*** DONE Remove the need to explicitly indicate tangled lilypond blocks
 This will mean that all lilypond blocks are :tangle: yes by default,
-which currently makes sense
+which currently makes sense - enabled by passing in "yes" as tangle
+file to org-babel-tangle
 
 *** TODO Decide How to handle OS dependencies
  - midi player

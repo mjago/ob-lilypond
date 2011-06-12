@@ -1,17 +1,15 @@
 * Example Tangled LilyPond file (Misty - Errol Garner)
-** Babel tangle settings
-
-#+babel: :tangle yes
-
+  
 ** LilyPond Version
   
 #+begin_src lilypond
 
 \version "2.12.3"
+
 #+end_src 
 
 #+results:
-          
+
 ** Note Entry
 *** Piano
 
@@ -225,8 +223,6 @@
   }
   
 #+end_src
-
-#+results:
 
 *** DrumBeats
 

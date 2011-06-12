@@ -1,6 +1,5 @@
 (require 'ob)
 (require 'ob-eval)
-
 (defalias 'lilypond-mode 'LilyPond-mode)
 (add-to-list 'org-babel-tangle-lang-exts '("LilyPond" . "ly"))
 
@@ -28,10 +27,6 @@ the midi file is not automatically played. Default value is t")
 (defvar ly-unix-app-path "")
 (defvar ly-win32-app-path "")
 
-(defvar org-babel-default-header-args:lilypond
-  '((:tangle . "yes") (:results . "file") (:exports . "results") )
-  "Default arguments to use when evaluating a lilypond source block.")
-
 (defun org-babel-expand-body:lilypond (body params)
   "Expand BODY according to PARAMS, return the expanded body."
 
@@ -52,7 +47,7 @@ the midi file is not automatically played. Default value is t")
   "This function is called by `org-babel-execute-src-block'.
 Tangle all lilypond blocks and process the result"
 
-  (if (org-babel-tangle nil "lilypond")
+  (if (org-babel-tangle "yes" "lilypond")
       (ly-execute-tangled-ly)))
 
 (defun org-babel-prep-session:lilypond (session params)
@@ -84,7 +79,7 @@ Tangle all lilypond blocks and process the result"
             (progn
               (ly-attempt-to-open-pdf ly-temp-file)
               (ly-attempt-to-play-midi ly-temp-file))
-          (error "Error in Compilation!"))))))
+          (error "Error in Compilation!"))))) nil)
 
 (defun ly-compile-lilyfile (file-name)
   (message "Compiling LilyPond...")
