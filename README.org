@@ -14,10 +14,12 @@ Setting.
  - [[https://github.com/mjago/ob-lilypond/blob/master/song/example.midi?raw=true][Generated Midi File]]
 
 ** Features
- 1. Optional Automated LilyPond Compilation following the "Tangling" of
-    a "Literate Org LilyPond" file
- 2. Optional Automated display of resultant Musical Score
- 3. Optional Automated playing of the resultant MIDI file
+ - Optional Automated LilyPond Compilation following the "Tangling"
+  of a "Literate Org LilyPond" file
+ - Optional Automated display of resultant Musical Score following compilation
+ - Optional Automated playing of the resultant MIDI file following compilation
+ - Highlights syntax errors in Org file following a failed compilation
+ - Integrates with LilyPond-Mode
 
 ** Use
 Hitting C-c C-c within a lilypond block initiates tangling of all
