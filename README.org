@@ -1,8 +1,7 @@
 * Emacs Org Babel LilyPond Mode
 ** Purpose
-
-Enable Emacs Org-Babel mode to be used in a LilyPond Score Generation
-Setting.
+Allow LilyPond Score Generation to take place within Emacs Org-mode
+using literate programming principles.
 
 ** Outputs of included Example
  - [[https://raw.github.com/mjago/ob-lilypond/master/song/Example-exported.html][Here is the Example Org File]] exported as HTML
@@ -20,8 +19,9 @@ Setting.
  - Optional Automated playing of the resultant MIDI file following compilation
  - Highlights syntax errors in Org file following a failed compilation
  - Integrates with LilyPond-Mode
+ - Cross-Platform (OSX, nix, win32)
 
-** Use
+** Usage
 Hitting C-c C-c within a lilypond block initiates tangling of all
 lilypond blocks. Depending on the feature settings, ob-lilypond will 
 then either display a pdf of the score, play the generated midi file,
@@ -29,6 +29,9 @@ or both.
 
 Hitting C-c C-v t (org-babel-tangle) will tangle blocks (where tangle
 is not disabled), but will not perform the additional options.
+
+NOTE:- If using Timidity for midi playback, kill the midi stream with 
+C-g in Emacs
 
 ** Setup (add to emacs init file)
 The Files need to be downloaded to your relevant dotfiles directory
@@ -42,3 +45,14 @@ and something similar to the following placed in your Emacs init file...
 
 #+END_SRC
 
+** Requirements
+*** Mac OS X
+ - [[http://lilypond.org/][Lilypond]] can be obtained [[http://lilypond.org/][here]]
+
+*** nix
+ - [[http://lilypond.org/][Lilypond]] is available [[http://lilypond.org/][here]] or via the the package manager
+ - For MIDI, [[http://timidity.sourceforge.net/][Timidity]] is available [[http://timidity.sourceforge.net/][here]] or via the package manager
+ - For PDF, [[http://live.gnome.org/Evince/Downloads][Evince]] is available [[http://live.gnome.org/Evince/Downloads][here]] or via package manager
+
+*** Win32
+ - Currently untested

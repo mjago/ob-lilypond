@@ -328,6 +328,8 @@
   
 #+end_src
 
+#+results:
+
 ***** Verse One
 
 #+begin_src lilypond
@@ -421,7 +423,7 @@
 #+begin_src lilypond
   
   DrumIntro = {
-    r1 r1 
+    bd4 bd4 bd4 bd4 bd4 bd4 bd4 bd4 %r1 r1 
   }
   
 #+end_src

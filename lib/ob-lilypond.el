@@ -1,3 +1,46 @@
+;;; ob-lilypond.el --- org-babel functions for lilypond evaluation
+
+;; Copyright (C) Shelagh Manton, Martyn Jago
+
+;; Authors: Shelagh Manton, Martyn Jago
+;; Keywords: literate programming, weaving markup
+;; Homepage: https://github.com/sshelagh/ob-lilypond
+;; Version: 0.01
+
+;;; License:
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation; either version 3, or (at your option)
+;; any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+;; GNU General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with GNU Emacs; see the file COPYING. If not, write to the
+;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301, USA.
+
+;;; Commentary:
+
+;;
+;;
+
+;;
+;; If you are planning on adding a language to org-babel we would ask
+;; that if possible you fill out the FSF copyright assignment form
+;; available at http://orgmode.org/request-assign-future.txt as this
+;; will make it possible to include your language support in the core
+;; of Org-mode, otherwise unassigned language support files can still
+;; be included in the contrib/ directory of the Org-mode repository.
+
+;;; Requirements:
+
+;; You need to have a copy of LilyPond
+
 (require 'ob)
 (require 'ob-eval)
 (defalias 'lilypond-mode 'LilyPond-mode)
@@ -22,10 +65,18 @@ LY-PLAY-MIDI-POST-TANGLE determines whether to automate the
 playing of the resultant midi file. If the value is nil,
 the midi file is not automatically played. Default value is t")
 
-(defvar ly-OSX-app-path
+(defvar ly-OSX-ly-path
   "/Applications/lilypond.app/Contents/Resources/bin/lilypond")
-(defvar ly-unix-app-path "")
-(defvar ly-win32-app-path "")
+(defvar ly-OSX-pdf-path "open")
+(defvar ly-OSX-midi-path "open")
+
+(defvar ly-nix-ly-path "/usr/bin/lilypond")
+(defvar ly-nix-pdf-path "evince")
+(defvar ly-nix-midi-path "timidity")
+
+(defvar ly-win32-ly-path "lilypond")
+(defvar ly-win32-pdf-path "")
+(defvar ly-win32-midi-path "")
 
 (defvar ly-gen-png nil)
 "Image generation (png) can be turned on by default by setting
@@ -98,18 +149,18 @@ Tangle all lilypond blocks and process the result"
 
 (defun ly-compile-lilyfile (file-name)
   (message "Compiling LilyPond...")
-  (let ((ly-app-path (ly-determine-app-path)))
-    (switch-to-buffer-other-window "*lilypond*")
-    (erase-buffer)
-    (call-process
-     ly-app-path nil "*lilypond*" t 
-     (if ly-gen-png  "--png"  "")
-     (if ly-gen-html "--html" "")
-     (if ly-use-eps  "-dbackend=eps" "")
-     (if ly-gen-svg  "-dbackend=svg" "")
-     file-name)
-    (goto-char (point-min))
-    (ly-check-for-compile-error)))
+  (switch-to-buffer-other-window "*lilypond*")
+  (erase-buffer)
+  (call-process
+;;   "lilypond" nil "*lilypond*" t 
+   (ly-determine-ly-path) nil "*lilypond*" t 
+   (if ly-gen-png  "--png"  "")
+   (if ly-gen-html "--html" "")
+   (if ly-use-eps  "-dbackend=eps" "")
+   (if ly-gen-svg  "-dbackend=svg" "")
+   file-name)
+  (goto-char (point-min))
+  (ly-check-for-compile-error))
 
 (defun ly-check-for-compile-error ()
   (if (not (search-forward "error:" nil t))
@@ -139,7 +190,7 @@ Tangle all lilypond blocks and process the result"
                       file-name)
                      ".pdf")))
       (if (file-exists-p pdf-file)
-          (shell-command (concat "open " pdf-file))
+          (shell-command (concat (ly-determine-pdf-path) " " pdf-file))
         (error  "No pdf file generated so can't display!")))))
 
 (defun ly-attempt-to-play-midi (file-name)
@@ -149,15 +200,27 @@ Tangle all lilypond blocks and process the result"
                        file-name)
                       ".midi")))
       (if (file-exists-p midi-file)
-          (shell-command (concat "open " midi-file))
+          (shell-command (concat (ly-determine-midi-path) " " midi-file))
         (message "No midi file generated so can't play!")))))
 
-(defun ly-determine-app-path ()
+(defun ly-determine-ly-path ()
   (cond ((string= system-type  "darwin")
-         ly-OSX-app-path)
+         ly-OSX-ly-path)
+        (t ly-nix-ly-path)))
+
+(defun ly-determine-pdf-path ()
+  (cond ((string= system-type  "darwin")
+         ly-OSX-pdf-path)
         ((string= system-type "win32")
-         ly-win32-app-path)
-        (t ly-unix-app-path)))
+         ly-win32-pdf-path)
+        (t ly-nix-pdf-path)))
+
+(defun ly-determine-midi-path ()
+  (cond ((string= system-type  "darwin")
+         ly-OSX-midi-path)
+        ((string= system-type "win32")
+         ly-win32-midi-path)
+        (t ly-nix-midi-path)))
 
 (defun ly-toggle-midi-play ()
   (interactive)

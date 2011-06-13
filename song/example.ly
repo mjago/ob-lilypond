@@ -253,7 +253,7 @@ PianoVoiceFour = {
 }
 
 DrumIntro = {
-  r1 r1 
+  bd4 bd4 bd4 bd4 bd4 bd4 bd4 bd4 %r1 r1 
 }
 
 DrumVerseOne = {
