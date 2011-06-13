@@ -7,6 +7,10 @@ Setting.
 ** Example 
 
 [[https://raw.github.com/mjago/ob-lilypond/master/song/Example-exported.html][Here is the Example Org File]] exported as HTML
+Following are generated Score export of Pages (png)
+[[https://github.com/mjago/ob-lilypond/raw/master/song/example-page3.png][Page 1]]
+[[https://github.com/mjago/ob-lilypond/raw/master/song/example-page3.png][Page 2]]
+[[https://github.com/mjago/ob-lilypond/raw/master/song/example-page3.png][Page 3]]
 
 ** Features
  1. Optional Automated LilyPond Compilation following the "Tangling" of
