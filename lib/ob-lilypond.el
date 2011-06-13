@@ -152,7 +152,6 @@ Tangle all lilypond blocks and process the result"
   (switch-to-buffer-other-window "*lilypond*")
   (erase-buffer)
   (call-process
-;;   "lilypond" nil "*lilypond*" t 
    (ly-determine-ly-path) nil "*lilypond*" t 
    (if ly-gen-png  "--png"  "")
    (if ly-gen-html "--html" "")
@@ -160,26 +159,30 @@ Tangle all lilypond blocks and process the result"
    (if ly-gen-svg  "-dbackend=svg" "")
    file-name)
   (goto-char (point-min))
-  (ly-check-for-compile-error))
+  (ly-check-for-compile-error file-name))
 
-(defun ly-check-for-compile-error ()
+(defun ly-check-for-compile-error (file-name)
   (if (not (search-forward "error:" nil t))
       (not (other-window -1))
-    (ly-process-compile-error)))
+    (ly-process-compile-error file-name)))
 
-(defun ly-process-compile-error ()
+(defun ly-process-compile-error (file-name)
   (goto-char (point-at-bol))
   (forward-line 2)
   (let ((bol (point)))
     (goto-char (point-at-eol))
     (let ((snippet (buffer-substring bol (point))))
-      (other-window -1)
+      (switch-to-buffer-other-window
+       (concat
+        (file-name-sans-extension file-name)
+        ".org"))
       (let ((temp (point)))
         (goto-char (point-min))
         (if (search-forward snippet nil t)
             (progn
               (set-mark (point))
-              (goto-char (point-at-bol)))
+              (goto-char (point-at-bol))
+              (error "Error: Compilation Failed!"))
           (goto-char temp)
           nil)))))
 
