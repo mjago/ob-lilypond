@@ -4,6 +4,10 @@
 Enable Emacs Org-Babel mode to be used in a LilyPond Score Generation
 Setting.
 
+** Example 
+
+[[https://raw.github.com/mjago/ob-lilypond/master/song/Example-exported.html][Here is the Example Org File]] exported as HTML
+
 ** Features
  1. Optional Automated LilyPond Compilation following the "Tangling" of
     a "Literate Org LilyPond" file
