@@ -1,7 +1,7 @@
 * Example Tangled LilyPond file (Misty - Errol Garner)
 ** LilyPond Version
   
-#+begin_src LilyPond
+#+begin_src lilypond
 
 \version "2.12.3"
 
@@ -14,7 +14,7 @@
 **** Voice One
 ***** Intro
 
-#+begin_src LilyPond
+#+begin_src lilypond
   
   PianoVoiceOneIntro = {
     g'8( bes b d' c' ees' g' d'' |
@@ -25,7 +25,7 @@
 
 ***** Verse One
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceOneVerseOne = {
     <g bes d'> 2.( bes8) c' |
@@ -44,7 +44,7 @@
 
 ***** Verse Two
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceOneVerseTwo = {
     < f g bes d' > 2. < f g bes > 8 c' |
@@ -65,7 +65,7 @@
 
 ***** Chorus
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceOneChorus = {
     \times 2/3 { des''4 des'' des'' } < f' c'' des'' > 2 ~ |
@@ -85,7 +85,7 @@
 
 ***** Verse Three
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceOneVerseThree = {
     d'2. bes8 c' |
@@ -104,7 +104,7 @@
 
 ***** Assembly
 
-#+begin_src LilyPond
+#+begin_src lilypond
   
   PianoVoiceOne = {
     \new Voice = "Voice One" {
@@ -122,7 +122,7 @@
 **** Voice Two
 ***** Intro
 
-#+begin_src LilyPond
+#+begin_src lilypond
    
   PianoVoiceTwoIntro = {
     r1 |
@@ -133,7 +133,7 @@
 
 ***** Verse One
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceTwoVerseOne = {
     r2. g4       |
@@ -150,7 +150,7 @@
 
 ***** Verse Two
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceTwoVerseTwo = {
     r1 |
@@ -167,7 +167,7 @@
 
 ***** Chorus
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceTwoChorus = {
     < f' bes' > 2 r2 |
@@ -184,7 +184,7 @@
 
 ***** Verse Three
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceTwoVerseThree = {
     < fis a > 2 < g bes > |
@@ -203,7 +203,7 @@
 
 ***** Assembly
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceTwo = {
     \new Voice= "Voice Two" { 
@@ -220,7 +220,7 @@
 
 **** Voice Three
 ***** Intro
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceThreeIntro = {
     r1 |
@@ -231,7 +231,7 @@
 
 ***** Verse One
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceThreeVerseOne = {
     r4 r8 f d2 |
@@ -248,7 +248,7 @@
 
 ***** Verse Two
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceThreeVerseTwo = {
     r8 bes, b, d c2 | 
@@ -265,7 +265,7 @@
 
 ***** Chorus
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceThreeChorus = {
     bes2 \times 2/3 { a4 a des' } |
@@ -282,7 +282,7 @@
 
 ***** Verse Three
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceThreeVerseThree = {
     r1 |
@@ -299,7 +299,7 @@
 
 ***** Assembly
 
-#+begin_src LilyPond
+#+begin_src lilypond
   
   PianoVoiceThree = {
     \new Voice = "Voice Three" {
@@ -319,7 +319,7 @@
 **** Voice Four
 ***** Intro
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceFourIntro = {
     < bes, f g > 1 | 
@@ -330,7 +330,7 @@
 
 ***** Verse One
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceFourVerseOne = {
     < ees, bes, > 1 |  
@@ -347,7 +347,7 @@
 
 ***** Verse Two
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceFourVerseTwo = {
     ees,1 |
@@ -364,7 +364,7 @@
 
 ***** Chorus
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceFourChorus = {
     bes,1 ~ |
@@ -381,7 +381,7 @@
 
 ***** Verse Three
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   PianoVoiceFourVerseThree = {
     < ees, bes, > 1 |
@@ -398,7 +398,7 @@
 
 ***** Assembly
 
-#+begin_src LilyPond
+#+begin_src lilypond
   
   PianoVoiceFour = {
     \new Voice= "Voice Four" { 
@@ -418,7 +418,7 @@
 *** Drums
 **** Intro
 
-#+begin_src LilyPond
+#+begin_src lilypond
   
   DrumIntro = {
     r1 r1 
@@ -427,7 +427,7 @@
 #+end_src
 
 **** Verse One
-#+begin_src LilyPond
+#+begin_src lilypond
   
   DrumVerseOne = {
     \drummode {
@@ -447,7 +447,7 @@
 #+results:
 
 **** Verse Two
-#+begin_src LilyPond
+#+begin_src lilypond
   
   DrumVerseTwo = {
     \drummode {
@@ -464,7 +464,7 @@
 
 #+end_src
 **** Chorus
-#+begin_src LilyPond
+#+begin_src lilypond
   
   DrumChorus = {
     \drummode {
@@ -481,7 +481,7 @@
     
 #+end_src
 **** Verse Three
-#+begin_src LilyPond
+#+begin_src lilypond
   
   DrumVerseThree = {
     \drummode {
@@ -498,7 +498,7 @@
     
 #+end_src
 **** Assembly
-#+begin_src LilyPond
+#+begin_src lilypond
   
   DrumBeats = {
     \DrumIntro
@@ -513,7 +513,7 @@
 ** Score
 *** Score Start
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
   \score {
         
@@ -523,7 +523,7 @@
 
 *** Piano
 
-#+begin_src LilyPond
+#+begin_src lilypond
   
   <<
     
@@ -559,7 +559,7 @@
 
 *** Drums
 
-#+begin_src LilyPond
+#+begin_src lilypond
   
   \new DrumStaff {
     \DrumBeats
@@ -569,7 +569,7 @@
 
 *** Score End
 
-#+begin_src LilyPond
+#+begin_src lilypond
   
   >> 
   
@@ -577,7 +577,7 @@
 
 ** Number of bars to compile
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
 %  showLastLength = R1*8
 
@@ -586,7 +586,7 @@
 #+results:
 
 ** Layout and Midi
-#+begin_src LilyPond
+#+begin_src lilypond
 
   \layout {
     }
@@ -605,7 +605,7 @@
    
 ** Paper
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
 \paper {
   #(define dump-extents #t) 
@@ -623,15 +623,16 @@
 
 ** Header
 
-#+begin_src LilyPond
+#+begin_src lilypond
 
 \header {
   title = \markup \center-column {"Misty"} 
   composer =  \markup \center-column { "Music by" \small "Erroll Garner" }
-  poet =  \markup \center-column { "ob-LilyPond" \small "example" }
+  poet =  \markup \center-column { "ob-lilypond" \small "example" }
 }
 
 #+end_src
 
 #+results:
 
+ 

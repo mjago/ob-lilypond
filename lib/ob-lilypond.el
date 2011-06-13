@@ -66,7 +66,10 @@ Tangle all lilypond blocks and process the result"
                           (file-name-sans-extension
                            (buffer-file-name)))
                          ".ly"))
-          (ly-eps nil))
+          (ly-png t)
+          (ly-html nil)
+          (ly-eps nil)
+          (ly-svg nil))
       (progn
         (if (file-exists-p ly-tangled-file)
             (progn
@@ -88,9 +91,10 @@ Tangle all lilypond blocks and process the result"
     (erase-buffer)
     (call-process
      ly-app-path nil "*lilypond*" t 
-     (if ly-eps
-         "-dbackend=eps"
-       "")
+     (if ly-png  "--png"  "")
+     (if ly-html "--html" "")
+     (if ly-eps  "-dbackend=eps" "")
+     (if ly-svg  "-dbackend=svg" "")
      file-name)
     (goto-char (point-min))
     (ly-check-for-compile-error)))

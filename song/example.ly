@@ -316,8 +316,6 @@ DrumBeats = {
   \DrumVerseThree
 }
 
-%  showLastLength = R1*8
-
 \score {
       
   <<
@@ -358,6 +356,8 @@ DrumBeats = {
 
 >>
 
+%  showLastLength = R1*8
+
 \layout {
   }
   \midi {
@@ -382,5 +382,5 @@ DrumBeats = {
 \header {
   title = \markup \center-column {"Misty"} 
   composer =  \markup \center-column { "Music by" \small "Erroll Garner" }
-  poet =  \markup \center-column { "ob-lilypond" \small "Example" }
+  poet =  \markup \center-column { "ob-lilypond" \small "example" }
 }
