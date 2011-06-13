@@ -5,12 +5,13 @@ Enable Emacs Org-Babel mode to be used in a LilyPond Score Generation
 Setting.
 
 ** Example 
-
-[[https://raw.github.com/mjago/ob-lilypond/master/song/Example-exported.html][Here is the Example Org File]] exported as HTML
-Following are generated Score export of Pages (png)
-[[https://github.com/mjago/ob-lilypond/raw/master/song/example-page3.png][Page 1]]
-[[https://github.com/mjago/ob-lilypond/raw/master/song/example-page3.png][Page 2]]
-[[https://github.com/mjago/ob-lilypond/raw/master/song/example-page3.png][Page 3]]
+ - [[https://raw.github.com/mjago/ob-lilypond/master/song/Example-exported.html][Here is the Example Org File]] exported as HTML
+ - [[https://github.com/mjago/ob-lilypond/blob/master/song/example.pdf][Resultant Score]] exported in pdf format
+ - Generated Score export of individual Pages (png)
+  - [[https://github.com/mjago/ob-lilypond/raw/master/song/example-page1.png][Page 1]]
+  - [[https://github.com/mjago/ob-lilypond/raw/master/song/example-page3.png][Page 2]]
+  - [[https://github.com/mjago/ob-lilypond/raw/master/song/example-page3.png][Page 3]]
+ - [[https://github.com/mjago/ob-lilypond/blob/master/song/example.midi][Generated Midi File]]
 
 ** Features
  1. Optional Automated LilyPond Compilation following the "Tangling" of
@@ -19,12 +20,12 @@ Following are generated Score export of Pages (png)
  3. Optional Automated playing of the resultant MIDI file
 
 ** Use
-Hitting C-c C-c within a lilypond block inatiates tangling of all
+Hitting C-c C-c within a lilypond block initiates tangling of all
 lilypond blocks. Depending on the feature settings, ob-lilypond will 
 then either display a pdf of the score, play the generated midi file,
 or both.
 
-Hitting C-c C-c t (org-babel-tangle) will tangle blocks (where tangle
+Hitting C-c C-v t (org-babel-tangle) will tangle blocks (where tangle
 is not disabled), but will not perform the additional options.
 
 ** Setup (add to emacs init file)
