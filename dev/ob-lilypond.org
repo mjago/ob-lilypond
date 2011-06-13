@@ -39,17 +39,21 @@ This will mean that all lilypond blocks are :tangle: yes by default,
 which currently makes sense - enabled by passing in "yes" as tangle
 file to org-babel-tangle
 
+*** DONE Further Refactor example.org
+*** DONE Export html version of example.org and add to repo
+*** TODO Figure out export with lower case lilypond restriction
 *** TODO Decide How to handle OS dependencies
  - midi player
  - pdf viewer
  - LilyPond location (Set up seperate binary paths relative to OS)
  - LilyPond API (OSX needs special treatment at the very least
-*** Figure out why Emacs occasionally auto-loads filename.lilypond!
+*** TODO Figure out why Emacs occasionally auto-loads filename.lilypond!
 **** DONE Reduced scope of (save-excursion) to avoid this - doesn't help
-**** TODO Perhaps need unwind-protection
-*** TODO Need to get tests going
+**** DONE Perhaps need unwind-protection - causes issues
+
 *** TODO Take post-tangle hook out of init file and only burden post-tangle hook
     when we are tangling lilypond files
+*** TODO Get feedback from Shelagh regarding direction and current 
 *** SOMEDAY Consider drawing vector graphic output as opposed to pdf for viewing?
 *** SOMEDAY Consider the option to embed resultant partial musical output into org file 
     (I did get this working but it looked a little strange)

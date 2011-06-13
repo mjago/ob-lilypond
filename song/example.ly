@@ -5,11 +5,6 @@ PianoVoiceOneIntro = {
   g'8( bes b d' c' ees' g' d'' |
   < c' ees' f' bes' > 2) bes'4 g' |
 }
- 
-PianoVoiceTwoIntro = {
-  r1 |
-  r2 < c' d' > 2 |
-}
 
 PianoVoiceOneVerseOne = {
   <g bes d'> 2.( bes8) c' |
@@ -22,17 +17,6 @@ PianoVoiceOneVerseOne = {
   \times 2/3 { < bes d' > 4 < c' ees' > 4 < d' f' > 4 } |
   g'1 ~ | 
   g'2. < bes' c' ees' > 8 < ces' d' g' > 8 |
-}
-
-PianoVoiceTwoVerseOne = {
-  r2. g4       |
-  r4 < des' f' > 4  < des' fes' > 2 |
-  bes2  \times 2/3 { bes8 r r } \times 2/3 { r8 r r } |
-  < ces' ees > 2 < ces' ees > 2 |
-  r1 |
-  r1 |
-  ees'4 d' des' c' |
-  des'4 c' ces' r  |
 }
 
 PianoVoiceOneVerseTwo = {
@@ -50,17 +34,6 @@ PianoVoiceOneVerseTwo = {
   \times 2/3 { < ees' g' > < g' bes' > < a' c'' >  } |
 }
 
-PianoVoiceTwoVerseTwo = {
-  r1 |
-  r4 < d' ges' > < des' f' > < b des' > |
-  r1 |
-  < ces' ees' > 2 < ces' ees' > 2 |
-  r8 < bes d' > 4. r2 |
-  r2 c'2  |
-  r4 < g c' > 8 < fis b > 8 < f bes > 4  < f bes > 8 < fis b > 8 |
-  r1 |
-}
-
 PianoVoiceOneChorus = {
   \times 2/3 { des''4 des'' des'' } < f' c'' des'' > 2 ~ |
   \times 2/3 { des''4 des'' ees'' }
@@ -73,17 +46,6 @@ PianoVoiceOneChorus = {
   \times 2/3 { < d'' f'' > 4 < b' d'' > < aes' c'' > } |
   bes'1 |
   < d' g' bes' > 2 < c' ees' g' bes' > 4 < g ces' d' g' > |
-}
-
-PianoVoiceTwoChorus = {
-  < f' bes' > 2 r2 |
-  < f' bes' > 2 < g' ces'' > |
-  < ees' bes' > 2 < des' aes' c'' > |
-  c'2 c'2 |
-  r1 |
-  r1 |
-  < ees' g' > 4 ces'8 d' c' ees' g' d''  |
-  r1 |
 }
 
 PianoVoiceOneVerseThree = {
@@ -99,6 +61,55 @@ PianoVoiceOneVerseThree = {
   < g c' f bes > 1 |
 }
 
+PianoVoiceOne = {
+  \new Voice = "Voice One" {
+    \voiceOne 
+    \PianoVoiceOneIntro
+    \PianoVoiceOneVerseOne
+    \PianoVoiceOneVerseTwo
+    \PianoVoiceOneChorus
+    \PianoVoiceOneVerseThree
+  }
+}
+
+PianoVoiceTwoIntro = {
+  r1 |
+  r2 < c' d' > 2 |
+}
+
+PianoVoiceTwoVerseOne = {
+  r2. g4       |
+  r4 < des' f' > 4  < des' fes' > 2 |
+  bes2  \times 2/3 { bes8 r r } \times 2/3 { r8 r r } |
+  < ces' ees > 2 < ces' ees > 2 |
+  r1 |
+  r1 |
+  ees'4 d' des' c' |
+  des'4 c' ces' r  |
+}
+
+PianoVoiceTwoVerseTwo = {
+  r1 |
+  r4 < d' ges' > < des' f' > < b des' > |
+  r1 |
+  < ces' ees' > 2 < ces' ees' > 2 |
+  r8 < bes d' > 4. r2 |
+  r2 c'2  |
+  r4 < g c' > 8 < fis b > 8 < f bes > 4  < f bes > 8 < fis b > 8 |
+  r1 |
+}
+
+PianoVoiceTwoChorus = {
+  < f' bes' > 2 r2 |
+  < f' bes' > 2 < g' ces'' > |
+  < ees' bes' > 2 < des' aes' c'' > |
+  c'2 c'2 |
+  r1 |
+  r1 |
+  < ees' g' > 4 ces'8 d' c' ees' g' d''  |
+  r1 |
+}
+
 PianoVoiceTwoVerseThree = {
   < fis a > 2 < g bes > |
   r4 < d' fis' > 4 < des' f' > 4  r4
@@ -108,6 +119,17 @@ PianoVoiceTwoVerseThree = {
   r8 aes4. c'2 |
   r4 < g c' > 8 < fis  b > < f bes > 4 < f bes > 8 < fis b > |
   r1 |
+}
+
+PianoVoiceTwo = {
+  \new Voice= "Voice Two" { 
+    \voiceTwo 
+    \PianoVoiceTwoIntro
+    \PianoVoiceTwoVerseOne
+    \PianoVoiceTwoVerseTwo
+    \PianoVoiceTwoChorus
+    \PianoVoiceTwoVerseThree
+  }
 }
 
 PianoVoiceThreeIntro = {
@@ -159,6 +181,17 @@ PianoVoiceThreeVerseThree = {
   r1
 }
 
+PianoVoiceThree = {
+  \new Voice = "Voice Three" {
+    \voiceOne 
+    \PianoVoiceThreeIntro
+    \PianoVoiceThreeVerseOne
+    \PianoVoiceThreeVerseTwo
+    \PianoVoiceThreeChorus
+    \PianoVoiceThreeVerseThree
+  }
+}
+
 PianoVoiceFourIntro = {
   < bes, f g > 1 | 
   < bes, aes > 2 < bes, aes > 2 | 
@@ -208,45 +241,133 @@ PianoVoiceFourVerseThree = {
   < ees, bes, > 1
 }
 
+PianoVoiceFour = {
+  \new Voice= "Voice Four" { 
+    \voiceTwo 
+    \PianoVoiceFourIntro
+    \PianoVoiceFourVerseOne
+    \PianoVoiceFourVerseTwo
+    \PianoVoiceFourChorus
+    \PianoVoiceFourVerseThree
+  }
+}
+
+DrumIntro = {
+  r1 r1 
+}
+
+DrumVerseOne = {
+  \drummode {
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+  }  
+}
+
+DrumVerseTwo = {
+  \drummode {
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+  }
+}
+
+DrumChorus = {
+  \drummode {
+    bd8 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd8 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd8 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd8 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd8 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd8 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd8 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd8 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+  }
+}
+
+DrumVerseThree = {
+  \drummode {
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd8 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+    bd8 r8 r2.
+  }
+}
+
 DrumBeats = {
-        \drummode {
-        r1 r1 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+  \DrumIntro
+  \DrumVerseOne
+  \DrumVerseTwo
+  \DrumChorus
+  \DrumVerseThree
+}
 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+%  showLastLength = R1*8
 
-        bd8 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd8 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd8 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd8 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd8 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd8 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd8 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd8 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
+\score {
+      
+  <<
 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd8 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
-        bd8 r8 r2.
-}}
+<<
+  
+  \new Staff { 
+    \relative ees'
+    \key ees \major
+    
+    <<
+
+      \PianoVoiceOne
+      \PianoVoiceTwo
+
+    >>
+    
+  }
+  
+  \new Staff {
+    \clef bass 
+    \key ees \major
+    
+    <<
+
+      \PianoVoiceThree  
+      \PianoVoiceFour
+      
+    >>
+    
+  }
+  
+>>
+
+\new DrumStaff {
+  \DrumBeats
+}
+
+>>
+
+\layout {
+  }
+  \midi {
+    \context {
+      \Score
+      tempoWholesPerMinute = #(ly:make-moment 100 4)
+    }
+  }
+
+}
 
 \paper {
   #(define dump-extents #t) 
@@ -261,92 +382,5 @@ DrumBeats = {
 \header {
   title = \markup \center-column {"Misty"} 
   composer =  \markup \center-column { "Music by" \small "Erroll Garner" }
-  poet =  \markup \center-column { "Org Babel" \small "Example" }
-}
-
-%showLastLength = R1*8
-
-\score {
-      
-  <<
-
-%      \new PianoStaff  \key ees \major
-  
-      <<
-        
-        \new Staff { 
-          \relative ees'
-          \key ees \major
-  
-          <<
-
-\new Voice = "Voice One" {
-  \voiceOne 
-  \PianoVoiceOneIntro
-  \PianoVoiceOneVerseOne
-  \PianoVoiceOneVerseTwo
-  \PianoVoiceOneChorus
-  \PianoVoiceOneVerseThree
-}
-
-\new Voice= "Voice Two" { 
-  \voiceTwo 
-  \PianoVoiceTwoIntro
-  \PianoVoiceTwoVerseOne
-  \PianoVoiceTwoVerseTwo
-  \PianoVoiceTwoChorus
-  \PianoVoiceTwoVerseThree
-}
-
->>
-  
-}
-  
-\new Staff {
-   
-  \clef bass 
-  \key ees \major
-  
-  <<
-  
-    \new Voice = "Voice Three" {
-      \voiceOne 
-      \PianoVoiceThreeIntro
-      \PianoVoiceThreeVerseOne
-      \PianoVoiceThreeVerseTwo
-      \PianoVoiceThreeChorus
-      \PianoVoiceThreeVerseThree
-      
-    }
-
-\new Voice= "Voice Four" { 
-        \voiceTwo 
-        \PianoVoiceFourIntro
-        \PianoVoiceFourVerseOne
-        \PianoVoiceFourVerseTwo
-        \PianoVoiceFourChorus
-        \PianoVoiceFourVerseThree
-      }
-   
-    >>
-  
-  }
-     
->>
-
-\new DrumStaff {
-  \DrumBeats
- }
-
->> 
-   
-\layout {
-  }
-  \midi {
-    \context {
-      \Score
-      tempoWholesPerMinute = #(ly:make-moment 80 4)
-    }
-  }
-
+  poet =  \markup \center-column { "ob-lilypond" \small "Example" }
 }
