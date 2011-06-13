@@ -4,14 +4,14 @@
 Enable Emacs Org-Babel mode to be used in a LilyPond Score Generation
 Setting.
 
-** Example 
+** Outputs of included Example
  - [[https://raw.github.com/mjago/ob-lilypond/master/song/Example-exported.html][Here is the Example Org File]] exported as HTML
- - [[https://github.com/mjago/ob-lilypond/blob/master/song/example.pdf][Resultant Score]] exported in pdf format
+ - [[https://github.com/mjago/ob-lilypond/blob/master/song/example.pdf?raw=true][Resultant Score]] exported in pdf format
  - Generated Score export of individual Pages (png)
   - [[https://github.com/mjago/ob-lilypond/raw/master/song/example-page1.png][Page 1]]
-  - [[https://github.com/mjago/ob-lilypond/raw/master/song/example-page3.png][Page 2]]
+  - [[https://github.com/mjago/ob-lilypond/raw/master/song/example-page2.png][Page 2]]
   - [[https://github.com/mjago/ob-lilypond/raw/master/song/example-page3.png][Page 3]]
- - [[https://github.com/mjago/ob-lilypond/blob/master/song/example.midi][Generated Midi File]]
+ - [[https://github.com/mjago/ob-lilypond/blob/master/song/example.midi?raw=true][Generated Midi File]]
 
 ** Features
  1. Optional Automated LilyPond Compilation following the "Tangling" of

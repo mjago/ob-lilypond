@@ -27,6 +27,22 @@ the midi file is not automatically played. Default value is t")
 (defvar ly-unix-app-path "")
 (defvar ly-win32-app-path "")
 
+(defvar ly-gen-png nil)
+"Image generation (png) can be turned on by default by setting
+LY-GEN-PNG to t"
+
+(defvar ly-gen-svg nil)
+"Image generation (SVG) can be turned on by default by setting
+LY-GEN-SVG to t"
+
+(defvar ly-gen-html nil)
+"HTML generation can be turned on by default by setting
+LY-GEN-HTML to t"
+
+(defvar ly-use-eps nil)
+"You can force the compiler to use the EPS backend by setting
+LY-USE-EPS to t"
+
 (defun org-babel-expand-body:lilypond (body params)
   "Expand BODY according to PARAMS, return the expanded body."
 
@@ -65,11 +81,7 @@ Tangle all lilypond blocks and process the result"
                          (file-name-nondirectory
                           (file-name-sans-extension
                            (buffer-file-name)))
-                         ".ly"))
-          (ly-png t)
-          (ly-html nil)
-          (ly-eps nil)
-          (ly-svg nil))
+                         ".ly")))
       (progn
         (if (file-exists-p ly-tangled-file)
             (progn
@@ -91,10 +103,10 @@ Tangle all lilypond blocks and process the result"
     (erase-buffer)
     (call-process
      ly-app-path nil "*lilypond*" t 
-     (if ly-png  "--png"  "")
-     (if ly-html "--html" "")
-     (if ly-eps  "-dbackend=eps" "")
-     (if ly-svg  "-dbackend=svg" "")
+     (if ly-gen-png  "--png"  "")
+     (if ly-gen-html "--html" "")
+     (if ly-use-eps  "-dbackend=eps" "")
+     (if ly-gen-svg  "-dbackend=svg" "")
      file-name)
     (goto-char (point-min))
     (ly-check-for-compile-error)))
@@ -150,12 +162,32 @@ Tangle all lilypond blocks and process the result"
 (defun ly-toggle-midi-play ()
   (interactive)
   (setq ly-play-midi-post-tangle
-        (not ly-play-midi-post-tangle)))
+        (not ly-play-midi-post-tangle))
+  (message (concat "Post-Tangle MIDI play has been "
+                   (if ly-play-midi-post-tangle
+                       "ENABLED." "DISABLED."))))
 
 (defun ly-toggle-pdf-display ()
   (interactive)
   (setq ly-display-pdf-post-tangle
-        (not ly-display-pdf-post-tangle)))
+        (not ly-display-pdf-post-tangle))
+  (message (concat "Post-Tangle PDF display has been "
+                   (if ly-display-pdf-post-tangle
+                       "ENABLED." "DISABLED."))))
+
+(defun ly-toggle-png-generation ()
+  (interactive)
+  (setq ly-gen-png
+        (not ly-gen-png))
+  (message (concat "PNG image generation has been "
+                   (if ly-gen-png "ENABLED." "DISABLED."))))
+
+(defun ly-toggle-html-generation ()
+  (interactive)
+  (setq ly-gen-html
+        (not ly-gen-html))
+  (message (concat "HTML generation has been "
+                   (if ly-gen-html "ENABLED." "DISABLED."))))
 
 (provide 'ob-lilypond)
 

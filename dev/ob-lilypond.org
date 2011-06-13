@@ -41,7 +41,8 @@ file to org-babel-tangle
 
 *** DONE Further Refactor example.org
 *** DONE Export html version of example.org and add to repo
-*** TODO Add exported link to readme
+*** DONE Add exported link to readme
+*** DONE Add ly-toggle-png-generation command
 *** TODO Figure out export with lower case lilypond restriction
 *** TODO Decide How to handle OS dependencies
  - midi player
