@@ -423,7 +423,7 @@
 #+begin_src lilypond
   
   DrumIntro = {
-    bd4 bd4 bd4 bd4 bd4 bd4 bd4 bd4 %r1 r1 
+    r1 r1 
   }
   
 #+end_src
