@@ -162,7 +162,7 @@ FILE-NAME is full path to lilypond (.ly) file"
    (if ly-gen-html "--html" "")
    (if ly-use-eps  "-dbackend=eps" "")
    (if ly-gen-svg  "-dbackend=svg" "")
-   (concat "--output=" (file-name-directory file-name))
+   (concat "--output=" (file-name-sans-extension file-name))
    file-name)
   (goto-char (point-min))
   (ly-check-for-compile-error file-name))
