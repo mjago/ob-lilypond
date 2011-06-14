@@ -173,11 +173,13 @@ Tangle all lilypond blocks and process the result"
     (let ((snippet (buffer-substring bol (point))))
       (switch-to-buffer-other-window
        (concat
-        (file-name-sans-extension file-name)
+        (file-name-nondirectory
+         (file-name-sans-extension file-name))
         ".org"))
       (let ((temp (point)))
         (goto-char (point-min))
-        (if (search-forward snippet nil t)
+        (setq case-fold-search nil)
+        (if (search-forward (concat "\n" snippet) nil t)
             (progn
               (set-mark (point))
               (goto-char (point-at-bol))
