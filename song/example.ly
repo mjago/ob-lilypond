@@ -316,7 +316,7 @@ DrumBeats = {
   \DrumVerseThree
 }
 
-showLastLength = R1*8
+%  showLastLength = R1*8
 
 \score {
       

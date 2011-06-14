@@ -500,11 +500,11 @@
   
 #+end_src
 
-** Number of bars to compile
+** Number of bars to compile (showLastLength)
 
 #+begin_src lilypond
 
-  showLastLength = R1*8
+%  showLastLength = R1*8
 
 #+end_src
 
