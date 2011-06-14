@@ -146,6 +146,20 @@ file to org-babel-tangle
 #+results:
 : lilypond-project
 
+*** Dev Tangle Command
 
-    
- 
+#+BEGIN_SRC emacs-lisp
+
+(defun ly-dev-tangle ()
+  (interactive)
+  (set-buffer "misty.org")
+  (let ((current (point)))
+    (goto-char (point-min))
+    (org-babel-next-src-block)
+    (org-babel-execute-src-block)))
+(global-set-key [f8] 'ly-dev-tangle)
+
+#+END_SRC
+
+#+results:
+

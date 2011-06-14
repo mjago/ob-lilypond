@@ -124,14 +124,12 @@ Tangle all lilypond blocks and process the result"
 (defun ly-execute-tangled-ly ()
   (when ly-compile-post-tangle
     (let ((ly-tangled-file (concat
-                            (file-name-nondirectory
-                             (file-name-sans-extension
-                              (buffer-file-name)))
+                            (file-name-sans-extension
+                               (buffer-file-name))
                             ".lilypond"))
           (ly-temp-file (concat
-                         (file-name-nondirectory
-                          (file-name-sans-extension
-                           (buffer-file-name)))
+                         (file-name-sans-extension
+                            (buffer-file-name))
                          ".ly")))
       (progn
         (if (file-exists-p ly-tangled-file)
@@ -157,6 +155,7 @@ Tangle all lilypond blocks and process the result"
    (if ly-gen-html "--html" "")
    (if ly-use-eps  "-dbackend=eps" "")
    (if ly-gen-svg  "-dbackend=svg" "")
+   (concat "--output=" (file-name-directory file-name))
    file-name)
   (goto-char (point-min))
   (ly-check-for-compile-error file-name))

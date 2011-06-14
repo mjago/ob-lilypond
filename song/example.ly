@@ -316,6 +316,8 @@ DrumBeats = {
   \DrumVerseThree
 }
 
+showLastLength = R1*8
+
 \score {
       
   <<
@@ -355,8 +357,6 @@ DrumBeats = {
 }
 
 >>
-
-%  showLastLength = R1*8
 
 \layout {
   }
