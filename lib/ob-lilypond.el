@@ -26,10 +26,6 @@
 
 ;;; Commentary:
 
-;;
-;;
-
-;;
 ;; If you are planning on adding a language to org-babel we would ask
 ;; that if possible you fill out the FSF copyright assignment form
 ;; available at http://orgmode.org/request-assign-future.txt as this
@@ -48,20 +44,20 @@
 
 (defvar ly-compile-post-tangle t
   "Following the org-babel-tangle (C-c C-v t) command,
-LY-COMPILE-POST-TANGLE determines whether ob-lilypond should
+ly-compile-post-tangle determines whether ob-lilypond should
 automatically attempt to compile the resultant tangled file.
 If the value is nil, no automated compilation takes place.
 Default value is t")
 
 (defvar ly-display-pdf-post-tangle t
   "Following a successful LilyPond compilation
-LY-DISPLAY-PDF-POST-TANGLE determines whether to automate the
+ly-display-pdf-post-tangle determines whether to automate the
 drawing / redrawing of the resultant pdf. If the value is nil,
 the pdf is not automatically redrawn. Default value is t")
 
 (defvar ly-play-midi-post-tangle t
   "Following a successful LilyPond compilation
-LY-PLAY-MIDI-POST-TANGLE determines whether to automate the
+ly-play-midi-post-tangle determines whether to automate the
 playing of the resultant midi file. If the value is nil,
 the midi file is not automatically played. Default value is t")
 
@@ -94,6 +90,14 @@ LY-GEN-HTML to t"
 "You can force the compiler to use the EPS backend by setting
 LY-USE-EPS to t"
 
+(defvar org-babel-default-header-args:dot
+  '((:results . "file") (:exports . "results"))
+  "Default arguments to use when evaluating a dot source block.")
+
+(defvar org-babel-default-header-args:lilypond
+  '((:results . "silent"))
+  "Default arguments to use when evaluating a lilypond source block.")
+
 (defun org-babel-expand-body:lilypond (body params)
   "Expand BODY according to PARAMS, return the expanded body."
 
@@ -119,18 +123,18 @@ Tangle all lilypond blocks and process the result"
 
 (defun org-babel-prep-session:lilypond (session params)
   "Return an error because LilyPond exporter does not support sessions."
+
   (error "Sorry, LilyPond does not currently support sessions!"))
 
 (defun ly-execute-tangled-ly ()
+  "Compile result of block tangle with lilypond.
+If error in compilation, attempt to mark the error in lilypond org file"
+
   (when ly-compile-post-tangle
-    (let ((ly-tangled-file (concat
-                            (file-name-sans-extension
-                               (buffer-file-name))
-                            ".lilypond"))
-          (ly-temp-file (concat
-                         (file-name-sans-extension
-                            (buffer-file-name))
-                         ".ly")))
+    (let ((ly-tangled-file (ly-switch-extension
+                            (buffer-file-name) ".lilypond"))
+          (ly-temp-file (ly-switch-extension
+                         (buffer-file-name) ".ly")))
       (progn
         (if (file-exists-p ly-tangled-file)
             (progn
@@ -146,6 +150,9 @@ Tangle all lilypond blocks and process the result"
           (error "Error in Compilation!"))))) nil)
 
 (defun ly-compile-lilyfile (file-name)
+  "Compile lilypond file and check for compile errors
+FILE-NAME is full path to lilypond (.ly) file"
+
   (message "Compiling LilyPond...")
   (switch-to-buffer-other-window "*lilypond*")
   (erase-buffer)
@@ -161,58 +168,99 @@ Tangle all lilypond blocks and process the result"
   (ly-check-for-compile-error file-name))
 
 (defun ly-check-for-compile-error (file-name)
+  "Check for compile error.
+This is performed by parsing the *lilypond* buffer
+containing the output message from the compilation.
+FILE-NAME is full path to lilypond file"
   (if (not (search-forward "error:" nil t))
       (not (other-window -1))
     (ly-process-compile-error file-name)))
 
 (defun ly-process-compile-error (file-name)
-  (goto-char (point-at-bol))
-  (forward-line 2)
-  (let ((bol (point)))
-    (goto-char (point-at-eol))
-    (let ((snippet (buffer-substring bol (point))))
-      (switch-to-buffer-other-window
-       (concat
-        (file-name-nondirectory
-         (file-name-sans-extension file-name))
-        ".org"))
-      (let ((temp (point)))
-        (goto-char (point-min))
-        (setq case-fold-search nil)
-        (if (search-forward (concat "\n" snippet) nil t)
-            (progn
-              (set-mark (point))
-              (goto-char (point-at-bol))
-              (error "Error: Compilation Failed!"))
-          (goto-char temp)
-          nil)))))
+  "Process the compilation error that has occurred.
+FILE-NAME is full path to lilypond file"
+
+  (let ((line-num (ly-parse-line-num)))
+    (let ((error-lines (ly-parse-error-line file-name line-num)))
+      (ly-mark-error-line file-name error-lines)
+      (error "Error: Compilation Failed!"))))
+
+(defun ly-mark-error-line (file-name line)
+  "Mark the erroneous lines in the lilypond org buffer.
+FILE-NAME is full path to lilypond file.
+LINE is the erroneous line"
+
+  (switch-to-buffer
+   (concat (file-name-nondirectory
+            (ly-switch-extension file-name ".org"))))
+  (let ((temp (point)))
+    (goto-char (point-min))
+    (setq case-fold-search nil)
+    (if (search-forward line nil t)
+        (progn
+          (show-all)
+          (set-mark (point))
+          (goto-char (- (point) (length line))))
+      (goto-char temp))))
+  
+(defun ly-parse-line-num ()
+  "Extract error line number."
+
+  (let ((start
+         (and (search-backward ":" nil t)
+              (search-backward ":" nil t)
+              (search-backward ":" nil t)
+              (search-backward ":" nil t))))
+    (if start
+        (progn
+          (forward-char)
+          (let ((num (buffer-substring
+                      (+ 1 start)
+                      (- (search-forward ":" nil t) 1))))
+            (setq num (string-to-number num))
+            (if (> num 0) num nil))) nil)))
+            
+(defun ly-parse-error-line (file-name lineNo)
+  "Extract the erroneous line from the tangled .ly file
+FILE-NAME is full path to lilypond file.
+LINENO is the number of the erroneous line"
+
+  (set-buffer (get-buffer-create "temp-buf"))
+  (insert-file-contents (ly-switch-extension file-name ".ly")
+                        nil nil nil t)
+  (goto-line lineNo)
+  (buffer-substring (point) (point-at-eol)))
 
 (defun ly-attempt-to-open-pdf (file-name)
+  "Attempt to display the generated pdf file
+FILE-NAME is full path to lilypond file"
+  
   (when ly-display-pdf-post-tangle
-    (let ((pdf-file (concat 
-                     (file-name-sans-extension
-                      file-name)
-                     ".pdf")))
+    (let ((pdf-file (ly-switch-extension file-name ".pdf")))
       (if (file-exists-p pdf-file)
           (shell-command (concat (ly-determine-pdf-path) " " pdf-file))
         (error  "No pdf file generated so can't display!")))))
 
 (defun ly-attempt-to-play-midi (file-name)
+  "Attempt to play the generated MIDI file
+FILE-NAME is full path to lilypond file"
+
   (when ly-play-midi-post-tangle
-    (let ((midi-file (concat 
-                      (file-name-sans-extension
-                       file-name)
-                      ".midi")))
+    (let ((midi-file (ly-switch-extension file-name ".midi")))
       (if (file-exists-p midi-file)
           (shell-command (concat (ly-determine-midi-path) " " midi-file))
         (message "No midi file generated so can't play!")))))
 
 (defun ly-determine-ly-path ()
+  "Return correct path to ly binary depending on OS"
+  
   (cond ((string= system-type  "darwin")
          ly-OSX-ly-path)
         (t ly-nix-ly-path)))
 
 (defun ly-determine-pdf-path ()
+  "Return correct path to pdf viewer depending on OS"
+  
   (cond ((string= system-type  "darwin")
          ly-OSX-pdf-path)
         ((string= system-type "win32")
@@ -220,6 +268,8 @@ Tangle all lilypond blocks and process the result"
         (t ly-nix-pdf-path)))
 
 (defun ly-determine-midi-path ()
+  "Return correct path to midi player depending on OS"
+  
   (cond ((string= system-type  "darwin")
          ly-OSX-midi-path)
         ((string= system-type "win32")
@@ -227,6 +277,8 @@ Tangle all lilypond blocks and process the result"
         (t ly-nix-midi-path)))
 
 (defun ly-toggle-midi-play ()
+  "Toggle whether midi will be played following a successful compilation"
+  
   (interactive)
   (setq ly-play-midi-post-tangle
         (not ly-play-midi-post-tangle))
@@ -235,6 +287,8 @@ Tangle all lilypond blocks and process the result"
                        "ENABLED." "DISABLED."))))
 
 (defun ly-toggle-pdf-display ()
+  "Toggle whether pdf will be displayed following a successful compilation"
+  
   (interactive)
   (setq ly-display-pdf-post-tangle
         (not ly-display-pdf-post-tangle))
@@ -243,6 +297,8 @@ Tangle all lilypond blocks and process the result"
                        "ENABLED." "DISABLED."))))
 
 (defun ly-toggle-png-generation ()
+  "Toggle whether png image will be generated by compilation"
+  
   (interactive)
   (setq ly-gen-png
         (not ly-gen-png))
@@ -250,11 +306,19 @@ Tangle all lilypond blocks and process the result"
                    (if ly-gen-png "ENABLED." "DISABLED."))))
 
 (defun ly-toggle-html-generation ()
+  "Toggle whether html will be generated by compilation"
+  
   (interactive)
   (setq ly-gen-html
         (not ly-gen-html))
   (message (concat "HTML generation has been "
                    (if ly-gen-html "ENABLED." "DISABLED."))))
+
+(defun ly-switch-extension (file-name ext)
+  "Utility command to swap current FILE-NAME extension with EXT"
+  
+  (concat (file-name-sans-extension
+           file-name) ext))
 
 (provide 'ob-lilypond)
 

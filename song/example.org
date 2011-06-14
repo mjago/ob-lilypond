@@ -7,10 +7,6 @@
 
 #+end_src 
 
-#+results:
-
-#+results: 01522 826519
-
 ** Note Entry
 *** Piano
 **** Voice One
@@ -24,8 +20,6 @@
   }
 
 #+end_src
-
-#+results:
 
 ***** Verse One
 
@@ -45,8 +39,6 @@
   }
   
 #+end_src
-
-#+results:
 
 ***** Verse Two
 
@@ -69,8 +61,6 @@
   
 #+end_src
 
-#+results:
-
 ***** Chorus
 
 #+begin_src lilypond
@@ -91,8 +81,6 @@
   
 #+end_src
 
-#+results:
-
 ***** Verse Three
 
 #+begin_src lilypond
@@ -112,8 +100,6 @@
   
 #+end_src
 
-#+results:
-
 ***** Assembly
 
 #+begin_src lilypond
@@ -131,8 +117,6 @@
 
 #+end_src
 
-#+results:
-
 **** Voice Two
 ***** Intro
 
@@ -144,8 +128,6 @@
   }
   
 #+end_src
-
-#+results:
 
 ***** Verse One
 
@@ -164,8 +146,6 @@
   
 #+end_src
 
-#+results:
-
 ***** Verse Two
 
 #+begin_src lilypond
@@ -182,8 +162,6 @@
   }
   
 #+end_src
-
-#+results:
 
 ***** Chorus
 
@@ -202,8 +180,6 @@
   
 #+end_src
 
-#+results:
-
 ***** Verse Three
 
 #+begin_src lilypond
@@ -220,8 +196,6 @@
   }
   
 #+end_src
-
-#+results:
 
 ***** Assembly
 
@@ -336,8 +310,6 @@
 
 #+end_src
 
-#+results:
-
 **** Voice Four
 ***** Intro
 
@@ -349,8 +321,6 @@
   }
   
 #+end_src
-
-#+results:
 
 ***** Verse One
 
@@ -437,8 +407,6 @@
   
 #+end_src
 
-#+results:
-
 *** Drums
 **** Intro
 
@@ -467,8 +435,6 @@
   }
   
 #+end_src
-
-#+results:
 
 **** Verse Two
 #+begin_src lilypond
@@ -542,8 +508,6 @@
 
 #+end_src
 
-#+results:
-   
 ** Score
 *** Score Start
 
@@ -610,6 +574,7 @@
 #+end_src
 
 ** Layout and Midi
+
 #+begin_src lilypond
 
   \layout {
@@ -625,8 +590,6 @@
     
 #+end_src
 
-#+results:
-   
 ** Paper
 
 #+begin_src lilypond
@@ -643,8 +606,6 @@
 
 #+end_src
 
-#+results:
-
 ** Header
 
 #+begin_src lilypond
@@ -657,6 +618,3 @@
 
 #+end_src
 
-#+results:
-
- 
