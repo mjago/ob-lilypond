@@ -505,7 +505,7 @@
 #+begin_src lilypond
 
 %  showLastLength = R1*8
-
+ 
 #+end_src
 
 ** Score
@@ -516,7 +516,7 @@
   \score {
         
     <<
-  
+
 #+end_src
 
 *** Piano

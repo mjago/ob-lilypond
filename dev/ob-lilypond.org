@@ -1,4 +1,3 @@
-
 * ob-lilypond
 ** Stages
 *** DONE Get something working ish! 
@@ -43,16 +42,72 @@ file to org-babel-tangle
 *** DONE Export html version of example.org and add to repo
 *** DONE Add exported link to readme
 *** DONE Add ly-toggle-png-generation command
+*** DONE Port to Ubuntu
+*** TODO Write tests [13/44]
+
+ 1) [ ] (require 'ob)
+ 2) [ ] (require 'ob-eval)
+ 3) [ ] (defalias 'lilypond-mode 'LilyPond-mode)
+ 4) [ ] list 'org-babel-tangle-lang-exts '("LilyPond" . "ly"))
+ 5) [ ] ly-compile-post-tangle t
+ 6) [ ] ly-display-pdf-post-tangle t
+ 7) [ ] ly-play-midi-post-tangle t
+ 8) [ ] ly-OSX-ly-path
+ 9) [ ] ly-OSX-pdf-path "open")
+ 10) [ ] ly-OSX-midi-path "open")
+ 11) [ ] ly-nix-ly-path "/usr/bin/lilypond")
+ 12) [ ] ly-nix-pdf-path "evince")
+ 13) [ ] ly-nix-midi-path "timidity")
+ 14) [ ] ly-win32-ly-path "lilypond")
+ 15) [ ] ly-win32-pdf-path "")
+ 16) [ ] ly-win32-midi-path "")
+ 17) [ ] ly-gen-png nil)
+ 18) [ ] ly-gen-svg nil)
+ 19) [ ] ly-gen-html nil)
+ 20) [ ] ly-use-eps nil)
+ 21) [ ] org-babel-default-header-args:dot
+ 22) [ ] org-babel-default-header-args:lilypond
+ 23) [ ] org-babel-expand-body:lilypond (body params)
+ 24) [ ] org-babel-execute:lilypond (body params)
+ 25) [ ] org-babel-prep-session:lilypond (session params)
+ 26) [ ] ly-execute-tangled-ly ()
+ 27) [ ] ly-compile-lilyfile (file-name)
+ 28) [ ] ly-check-for-compile-error (file-name)
+ 29) [X] ly-process-compile-error (file-name)
+ 30) [ ] ly-mark-error-line (file-name line)
+ 31) [X] ly-parse-line-num ()
+ 32) [X] ly-parse-error-line (file-name lineNo)
+ 33) [X] ly-attempt-to-open-pdf (file-name)
+ 34) [X] ly-attempt-to-play-midi (file-name)
+ 35) [X] ly-determine-ly-path ()
+ 36) [X] ly-determine-pdf-path ()
+ 37) [X] ly-determine-midi-path ()
+ 38) [X] ly-toggle-midi-play ()
+ 39) [X] ly-toggle-pdf-display ()
+ 40) [X] ly-toggle-png-generation ()
+ 41) [X] ly-toggle-html-generation ()
+ 42) [X] ly-switch-extension (file-name ext)
+ 43) [ ] (provide 'ob-lilypond)
+
+;;; ob-lilypond.el ends here
+  
+
+(add-hook 'after-save-hook 'ob-lilypond-eval-src-and-tests)
+ 
+  
+
+ - [ ] ly-switch-extension
+
 *** TODO Figure out export with lower case lilypond restriction
-*** TODO Decide How to handle OS dependencies
+*** WAITING Decide How to handle OS dependencies
  - midi player
  - pdf viewer
  - LilyPond location (Set up seperate binary paths relative to OS)
  - LilyPond API (OSX needs special treatment at the very least
-*** TODO Figure out why Emacs occasionally auto-loads filename.lilypond!
+*** DONE Figure out why Emacs occasionally auto-loads filename.lilypond!
 **** DONE Reduced scope of (save-excursion) to avoid this - doesn't help
 **** DONE Perhaps need unwind-protection - causes issues
-
+**** TODO Modify error marking to use absolute block size counting for location
 *** TODO Take post-tangle hook out of init file and only burden post-tangle hook
     when we are tangling lilypond files
 *** TODO Get feedback from Shelagh regarding direction and current 
@@ -72,13 +127,13 @@ file to org-babel-tangle
            (concat dotfiles-dir
                    "martyn/martyn/ob-lilypond/dev/ob-lilypond.org"))
           (buffer))
-      (unless (boundp 'me-last-buffer)
-              (setq me-last-buffer
+      (unless (boundp 'ly-last-buffer)
+              (setq ly-last-buffer
                     (concat dotfiles-dir
                             "martyn/martyn/ob-lilypond/lib/ob-lilypond.el")))
       (if (equal (buffer-file-name) project-file)
-          (setq buffer me-last-buffer)
-        (setq me-last-buffer (buffer-file-name))
+          (setq buffer ly-last-buffer)
+        (setq ly-last-buffer (buffer-file-name))
         (setq buffer project-file))
       (message (concat "Switching to " buffer))
       (switch-to-buffer  (file-name-nondirectory buffer))))
@@ -104,11 +159,11 @@ file to org-babel-tangle
       (select-window original-window)))
   
 (add-hook 'after-save-hook 'ob-lilypond-eval-src-and-tests)
-
+ 
 #+END_SRC
 
 #+results:
-| ob-lilypond-eval-src-and-tests |
+| ob-lilypond-eval-src-and-tests | lilypond-hook | unity-eval-src-and-tests |
 
 *** Remove Continuous Testing Hook
 

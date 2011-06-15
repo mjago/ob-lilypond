@@ -190,7 +190,7 @@ FILE-NAME is full path to lilypond file"
 FILE-NAME is full path to lilypond file.
 LINE is the erroneous line"
 
-  (switch-to-buffer
+  (switch-to-buffer-other-window
    (concat (file-name-nondirectory
             (ly-switch-extension file-name ".org"))))
   (let ((temp (point)))
@@ -228,53 +228,77 @@ LINENO is the number of the erroneous line"
   (set-buffer (get-buffer-create "temp-buf"))
   (insert-file-contents (ly-switch-extension file-name ".ly")
                         nil nil nil t)
-  (goto-line lineNo)
-  (buffer-substring (point) (point-at-eol)))
-
-(defun ly-attempt-to-open-pdf (file-name)
+  (if (> lineNo 0)
+      (progn
+        (goto-line lineNo)
+        (buffer-substring (point) (point-at-eol)))
+    nil))
+    
+(defun ly-attempt-to-open-pdf (file-name &optional test)
   "Attempt to display the generated pdf file
-FILE-NAME is full path to lilypond file"
+FILE-NAME is full path to lilypond file
+If TEST is non-nil, the shell command is returned and is not run"
   
   (when ly-display-pdf-post-tangle
     (let ((pdf-file (ly-switch-extension file-name ".pdf")))
       (if (file-exists-p pdf-file)
-          (shell-command (concat (ly-determine-pdf-path) " " pdf-file))
-        (error  "No pdf file generated so can't display!")))))
+          (let ((cmd-string
+                 (concat (ly-determine-pdf-path) " " pdf-file)))
+            (if test
+                cmd-string
+              (shell-command cmd-string)))
+        (message  "No pdf file generated so can't display!")))))
 
-(defun ly-attempt-to-play-midi (file-name)
+(defun ly-attempt-to-play-midi (file-name &optional test)
   "Attempt to play the generated MIDI file
-FILE-NAME is full path to lilypond file"
+FILE-NAME is full path to lilypond file
+If TEST is non-nil, the shell command is returned and is not run"
 
   (when ly-play-midi-post-tangle
     (let ((midi-file (ly-switch-extension file-name ".midi")))
       (if (file-exists-p midi-file)
-          (shell-command (concat (ly-determine-midi-path) " " midi-file))
+          (let ((cmd-string
+                 (concat (ly-determine-midi-path) " " midi-file)))
+            (if test
+                cmd-string
+              (shell-command cmd-string)))
         (message "No midi file generated so can't play!")))))
 
-(defun ly-determine-ly-path ()
-  "Return correct path to ly binary depending on OS"
-  
-  (cond ((string= system-type  "darwin")
-         ly-OSX-ly-path)
-        (t ly-nix-ly-path)))
+(defun ly-determine-ly-path (&optional test)
+  "Return correct path to ly binary depending on OS
+If TEST is non-nil, it contains a simulation of the OS for test purposes"
 
-(defun ly-determine-pdf-path ()
-  "Return correct path to pdf viewer depending on OS"
-  
-  (cond ((string= system-type  "darwin")
-         ly-OSX-pdf-path)
-        ((string= system-type "win32")
-         ly-win32-pdf-path)
-        (t ly-nix-pdf-path)))
+  (let ((sys-type
+         (or test system-type)))
+    (cond ((string= sys-type  "darwin")
+           ly-OSX-ly-path)
+          ((string= sys-type "win32")
+           ly-win32-ly-path)
+          (t ly-nix-ly-path))))
 
-(defun ly-determine-midi-path ()
-  "Return correct path to midi player depending on OS"
+(defun ly-determine-pdf-path (&optional test)
+  "Return correct path to pdf viewer depending on OS
+If TEST is non-nil, it contains a simulation of the OS for test purposes"
   
-  (cond ((string= system-type  "darwin")
-         ly-OSX-midi-path)
-        ((string= system-type "win32")
-         ly-win32-midi-path)
-        (t ly-nix-midi-path)))
+  (let ((sys-type
+         (or test system-type)))
+    (cond ((string= sys-type  "darwin")
+           ly-OSX-pdf-path)
+          ((string= sys-type "win32")
+           ly-win32-pdf-path)
+          (t ly-nix-pdf-path))))
+
+(defun ly-determine-midi-path (&optional test)
+  "Return correct path to midi player depending on OS
+If TEST is non-nil, it contains a simulation of the OS for test purposes"
+   
+  (let ((sys-type
+         (or test test system-type)))
+    (cond ((string= sys-type  "darwin")
+           ly-OSX-midi-path)
+          ((string= sys-type "win32")
+           ly-win32-midi-path)
+          (t ly-nix-midi-path))))
 
 (defun ly-toggle-midi-play ()
   "Toggle whether midi will be played following a successful compilation"
@@ -323,4 +347,8 @@ FILE-NAME is full path to lilypond file"
 (provide 'ob-lilypond)
 
 ;;; ob-lilypond.el ends here
+  
 
+(add-hook 'after-save-hook 'ob-lilypond-eval-src-and-tests)
+ 
+  
