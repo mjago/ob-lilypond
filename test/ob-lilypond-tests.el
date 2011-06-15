@@ -217,8 +217,3 @@
 
 ;;  )
  
- 
-(add-hook 'after-save-hook 'ob-lilypond-eval-src-and-tests)
- 
- 
- 

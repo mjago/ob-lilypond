@@ -348,7 +348,3 @@ If TEST is non-nil, it contains a simulation of the OS for test purposes"
 
 ;;; ob-lilypond.el ends here
   
-
-(add-hook 'after-save-hook 'ob-lilypond-eval-src-and-tests)
- 
-  
