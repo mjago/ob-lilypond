@@ -90,10 +90,6 @@ LY-GEN-HTML to t"
 "You can force the compiler to use the EPS backend by setting
 LY-USE-EPS to t"
 
-(defvar org-babel-default-header-args:dot
-  '((:results . "file") (:exports . "results"))
-  "Default arguments to use when evaluating a dot source block.")
-
 (defvar org-babel-default-header-args:lilypond
   '((:results . "silent"))
   "Default arguments to use when evaluating a lilypond source block.")
@@ -167,14 +163,19 @@ FILE-NAME is full path to lilypond (.ly) file"
   (goto-char (point-min))
   (ly-check-for-compile-error file-name))
 
-(defun ly-check-for-compile-error (file-name)
+(defun ly-check-for-compile-error (file-name &optional test)
   "Check for compile error.
 This is performed by parsing the *lilypond* buffer
 containing the output message from the compilation.
-FILE-NAME is full path to lilypond file"
-  (if (not (search-forward "error:" nil t))
-      (not (other-window -1))
-    (ly-process-compile-error file-name)))
+FILE-NAME is full path to lilypond file.
+If TEST is t just return nil if no error found, and pass
+nil as file-name since it is unused in this context"
+  (let ((is-error (search-forward "error:" nil t)))
+    (if (not test)
+        (if (not is-error)
+            (not (other-window -1))
+          (ly-process-compile-error file-name))
+      is-error)))
 
 (defun ly-process-compile-error (file-name)
   "Process the compilation error that has occurred.
@@ -345,6 +346,8 @@ If TEST is non-nil, it contains a simulation of the OS for test purposes"
            file-name) ext))
 
 (provide 'ob-lilypond)
+
+;;DBG (remove-hook 'after-save-hook 'ob-lilypond-eval-src-and-tests)
 
 ;;; ob-lilypond.el ends here
   

@@ -43,60 +43,48 @@ file to org-babel-tangle
 *** DONE Add exported link to readme
 *** DONE Add ly-toggle-png-generation command
 *** DONE Port to Ubuntu
-*** TODO Write tests [13/44]
-
- 1) [ ] (require 'ob)
- 2) [ ] (require 'ob-eval)
- 3) [ ] (defalias 'lilypond-mode 'LilyPond-mode)
- 4) [ ] list 'org-babel-tangle-lang-exts '("LilyPond" . "ly"))
- 5) [ ] ly-compile-post-tangle t
- 6) [ ] ly-display-pdf-post-tangle t
- 7) [ ] ly-play-midi-post-tangle t
- 8) [ ] ly-OSX-ly-path
- 9) [ ] ly-OSX-pdf-path "open")
- 10) [ ] ly-OSX-midi-path "open")
- 11) [ ] ly-nix-ly-path "/usr/bin/lilypond")
- 12) [ ] ly-nix-pdf-path "evince")
- 13) [ ] ly-nix-midi-path "timidity")
- 14) [ ] ly-win32-ly-path "lilypond")
- 15) [ ] ly-win32-pdf-path "")
- 16) [ ] ly-win32-midi-path "")
- 17) [ ] ly-gen-png nil)
- 18) [ ] ly-gen-svg nil)
- 19) [ ] ly-gen-html nil)
- 20) [ ] ly-use-eps nil)
- 21) [ ] org-babel-default-header-args:dot
- 22) [ ] org-babel-default-header-args:lilypond
- 23) [ ] org-babel-expand-body:lilypond (body params)
- 24) [ ] org-babel-execute:lilypond (body params)
- 25) [ ] org-babel-prep-session:lilypond (session params)
- 26) [ ] ly-execute-tangled-ly ()
- 27) [ ] ly-compile-lilyfile (file-name)
- 28) [ ] ly-check-for-compile-error (file-name)
- 29) [X] ly-process-compile-error (file-name)
- 30) [ ] ly-mark-error-line (file-name line)
- 31) [X] ly-parse-line-num ()
- 32) [X] ly-parse-error-line (file-name lineNo)
- 33) [X] ly-attempt-to-open-pdf (file-name)
- 34) [X] ly-attempt-to-play-midi (file-name)
- 35) [X] ly-determine-ly-path ()
- 36) [X] ly-determine-pdf-path ()
- 37) [X] ly-determine-midi-path ()
- 38) [X] ly-toggle-midi-play ()
- 39) [X] ly-toggle-pdf-display ()
- 40) [X] ly-toggle-png-generation ()
- 41) [X] ly-toggle-html-generation ()
- 42) [X] ly-switch-extension (file-name ext)
- 43) [ ] (provide 'ob-lilypond)
-
-;;; ob-lilypond.el ends here
-  
-
-(add-hook 'after-save-hook 'ob-lilypond-eval-src-and-tests)
- 
-  
-
- - [ ] ly-switch-extension
+*** TODO Write tests [16/41]
+ 1) [X] (defalias 'lilypond-mode 'LilyPond-mode)
+ 2) [ ] list 'org-babel-tangle-lang-exts '("LilyPond" . "ly"))
+ 3) [ ] ly-compile-post-tangle t
+ 4) [ ] ly-display-pdf-post-tangle t
+ 5) [ ] ly-play-midi-post-tangle t
+ 6) [ ] ly-OSX-ly-path
+ 7) [ ] ly-OSX-pdf-path "open")
+ 8) [ ] ly-OSX-midi-path "open")
+ 9) [ ] ly-nix-ly-path "/usr/bin/lilypond")
+ 10) [ ] ly-nix-pdf-path "evince")
+ 11) [ ] ly-nix-midi-path "timidity")
+ 12) [ ] ly-win32-ly-path "lilypond")
+ 13) [ ] ly-win32-pdf-path "")
+ 14) [ ] ly-win32-midi-path "")
+ 15) [ ] ly-gen-png nil)
+ 16) [ ] ly-gen-svg nil)
+ 17) [ ] ly-gen-html nil)
+ 18) [ ] ly-use-eps nil)
+ 19) [ ] org-babel-default-header-args:dot
+ 20) [ ] org-babel-default-header-args:lilypond
+ 21) [ ] org-babel-expand-body:lilypond (body params)
+ 22) [ ] org-babel-execute:lilypond (body params)
+ 23) [ ] org-babel-prep-session:lilypond (session params)
+ 24) [ ] ly-execute-tangled-ly ()
+ 25) [ ] ly-compile-lilyfile (file-name)
+ 26) [X] ly-check-for-compile-error (file-name)
+ 27) [X] ly-process-compile-error (file-name)
+ 28) [X] ly-mark-error-line (file-name line)
+ 29) [X] ly-parse-line-num ()
+ 30) [X] ly-parse-error-line (file-name lineNo)
+ 31) [X] ly-attempt-to-open-pdf (file-name)
+ 32) [X] ly-attempt-to-play-midi (file-name)
+ 33) [X] ly-determine-ly-path ()
+ 34) [X] ly-determine-pdf-path ()
+ 35) [X] ly-determine-midi-path ()
+ 36) [X] ly-toggle-midi-play ()
+ 37) [X] ly-toggle-pdf-display ()
+ 38) [X] ly-toggle-png-generation ()
+ 39) [X] ly-toggle-html-generation ()
+ 40) [X] ly-switch-extension (file-name ext)
+ 41) [ ] (provide 'ob-lilypond)
 
 *** TODO Figure out export with lower case lilypond restriction
 *** WAITING Decide How to handle OS dependencies
@@ -107,7 +95,7 @@ file to org-babel-tangle
 *** DONE Figure out why Emacs occasionally auto-loads filename.lilypond!
 **** DONE Reduced scope of (save-excursion) to avoid this - doesn't help
 **** DONE Perhaps need unwind-protection - causes issues
-**** TODO Modify error marking to use absolute block size counting for location
+**** Modify error marking to use absolute block size counting for location
 *** TODO Take post-tangle hook out of init file and only burden post-tangle hook
     when we are tangling lilypond files
 *** TODO Get feedback from Shelagh regarding direction and current 
@@ -168,10 +156,13 @@ file to org-babel-tangle
 *** Remove Continuous Testing Hook
 
 #+BEGIN_SRC emacs-lisp
-  
+;;TODO WHY DOESNT THIS WORK?!!  
 (remove-hook 'after-save-hook 'ob-lilypond-eval-src-and-tests)
-
+ 
 #+END_SRC
+
+#+results:
+| lilypond-hook | unity-eval-src-and-tests |
 
 *** Setup Dev Project
 
@@ -196,10 +187,10 @@ file to org-babel-tangle
     (switch-to-buffer "*ert*")
     (windmove-down)
     (switch-to-buffer "ob-lilypond-tests.el"))
-  
+  (lilypond-project)
 #+END_SRC
 #+results:
-: lilypond-project
+: #<buffer ob-lilypond-tests.el>
 
 *** Dev Tangle Command
 

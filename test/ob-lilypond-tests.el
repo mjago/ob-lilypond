@@ -10,31 +10,61 @@
 ;;        (:results . "file replace") (:file . "test.ly")
 ;;        (:hlines . "no") (:session . "none")))
  
-(setq ly-here (file-name-directory (buffer-file-name)))
+(setq ly-here "/Users/martyn/.emacs.d/martyn/martyn/ob-lilypond/test/")
 
 (ert-deftest ly-test-assert ()
   (should t))
 
-;; ert-deftest ly-test-ly-process-compile-error ()
-;;   (set-buffer (get-buffer-create "*lilypond*"))
-;;   (insert-file-contents (concat ly-here "test-build/test.error") nil nil nil t)
-;;   (goto-char (point-min))
-;;   (search-forward "error:" nil t)
-;; (ly-process-compile-error (concat ly-here "test-build/test.ly"))
-;;   (should-error (ly-process-compile-error (concat ly-here "test-build/test.ly"))  
-;;                 :type 'error) 
-;; ;
-                                        ;  (find-file (concat ly-here "test-build/test.error"))
-  ;; (set-buffer (get-buffer-create "test.org")) 
-  ;; (insert-file-contents (concat ly-here "test-build/test.error") nil nil nil t)
-  ;;  (should (equal 210 (point)))
-  ;; (exchange-point-and-mark)
-  ;; (should (equal (+ 210 (length "line 25"))
-  ;;                (point)))
-   ;; (kill-buffer "*lilypond*")
-  ;; (kill-buffer "test.org")
-;;  )
- 
+(ert-deftest ly-test-check-lilypond-alias ()
+  (should (fboundp 'lilypond-mode))
+  )
+
+;; (ert-deftest ly-test-org-babel-tangle-lang-exts ()
+;;   (should (= '(LilyPond . ly) 
+;;              (rassq 'ly
+;;                     org-babel-tangle-lang-exts)))
+;;    )
+    
+(ert-deftest ly-test-ly-check-for-compile-error ()
+  (set-buffer (get-buffer-create "*lilypond*"))
+  (erase-buffer)
+  (should (not (ly-check-for-compile-error nil t)))
+  (insert-file-contents (concat ly-here "test-build/test.error") nil nil nil t)
+  (goto-char (point-min))
+  (should (ly-check-for-compile-error nil t))
+  (kill-buffer "*lilypond*")
+  )
+
+(ert-deftest ly-test-ly-process-compile-error ()
+  (find-file-other-window (concat ly-here "test-build/test.org"))
+  (set-buffer (get-buffer-create "*lilypond*"))
+  (insert-file-contents (concat ly-here "test-build/test.error") nil nil nil t)
+  (goto-char (point-min))
+  (search-forward "error:" nil t)
+  (should-error (ly-process-compile-error (concat ly-here "test-build/test.ly"))
+                :type 'error)
+  (set-buffer "test.org")
+   (should (equal 210 (point)))
+  (exchange-point-and-mark)
+  (should (equal (+ 210 (length "line 25"))
+                 (point)))
+   (kill-buffer "*lilypond*")
+  (kill-buffer "test.org")
+ )
+
+(ert-deftest ly-test-ly-mark-error-line ()
+  (find-file-other-window (concat ly-here "test-build/test.org"))
+  (let ((file-name (concat ly-here "test-build/test.org"))
+        (expected-point-min 170)
+        (expected-point-max 177)
+        (line "line 20"))
+    (ly-mark-error-line file-name line)
+    (should (= expected-point-min (point)))
+    (exchange-point-and-mark)
+    (should (= expected-point-max (point))))
+  (kill-buffer "test.org")
+  ) 
+
 (ert-deftest ly-test-ly-parse-line-num ()
   (set-buffer (get-buffer-create "test.error"))
   (insert-file-contents (concat ly-here "test-build/test.error")
@@ -44,14 +74,14 @@
   (should (equal 25 (ly-parse-line-num)))
   (kill-buffer "test.error")
   )
-      
+
 (ert-deftest ly-test-ly-parse-error-line ()
   (let ((ly-file (concat ly-here "test-build/test.ly")))
-   (should (equal "line 20"
-                  (ly-parse-error-line ly-file 20)))
-   (should (not (ly-parse-error-line ly-file 0)))
-   ))
-
+    (should (equal "line 20"
+                   (ly-parse-error-line ly-file 20)))
+    (should (not (ly-parse-error-line ly-file 0)))
+    ))
+    
 (ert-deftest ly-test-ly-attempt-to-open-pdf ()
   (let ((post-tangle ly-display-pdf-post-tangle)
         (ly-file (concat ly-here "test-build/test.ly"))
@@ -60,18 +90,19 @@
     (when (not (file-exists-p pdf-file))
       (set-buffer (get-buffer-create pdf-file))
       (write-file pdf-file))
- 
+   
     (should (equal
              (concat
               (ly-determine-pdf-path) " " pdf-file)
              (ly-attempt-to-open-pdf ly-file t)))
 
+    (kill-buffer (file-name-nondirectory pdf-file))
     (delete-file pdf-file)
     (should (equal
              "No pdf file generated so can't display!"
             (ly-attempt-to-open-pdf pdf-file)))
     (setq ly-display-pdf-post-tangle post-tangle)
-  ))
+   ))
 
 (ert-deftest ly-test-ly-attempt-to-play-midi ()
   (let ((post-tangle ly-play-midi-post-tangle)
@@ -81,12 +112,13 @@
     (when (not (file-exists-p midi-file))
       (set-buffer (get-buffer-create midi-file))
       (write-file midi-file))
-
+     
     (should (equal
              (concat
               (ly-determine-midi-path) " " midi-file)
              (ly-attempt-to-play-midi ly-file t)))
 
+    (kill-buffer (file-name-nondirectory midi-file))
     (delete-file midi-file)
     (should (equal
              "No midi file generated so can't play!"
@@ -217,3 +249,5 @@
 
 ;;  )
  
+;;(remove-hook 'after-save-hook 'ob-lilypond-eval-src-and-tests)
+
