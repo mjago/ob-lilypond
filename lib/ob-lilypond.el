@@ -114,7 +114,7 @@ LY-USE-EPS to t"
   "This function is called by `org-babel-execute-src-block'.
 Tangle all lilypond blocks and process the result"
 
-  (if (org-babel-tangle "yes" "lilypond")
+    (when (org-babel-tangle "yes" "lilypond")
       (ly-execute-tangled-ly)))
 
 (defun org-babel-prep-session:lilypond (session params)
@@ -131,19 +131,18 @@ If error in compilation, attempt to mark the error in lilypond org file"
                             (buffer-file-name) ".lilypond"))
           (ly-temp-file (ly-switch-extension
                          (buffer-file-name) ".ly")))
-      (progn
-        (if (file-exists-p ly-tangled-file)
-            (progn
-              (when (file-exists-p ly-temp-file)
-                (delete-file ly-temp-file))
-              (rename-file ly-tangled-file
-                           ly-temp-file))
-          (error "Error: Tangle Failed!") t)
-        (if (ly-compile-lilyfile ly-temp-file)
-            (progn
-              (ly-attempt-to-open-pdf ly-temp-file)
-              (ly-attempt-to-play-midi ly-temp-file))
-          (error "Error in Compilation!"))))) nil)
+      (if (file-exists-p ly-tangled-file)
+          (progn
+            (when (file-exists-p ly-temp-file)
+              (delete-file ly-temp-file))
+            (rename-file ly-tangled-file
+                         ly-temp-file))
+        (error "Error: Tangle Failed!") t)
+      (if (ly-compile-lilyfile ly-temp-file)
+          (progn
+            (ly-attempt-to-open-pdf ly-temp-file)
+            (ly-attempt-to-play-midi ly-temp-file))
+        (error "Error in Compilation!")))) nil)
 
 (defun ly-compile-lilyfile (file-name)
   "Compile lilypond file and check for compile errors
@@ -204,14 +203,17 @@ LINE is the erroneous line"
           (goto-char (- (point) (length line))))
       (goto-char temp))))
   
-(defun ly-parse-line-num ()
+(defun ly-parse-line-num (&optional buffer)
   "Extract error line number."
 
+  (when buffer
+    (set-buffer buffer))
   (let ((start
          (and (search-backward ":" nil t)
               (search-backward ":" nil t)
               (search-backward ":" nil t)
-              (search-backward ":" nil t))))
+              (search-backward ":" nil t)))
+        (num nil))
     (if start
         (progn
           (forward-char)
@@ -219,13 +221,16 @@ LINE is the erroneous line"
                       (+ 1 start)
                       (- (search-forward ":" nil t) 1))))
             (setq num (string-to-number num))
-            (if (> num 0) num nil))) nil)))
-            
+            (if (numberp num)
+                num
+              nil)))
+      nil)))
+
 (defun ly-parse-error-line (file-name lineNo)
   "Extract the erroneous line from the tangled .ly file
 FILE-NAME is full path to lilypond file.
 LINENO is the number of the erroneous line"
-
+ 
   (set-buffer (get-buffer-create "temp-buf"))
   (insert-file-contents (ly-switch-extension file-name ".ly")
                         nil nil nil t)
@@ -347,7 +352,6 @@ If TEST is non-nil, it contains a simulation of the OS for test purposes"
 
 (provide 'ob-lilypond)
 
-;;DBG (remove-hook 'after-save-hook 'ob-lilypond-eval-src-and-tests)
-
 ;;; ob-lilypond.el ends here
-  
+
+

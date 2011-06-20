@@ -43,51 +43,50 @@ file to org-babel-tangle
 *** DONE Add exported link to readme
 *** DONE Add ly-toggle-png-generation command
 *** DONE Port to Ubuntu
-*** TODO Write tests [16/41]
- 1) [X] (defalias 'lilypond-mode 'LilyPond-mode)
- 2) [ ] list 'org-babel-tangle-lang-exts '("LilyPond" . "ly"))
- 3) [ ] ly-compile-post-tangle t
- 4) [ ] ly-display-pdf-post-tangle t
- 5) [ ] ly-play-midi-post-tangle t
- 6) [ ] ly-OSX-ly-path
- 7) [ ] ly-OSX-pdf-path "open")
- 8) [ ] ly-OSX-midi-path "open")
- 9) [ ] ly-nix-ly-path "/usr/bin/lilypond")
- 10) [ ] ly-nix-pdf-path "evince")
- 11) [ ] ly-nix-midi-path "timidity")
- 12) [ ] ly-win32-ly-path "lilypond")
- 13) [ ] ly-win32-pdf-path "")
- 14) [ ] ly-win32-midi-path "")
- 15) [ ] ly-gen-png nil)
- 16) [ ] ly-gen-svg nil)
- 17) [ ] ly-gen-html nil)
- 18) [ ] ly-use-eps nil)
- 19) [ ] org-babel-default-header-args:dot
- 20) [ ] org-babel-default-header-args:lilypond
- 21) [ ] org-babel-expand-body:lilypond (body params)
- 22) [ ] org-babel-execute:lilypond (body params)
- 23) [ ] org-babel-prep-session:lilypond (session params)
- 24) [ ] ly-execute-tangled-ly ()
- 25) [ ] ly-compile-lilyfile (file-name)
- 26) [X] ly-check-for-compile-error (file-name)
- 27) [X] ly-process-compile-error (file-name)
- 28) [X] ly-mark-error-line (file-name line)
- 29) [X] ly-parse-line-num ()
- 30) [X] ly-parse-error-line (file-name lineNo)
- 31) [X] ly-attempt-to-open-pdf (file-name)
- 32) [X] ly-attempt-to-play-midi (file-name)
- 33) [X] ly-determine-ly-path ()
- 34) [X] ly-determine-pdf-path ()
- 35) [X] ly-determine-midi-path ()
- 36) [X] ly-toggle-midi-play ()
- 37) [X] ly-toggle-pdf-display ()
- 38) [X] ly-toggle-png-generation ()
- 39) [X] ly-toggle-html-generation ()
- 40) [X] ly-switch-extension (file-name ext)
- 41) [ ] (provide 'ob-lilypond)
+*** TODO Finish tests [34/40]
+ 1. [X] (defalias 'lilypond-mode 'LilyPond-mode)
+ 2. [ ] list 'org-babel-tangle-lang-exts '("LilyPond" . "ly"))
+ 3. [X] ly-compile-post-tangle t
+ 4. [X] ly-display-pdf-post-tangle t
+ 5. [X] ly-play-midi-post-tangle t
+ 6. [X] ly-OSX-ly-path
+ 7. [X] ly-OSX-pdf-path "open")
+ 8. [X] ly-OSX-midi-path "open")
+ 9. [X] ly-nix-ly-path "/usr/bin/lilypond")
+ 10. [X] ly-nix-pdf-path "evince")
+ 11. [X] ly-nix-midi-path "timidity")
+ 12. [X] ly-win32-ly-path "lilypond")
+ 13. [X] ly-win32-pdf-path "")
+ 14. [X] ly-win32-midi-path "")
+ 15. [X] ly-gen-png nil)
+ 16. [X] ly-gen-svg nil)
+ 17. [X] ly-gen-html nil)
+ 18. [X] ly-use-eps nil)
+ 19. [X] org-babel-default-header-args:lilypond
+ 20. [-] org-babel-expand-body:lilypond (body params)
+ 21. [-] org-babel-execute:lilypond (body params)
+ 22. [ ] org-babel-prep-session:lilypond (session params)
+ 23. [ ] ly-execute-tangled-ly ()
+ 24. [ ] ly-compile-lilyfile (file-name)
+ 25. [X] ly-check-for-compile-error (file-name)
+ 26. [X] ly-process-compile-error (file-name)
+ 27. [X] ly-mark-error-line (file-name line)
+ 28. [X] ly-parse-line-num ()
+ 29. [X] ly-parse-error-line (file-name lineNo)
+ 30. [X] ly-attempt-to-open-pdf (file-name)
+ 31. [X] ly-attempt-to-play-midi (file-name)
+ 32. [X] ly-determine-ly-path ()
+ 33. [X] ly-determine-pdf-path ()
+ 34. [X] ly-determine-midi-path ()
+ 35. [X] ly-toggle-midi-play ()
+ 36. [X] ly-toggle-pdf-display ()
+ 37. [X] ly-toggle-png-generation ()
+ 38. [X] ly-toggle-html-generation ()
+ 39. [X] ly-switch-extension (file-name ext)
+ 40. [X] (provide 'ob-lilypond)
 
 *** TODO Figure out export with lower case lilypond restriction
-*** WAITING Decide How to handle OS dependencies
+*** DONE Decide How to handle OS dependencies
  - midi player
  - pdf viewer
  - LilyPond location (Set up seperate binary paths relative to OS)
@@ -95,13 +94,10 @@ file to org-babel-tangle
 *** DONE Figure out why Emacs occasionally auto-loads filename.lilypond!
 **** DONE Reduced scope of (save-excursion) to avoid this - doesn't help
 **** DONE Perhaps need unwind-protection - causes issues
-**** Modify error marking to use absolute block size counting for location
-*** TODO Take post-tangle hook out of init file and only burden post-tangle hook
-    when we are tangling lilypond files
-*** TODO Get feedback from Shelagh regarding direction and current 
+**** TODO Modify error marking to use absolute block size counting for location
+*** WAITING Get feedback from Shelagh regarding direction and current 
 *** SOMEDAY Consider drawing vector graphic output as opposed to pdf for viewing?
 *** SOMEDAY Consider the option to embed resultant partial musical output into org file 
-    (I did get this working but it looked a little strange)
 
 ** Setup
 *** Add dev switch hook
@@ -145,28 +141,60 @@ file to org-babel-tangle
             (eval-buffer "ob-lilypond.el")
             (ert t)))
       (select-window original-window)))
-  
-(add-hook 'after-save-hook 'ob-lilypond-eval-src-and-tests)
+   
+(save-buffer "ob-lilypond.el")
+(save-buffer "ob-lilypond-tests.el")
+(add-hook 'after-save-hook 'ob-lilypond-eval-src-and-tests nil nil)
+(save-excursion
+  (set-buffer "ob-lilypond.el")
+  (revert-buffer nil t) 
+  (set-buffer "ob-lilypond-tests.el")
+  (revert-buffer nil t))
  
 #+END_SRC
 
 #+results:
-| ob-lilypond-eval-src-and-tests | lilypond-hook | unity-eval-src-and-tests |
+: t
 
 *** Remove Continuous Testing Hook
 
+#+BEGIN_SRC emacs-lisp :results silent
+
+;;(set-buffer "ob-lilypond.el")  
+
+(save-buffer "ob-lilypond.el")
+(save-buffer "ob-lilypond-tests.el")
+(remove-hook 'after-save-hook 'ob-lilypond-eval-src-and-tests nil)
+(save-excursion
+  (set-buffer "ob-lilypond.el")
+  (revert-buffer nil t) 
+  (set-buffer "ob-lilypond-tests.el")
+  (revert-buffer nil t))
+
+#+END_SRC
+
+*** Remove ALL After Save Hooks 
+
+#+BEGIN_SRC emacs-lisp :results silent
+  
+(setq after-save-hook nil)  
+
+#+END_SRC
+
+*** Display all after save hooks 
+
 #+BEGIN_SRC emacs-lisp
-;;TODO WHY DOESNT THIS WORK?!!  
-(remove-hook 'after-save-hook 'ob-lilypond-eval-src-and-tests)
+
+(message "%S" after-save-hook)
  
 #+END_SRC
 
 #+results:
-| lilypond-hook | unity-eval-src-and-tests |
+: (ob-lilypond-eval-src-and-tests)
 
 *** Setup Dev Project
 
-#+BEGIN_SRC emacs-lisp (windows)
+#+BEGIN_SRC emacs-lisp 
 
   (defun lilypond-project ()
     (interactive)
@@ -179,9 +207,10 @@ file to org-babel-tangle
     (delete-other-windows)
     (split-window-horizontally)
     (windmove-right)
-    (find-file "~/.emacs.d/martyn/martyn/ob-lilypond/ob-lilypond.el")
+    (find-file "~/.emacs.d/martyn/martyn/ob-lilypond/dev/ob-lilypond.org")
+    (find-file "~/.emacs.d/martyn/martyn/ob-lilypond/lib/ob-lilypond.el")
     (windmove-left)
-    (find-file "~/.emacs.d/martyn/martyn/ob-lilypond/ob-lilypond-tests.el")
+    (find-file "~/.emacs.d/martyn/martyn/ob-lilypond/test/ob-lilypond-tests.el")
     (switch-to-buffer "ob-lilypond-tests.el")
     (split-window-vertically)
     (switch-to-buffer "*ert*")
@@ -195,7 +224,7 @@ file to org-babel-tangle
 *** Dev Tangle Command
 
 #+BEGIN_SRC emacs-lisp
-
+ 
 (defun ly-dev-tangle ()
   (interactive)
   (set-buffer "misty.org")
@@ -206,6 +235,4 @@ file to org-babel-tangle
 (global-set-key [f8] 'ly-dev-tangle)
 
 #+END_SRC
-
-#+results:
 
