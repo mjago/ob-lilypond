@@ -34,8 +34,15 @@ NOTE:- If using Timidity for midi playback, kill the midi stream with
 C-g in Emacs
 
 ** Setup (add to emacs init file)
-The Files need to be downloaded to your relevant dotfiles directory
-and something similar to the following placed in your Emacs init file...
+The Files need to be downloaded to your relevant dotfiles directory...
+
+#+BEGIN_SRC 
+
+git clone https://github.com/sshelagh/ob-lilypond.git ob-lilypond
+
+#+END_SRC
+
+...and something similar to the following placed in your Emacs init file...
 
 #+BEGIN_SRC emacs-lisp
 
