@@ -93,7 +93,7 @@ LY-USE-EPS to t"
 (defvar org-babel-default-header-args:lilypond
   '((:results . "silent"))
   "Default arguments to use when evaluating a lilypond source block.")
-
+ 
 (defun org-babel-expand-body:lilypond (body params)
   "Expand BODY according to PARAMS, return the expanded body."
 
@@ -354,3 +354,4 @@ If TEST is non-nil, it contains a simulation of the OS for test purposes"
 
 ;;; ob-lilypond.el ends here
 
+ 

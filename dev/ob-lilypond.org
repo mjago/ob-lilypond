@@ -105,85 +105,93 @@ file to org-babel-tangle
 
 #+BEGIN_SRC emacs-lisp :results silent
   
-    (defun ly-project ()
-      (interactive)
-      (when (fboundp 'unity-mode)
-        (unload-feature 'unity-mode t))
-      (when (fboundp 'unity-mode-tests)
-        (unload-feature 'unity-mode-tests t))
-      (add-to-list 'load-path
-                   (concat dotfiles-dir  "martyn/martyn/ob-lilypond"))
-      (delete-other-windows)
-      (split-window-horizontally)
-      (windmove-right)
-      (find-file "~/.emacs.d/martyn/martyn/ob-lilypond/dev/ob-lilypond.org")
-      (find-file "~/.emacs.d/martyn/martyn/ob-lilypond/lib/ob-lilypond.el")
-      (windmove-left)
-      (find-file "~/.emacs.d/martyn/martyn/ob-lilypond/test/ob-lilypond-tests.el")
-      (switch-to-buffer "ob-lilypond-tests.el")
-      (split-window-vertically)
-      (switch-to-buffer "*ert*")
-      (ly-add-hook)
-      (windmove-down)
-      (switch-to-buffer "ob-lilypond-tests.el")
-      (global-set-key [f4] 'ly-switch-src-control-file)
-      (message "ob-lilypond project setup complete"))
+  (defvar ly-project-name "ob-lilypond.org")
+  (defvar ly-src-name "ob-lilypond.el")
+  (defvar ly-test-name "ob-lilypond-tests.el")
+  (defvar ly-root-relative-to-pf "../")
+  (defvar ly-dev-dir "dev/")
+  (defvar ly-lib-dir "lib/")
+  (defvar ly-test-dir "test/")
   
+  (defun ly-project ()
+    (interactive)
+    (set-buffer (get-buffer-create ly-project-name))
+    (setq ly-root (concat 
+                   (file-name-directory 
+                    (buffer-file-name 
+                     (current-buffer)))
+                   ly-root-relative-to-pf))
+    (when (fboundp 'unity-mode)
+      (unload-feature 'unity-mode t))
+    (when (fboundp 'unity-mode-tests)
+      (unload-feature 'unity-mode-tests t))
+    (add-to-list 'load-path ly-root)
+    (delete-other-windows)
+    (split-window-horizontally)
+    (windmove-right)
+    (find-file (concat ly-root ly-dev-dir ly-project-name))
+    (find-file (concat ly-root ly-lib-dir ly-src-name))
+    (windmove-left)
+    (find-file (concat ly-root ly-test-dir ly-test-name))
+    (switch-to-buffer ly-test-name)
+    (split-window-vertically)
+    (switch-to-buffer "*ert*")
+    (ly-add-hook)
+    (windmove-down)
+    (switch-to-buffer ly-test-name)
+    (global-set-key [f4] 'ly-switch-src-control-file)
+    (message (concat (file-name-sans-extension
+                      " project setup complete"))))
+
     (defun ly-switch-src-control-file()
       "Fast route to ob-lilypond.org and back"
       (interactive)
-      (let ((project-file 
-             (concat dotfiles-dir
-                     "martyn/martyn/ob-lilypond/dev/ob-lilypond.org"))
+      (let ((project-buffer ly-project-name)
             (buffer))
         (unless (boundp 'ly-last-buffer)
-                (setq ly-last-buffer
-                      (concat dotfiles-dir
-                              "martyn/martyn/ob-lilypond/lib/ob-lilypond.el")))
-        (if (equal (buffer-file-name) project-file)
+          (setq ly-last-buffer ly-src-name))
+        (if (equal (buffer-name) project-buffer)
             (setq buffer ly-last-buffer)
-          (setq ly-last-buffer (buffer-file-name))
-          (setq buffer project-file))
+          (setq ly-last-buffer (buffer-name))
+          (setq buffer project-buffer))
         (message (concat "Switching to " buffer))
-        (switch-to-buffer  (file-name-nondirectory buffer))))
-  
+        (switch-to-buffer buffer)))
+      
     (defun ly-post-save-hook ()
       (let ((original-buffer buffer-file-name)
             (original-window (selected-window)))
         (if(string-match "^ob-lilypond" (file-name-nondirectory original-buffer)) 
             (progn
-              (eval-buffer "ob-lilypond-tests.el")
-              (eval-buffer "ob-lilypond.el")
+              (eval-buffer ly-test-name)
+              (eval-buffer ly-src-name)
               (ert t)))
         (select-window original-window)))
-
+    
     (defun ly-add-hook ()
       (interactive)
-      (save-buffer "ob-lilypond.el")
-      (save-buffer "ob-lilypond-tests.el")
+      (save-buffer ly-src-name)
+      (save-buffer ly-test-name)
       (add-hook 'after-save-hook 'ly-post-save-hook nil nil)
-      (set-buffer "ob-lilypond.el")
+      (set-buffer ly-src-name)
       (revert-buffer nil t) 
-      (set-buffer "ob-lilypond-tests.el")
+      (set-buffer ly-test-name)
       (revert-buffer nil t))
-
+    
     (message "Activate with M-x ly-project")
-     
+    
 #+END_SRC
 
 *** Remove Continuous Testing Hook
 
 #+BEGIN_SRC emacs-lisp :results silent
 
-;;(set-buffer "ob-lilypond.el")  
-
-(save-buffer "ob-lilypond.el")
-(save-buffer "ob-lilypond-tests.el")
+(save-buffer ly-src-name)
+(save-buffer ly-test-name)
 (remove-hook 'after-save-hook 'ly-post-save-hook nil)
 (save-excursion
-  (set-buffer "ob-lilypond.el")
+  (set-buffer ly-src-name)
   (revert-buffer nil t) 
-  (set-buffer "ob-lilypond-tests.el")
+  (set-buffer ly-test-name)
   (revert-buffer nil t))
 
 #+END_SRC
