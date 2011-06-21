@@ -38,7 +38,7 @@ The Files need to be downloaded to your relevant dotfiles directory...
 
 #+BEGIN_SRC 
 
-git clone https://github.com/sshelagh/ob-lilypond.git ob-lilypond
+git clone https://github.com/mjago/ob-lilypond.git ob-lilypond
 
 #+END_SRC
 
