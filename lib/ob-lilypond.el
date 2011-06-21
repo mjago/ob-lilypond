@@ -305,7 +305,7 @@ If TEST is non-nil, it contains a simulation of the OS for test purposes"
           ((string= sys-type "win32")
            ly-win32-midi-path)
           (t ly-nix-midi-path))))
-
+ 
 (defun ly-toggle-midi-play ()
   "Toggle whether midi will be played following a successful compilation"
   
@@ -318,7 +318,7 @@ If TEST is non-nil, it contains a simulation of the OS for test purposes"
 
 (defun ly-toggle-pdf-display ()
   "Toggle whether pdf will be displayed following a successful compilation"
-  
+   
   (interactive)
   (setq ly-display-pdf-post-tangle
         (not ly-display-pdf-post-tangle))
@@ -343,7 +343,7 @@ If TEST is non-nil, it contains a simulation of the OS for test purposes"
         (not ly-gen-html))
   (message (concat "HTML generation has been "
                    (if ly-gen-html "ENABLED." "DISABLED."))))
-
+ 
 (defun ly-switch-extension (file-name ext)
   "Utility command to swap current FILE-NAME extension with EXT"
   
@@ -353,5 +353,4 @@ If TEST is non-nil, it contains a simulation of the OS for test purposes"
 (provide 'ob-lilypond)
 
 ;;; ob-lilypond.el ends here
-
 

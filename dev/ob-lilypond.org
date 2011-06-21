@@ -100,61 +100,76 @@ file to org-babel-tangle
 *** SOMEDAY Consider the option to embed resultant partial musical output into org file 
 
 ** Setup
-*** Add dev switch hook
 
-#+BEGIN_SRC emacs-lisp
+*** Setup Dev Project
+
+#+BEGIN_SRC emacs-lisp :results silent
   
-  (defun ob-lilypond-switch-src-control-file()
-    "Fast route to ob-lilypond.org and back"
-    (interactive)
-    (let ((project-file 
-           (concat dotfiles-dir
-                   "martyn/martyn/ob-lilypond/dev/ob-lilypond.org"))
-          (buffer))
-      (unless (boundp 'ly-last-buffer)
-              (setq ly-last-buffer
-                    (concat dotfiles-dir
-                            "martyn/martyn/ob-lilypond/lib/ob-lilypond.el")))
-      (if (equal (buffer-file-name) project-file)
-          (setq buffer ly-last-buffer)
-        (setq ly-last-buffer (buffer-file-name))
-        (setq buffer project-file))
-      (message (concat "Switching to " buffer))
-      (switch-to-buffer  (file-name-nondirectory buffer))))
-  (global-set-key [f4] 'ob-lilypond-switch-src-control-file)
-    
-#+END_SRC
-#+results:
-: ob-lilypond-switch-src-control-file
-
-*** Add Continuous Testing hook
-
-#+BEGIN_SRC emacs-lisp
+    (defun ly-project ()
+      (interactive)
+      (when (fboundp 'unity-mode)
+        (unload-feature 'unity-mode t))
+      (when (fboundp 'unity-mode-tests)
+        (unload-feature 'unity-mode-tests t))
+      (add-to-list 'load-path
+                   (concat dotfiles-dir  "martyn/martyn/ob-lilypond"))
+      (delete-other-windows)
+      (split-window-horizontally)
+      (windmove-right)
+      (find-file "~/.emacs.d/martyn/martyn/ob-lilypond/dev/ob-lilypond.org")
+      (find-file "~/.emacs.d/martyn/martyn/ob-lilypond/lib/ob-lilypond.el")
+      (windmove-left)
+      (find-file "~/.emacs.d/martyn/martyn/ob-lilypond/test/ob-lilypond-tests.el")
+      (switch-to-buffer "ob-lilypond-tests.el")
+      (split-window-vertically)
+      (switch-to-buffer "*ert*")
+      (ly-add-hook)
+      (windmove-down)
+      (switch-to-buffer "ob-lilypond-tests.el")
+      (global-set-key [f4] 'ly-switch-src-control-file)
+      (message "ob-lilypond project setup complete"))
   
-  (defun ob-lilypond-eval-src-and-tests ()
-    (interactive)
-    (let ((original-buffer buffer-file-name)
-          (original-window (selected-window)))
-      (if(string-match "^ob-lilypond" (file-name-nondirectory original-buffer)) 
-          (progn
-            (eval-buffer "ob-lilypond-tests.el")
-            (eval-buffer "ob-lilypond.el")
-            (ert t)))
-      (select-window original-window)))
-   
-(save-buffer "ob-lilypond.el")
-(save-buffer "ob-lilypond-tests.el")
-(add-hook 'after-save-hook 'ob-lilypond-eval-src-and-tests nil nil)
-(save-excursion
-  (set-buffer "ob-lilypond.el")
-  (revert-buffer nil t) 
-  (set-buffer "ob-lilypond-tests.el")
-  (revert-buffer nil t))
- 
-#+END_SRC
+    (defun ly-switch-src-control-file()
+      "Fast route to ob-lilypond.org and back"
+      (interactive)
+      (let ((project-file 
+             (concat dotfiles-dir
+                     "martyn/martyn/ob-lilypond/dev/ob-lilypond.org"))
+            (buffer))
+        (unless (boundp 'ly-last-buffer)
+                (setq ly-last-buffer
+                      (concat dotfiles-dir
+                              "martyn/martyn/ob-lilypond/lib/ob-lilypond.el")))
+        (if (equal (buffer-file-name) project-file)
+            (setq buffer ly-last-buffer)
+          (setq ly-last-buffer (buffer-file-name))
+          (setq buffer project-file))
+        (message (concat "Switching to " buffer))
+        (switch-to-buffer  (file-name-nondirectory buffer))))
+  
+    (defun ly-post-save-hook ()
+      (let ((original-buffer buffer-file-name)
+            (original-window (selected-window)))
+        (if(string-match "^ob-lilypond" (file-name-nondirectory original-buffer)) 
+            (progn
+              (eval-buffer "ob-lilypond-tests.el")
+              (eval-buffer "ob-lilypond.el")
+              (ert t)))
+        (select-window original-window)))
 
-#+results:
-: t
+    (defun ly-add-hook ()
+      (interactive)
+      (save-buffer "ob-lilypond.el")
+      (save-buffer "ob-lilypond-tests.el")
+      (add-hook 'after-save-hook 'ly-post-save-hook nil nil)
+      (set-buffer "ob-lilypond.el")
+      (revert-buffer nil t) 
+      (set-buffer "ob-lilypond-tests.el")
+      (revert-buffer nil t))
+
+    (message "Activate with M-x ly-project")
+     
+#+END_SRC
 
 *** Remove Continuous Testing Hook
 
@@ -164,7 +179,7 @@ file to org-babel-tangle
 
 (save-buffer "ob-lilypond.el")
 (save-buffer "ob-lilypond-tests.el")
-(remove-hook 'after-save-hook 'ob-lilypond-eval-src-and-tests nil)
+(remove-hook 'after-save-hook 'ly-post-save-hook nil)
 (save-excursion
   (set-buffer "ob-lilypond.el")
   (revert-buffer nil t) 
@@ -183,47 +198,15 @@ file to org-babel-tangle
 
 *** Display all after save hooks 
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results silent
 
 (message "%S" after-save-hook)
  
 #+END_SRC
 
-#+results:
-: (ob-lilypond-eval-src-and-tests)
-
-*** Setup Dev Project
-
-#+BEGIN_SRC emacs-lisp 
-
-  (defun lilypond-project ()
-    (interactive)
-    (when (fboundp 'unity-mode)
-      (unload-feature 'unity-mode t))
-    (when (fboundp 'unity-mode-tests)
-      (unload-feature 'unity-mode-tests t))
-    (add-to-list 'load-path
-                 (concat dotfiles-dir  "martyn/martyn/ob-lilypond"))
-    (delete-other-windows)
-    (split-window-horizontally)
-    (windmove-right)
-    (find-file "~/.emacs.d/martyn/martyn/ob-lilypond/dev/ob-lilypond.org")
-    (find-file "~/.emacs.d/martyn/martyn/ob-lilypond/lib/ob-lilypond.el")
-    (windmove-left)
-    (find-file "~/.emacs.d/martyn/martyn/ob-lilypond/test/ob-lilypond-tests.el")
-    (switch-to-buffer "ob-lilypond-tests.el")
-    (split-window-vertically)
-    (switch-to-buffer "*ert*")
-    (windmove-down)
-    (switch-to-buffer "ob-lilypond-tests.el"))
-  (lilypond-project)
-#+END_SRC
-#+results:
-: #<buffer ob-lilypond-tests.el>
-
 *** Dev Tangle Command
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results silent
  
 (defun ly-dev-tangle ()
   (interactive)
