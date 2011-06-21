@@ -43,9 +43,9 @@ file to org-babel-tangle
 *** DONE Add exported link to readme
 *** DONE Add ly-toggle-png-generation command
 *** DONE Port to Ubuntu
-*** TODO Finish tests [34/40]
+*** TODO Finish tests [37/40]
  1. [X] (defalias 'lilypond-mode 'LilyPond-mode)
- 2. [ ] list 'org-babel-tangle-lang-exts '("LilyPond" . "ly"))
+ 2. [X] list 'org-babel-tangle-lang-exts '("LilyPond" . "ly"))
  3. [X] ly-compile-post-tangle t
  4. [X] ly-display-pdf-post-tangle t
  5. [X] ly-play-midi-post-tangle t
@@ -63,11 +63,11 @@ file to org-babel-tangle
  17. [X] ly-gen-html nil)
  18. [X] ly-use-eps nil)
  19. [X] org-babel-default-header-args:lilypond
- 20. [-] org-babel-expand-body:lilypond (body params)
- 21. [-] org-babel-execute:lilypond (body params)
- 22. [ ] org-babel-prep-session:lilypond (session params)
+ 20. [ ] org-babel-expand-body:lilypond (body params)
+ 21. [ ] org-babel-execute:lilypond (body params)
+ 22. [X] org-babel-prep-session:lilypond (session params)
  23. [ ] ly-execute-tangled-ly ()
- 24. [ ] ly-compile-lilyfile (file-name)
+ 24. [X] ly-compile-lilyfile (file-name)
  25. [X] ly-check-for-compile-error (file-name)
  26. [X] ly-process-compile-error (file-name)
  27. [X] ly-mark-error-line (file-name line)

@@ -138,29 +138,38 @@ If error in compilation, attempt to mark the error in lilypond org file"
             (rename-file ly-tangled-file
                          ly-temp-file))
         (error "Error: Tangle Failed!") t)
-      (if (ly-compile-lilyfile ly-temp-file)
+      (switch-to-buffer-other-window "*lilypond*")
+      (erase-buffer)
+      (ly-compile-lilyfile ly-temp-file)
+      (goto-char (point-min))
+      (if (not (ly-check-for-compile-error ly-temp-file))
           (progn
+            (other-window -1)
             (ly-attempt-to-open-pdf ly-temp-file)
             (ly-attempt-to-play-midi ly-temp-file))
         (error "Error in Compilation!")))) nil)
 
-(defun ly-compile-lilyfile (file-name)
+(defun ly-compile-lilyfile (file-name &optional test)
   "Compile lilypond file and check for compile errors
 FILE-NAME is full path to lilypond (.ly) file"
 
   (message "Compiling LilyPond...")
-  (switch-to-buffer-other-window "*lilypond*")
-  (erase-buffer)
-  (call-process
-   (ly-determine-ly-path) nil "*lilypond*" t 
-   (if ly-gen-png  "--png"  "")
-   (if ly-gen-html "--html" "")
-   (if ly-use-eps  "-dbackend=eps" "")
-   (if ly-gen-svg  "-dbackend=svg" "")
-   (concat "--output=" (file-name-sans-extension file-name))
-   file-name)
-  (goto-char (point-min))
-  (ly-check-for-compile-error file-name))
+  (let ((arg-1 (ly-determine-ly-path)) ;program
+        (arg-2 nil)                    ;infile
+        (arg-3 "*lilypond*")           ;buffer
+        (arg-4 t)                      ;display
+        (arg-5 (if ly-gen-png  "--png"  "")) ;&rest...
+        (arg-6 (if ly-gen-html "--html" ""))
+        (arg-7 (if ly-use-eps  "-dbackend=eps" ""))
+        (arg-8 (if ly-gen-svg  "-dbackend=svg" ""))
+        (arg-9 (concat "--output=" (file-name-sans-extension file-name)))
+        (arg-10 file-name))
+    (if test
+        `(,arg-1 ,arg-2 ,arg-3 ,arg-4 ,arg-5
+                 ,arg-6 ,arg-7 ,arg-8 ,arg-9 ,arg-10)
+      (call-process
+       arg-1 arg-2 arg-3 arg-4 arg-5
+       arg-6 arg-7 arg-8 arg-9 arg-10))))
 
 (defun ly-check-for-compile-error (file-name &optional test)
   "Check for compile error.
@@ -172,7 +181,7 @@ nil as file-name since it is unused in this context"
   (let ((is-error (search-forward "error:" nil t)))
     (if (not test)
         (if (not is-error)
-            (not (other-window -1))
+            nil
           (ly-process-compile-error file-name))
       is-error)))
 

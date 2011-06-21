@@ -1,8 +1,8 @@
 * Example Tangled LilyPond file (Misty - Errol Garner)
-** TODO LilyPond Version
-  
+** LilyPond Version
+   
 #+begin_src lilypond
-
+  
 \version "2.12.3"
 
 #+end_src 
@@ -20,7 +20,7 @@
   }
 
 #+end_src
-
+      
 ***** Verse One
 
 #+begin_src lilypond

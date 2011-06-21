@@ -15,11 +15,33 @@
 (ert-deftest ly-test-check-lilypond-alias ()
   (should (fboundp 'lilypond-mode)))
 
- ;; (ert-deftest ly-test-org-babel-tangle-lang-exts ()
- ;;   (should (= (quote (LilyPond . ly))
- ;;              (rassq 'ly
- ;;                     org-babel-tangle-lang-exts))))
+(ert-deftest ly-test-org-babel-tangle-lang-exts ()
+  (let ((found nil)
+        (list org-babel-tangle-lang-exts))
+    (while list
+      (when (equal (car list) '("LilyPond" . "ly"))
+        (setq found t))
+      (setq list (cdr list)))
+    (should found))) 
      
+(ert-deftest ly-test-org-babel-prep-session:lilypond ()
+ (should-error (org-babel-prep-session:lilypond nil nil))
+ :type 'error)
+
+(ert-deftest ly-test-ly-compile-lilyfile ()
+  (should (equal
+           `(,(ly-determine-ly-path)    ;program
+             nil                        ;infile
+             "*lilypond*"               ;buffer
+             t                          ;display
+             ,(if ly-gen-png  "--png"  "") ;&rest...
+             ,(if ly-gen-html "--html" "")   
+             ,(if ly-use-eps  "-dbackend=eps" "")
+             ,(if ly-gen-svg  "-dbackend=svg" "")
+             "--output=test-file"
+             "test-file.ly")
+           (ly-compile-lilyfile "test-file.ly" t))))
+
 (ert-deftest ly-test-ly-compile-post-tangle ()
   (should (boundp 'ly-compile-post-tangle)))
 
@@ -147,17 +169,15 @@
     (when (not (file-exists-p pdf-file))
       (set-buffer (get-buffer-create pdf-file))
       (write-file pdf-file))
-   
     (should (equal
              (concat
               (ly-determine-pdf-path) " " pdf-file)
              (ly-attempt-to-open-pdf ly-file t)))
-
     (kill-buffer (file-name-nondirectory pdf-file))
     (delete-file pdf-file)
     (should (equal
              "No pdf file generated so can't display!"
-            (ly-attempt-to-open-pdf pdf-file)))
+             (ly-attempt-to-open-pdf pdf-file)))
     (setq ly-display-pdf-post-tangle post-tangle)))
 
 (ert-deftest ly-test-ly-attempt-to-play-midi ()
@@ -264,4 +284,3 @@
                  (ly-switch-extension "/some/path/to/test-name" ".xyz"))))
  
 ;;; ob-lilypond-tests.el ends here
-
