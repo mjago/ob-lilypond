@@ -23,7 +23,7 @@
 ;; along with GNU Emacs; see the file COPYING. If not, write to the
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
-
+ 
 ;;; Commentary:
 
 ;; If you are planning on adding a language to org-babel we would ask
@@ -74,26 +74,26 @@ the midi file is not automatically played. Default value is t")
 (defvar ly-win32-pdf-path "")
 (defvar ly-win32-midi-path "")
 
-(defvar ly-gen-png nil)
+(defvar ly-gen-png nil
 "Image generation (png) can be turned on by default by setting
-LY-GEN-PNG to t"
+LY-GEN-PNG to t")
 
-(defvar ly-gen-svg nil)
+(defvar ly-gen-svg nil
 "Image generation (SVG) can be turned on by default by setting
-LY-GEN-SVG to t"
+LY-GEN-SVG to t")
 
-(defvar ly-gen-html nil)
+(defvar ly-gen-html nil
 "HTML generation can be turned on by default by setting
-LY-GEN-HTML to t"
+LY-GEN-HTML to t")
 
-(defvar ly-use-eps nil)
+(defvar ly-use-eps nil
 "You can force the compiler to use the EPS backend by setting
-LY-USE-EPS to t"
+LY-USE-EPS to t")
 
 (defvar org-babel-default-header-args:lilypond
   '((:results . "silent"))
   "Default arguments to use when evaluating a lilypond source block.")
- 
+
 (defun org-babel-expand-body:lilypond (body params)
   "Expand BODY according to PARAMS, return the expanded body."
 
@@ -114,7 +114,7 @@ LY-USE-EPS to t"
   "This function is called by `org-babel-execute-src-block'.
 Tangle all lilypond blocks and process the result"
 
-    (when (org-babel-tangle "yes" "lilypond")
+  (when (org-babel-tangle nil "yes" "lilypond")
       (ly-execute-tangled-ly)))
 
 (defun org-babel-prep-session:lilypond (session params)
@@ -132,7 +132,7 @@ If error in compilation, attempt to mark the error in lilypond org file"
           (ly-temp-file (ly-switch-extension
                          (buffer-file-name) ".ly")))
       (if (file-exists-p ly-tangled-file)
-          (progn
+          (progn 
             (when (file-exists-p ly-temp-file)
               (delete-file ly-temp-file))
             (rename-file ly-tangled-file

@@ -95,6 +95,11 @@ file to org-babel-tangle
 **** DONE Reduced scope of (save-excursion) to avoid this - doesn't help
 **** DONE Perhaps need unwind-protection - causes issues
 **** TODO Modify error marking to use absolute block size counting for location
+**** TODO Research when an extra option was added to THE FRONT of org-babel-tangle option list
+Why why why add new options to the front of the list and guarantee non-backwards
+compatability
+May need a note in docs or a test of version.
+
 *** WAITING Get feedback from Shelagh regarding direction and current 
 *** SOMEDAY Consider drawing vector graphic output as opposed to pdf for viewing?
 *** SOMEDAY Consider the option to embed resultant partial musical output into org file 
