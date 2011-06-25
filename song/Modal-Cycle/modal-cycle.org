@@ -1,0 +1,540 @@
+* Modal Cycle
+** Processing
+*** DONE Keys Data
+#+tblname: keys-table
+   | c   | d   | e   | f   | g   | a   | b   |
+   | g   | a   | b   | c   | d   | e   | fis |
+   | d   | e   | fis | g   | a   | b   | cis |
+   | a   | b   | cis | d   | e   | fis | gis |
+   | e   | fis | gis | a   | b   | cis | dis |
+   | b   | cis | dis | e   | fis | gis | ais |
+   | ges | aes | bes | ces | des | ees | f   |
+   | des | ees | f   | ges | aes | bes | c   |
+   | aes | bes | c   | des | ees | f   | g   |
+   | ees | f   | g   | aes | bes | c   | d   |
+   | bes | c   | d   | ees | f   | g   | a   |
+   | f   | g   | a   | bes | c   | d   | e   |
+
+*** DONE Generate Triad
+
+#+srcname: gen-triad(key,root) 
+#+begin_src ruby :var keys = keys-table :var key_of = keys-table[*,0] :results silent
+key_id =  key_of.index(key)
+@key    = keys[ key_id ]
+@root_id = @key.index(root)
+
+def triad(key,root,value,interval)
+"  < #{@key.fetch((@root_id + value -1) % 7)} \
+#{@key.fetch((@root_id + value +1) % 7)} \
+#{@key.fetch((@root_id + value +3) % 7)} > \
+#{interval} "
+end
+
+  "\\relative c' {" + "\n" +
+  triad(key, root, 4, 4) + 
+  triad(key, root, 4, 4) + 
+  triad(key, root, 4, 4) + 
+  triad(key, root, 4, 4) + "|\n" + 
+                   
+  triad(key, root, 5, 4) + 
+  triad(key, root, 5, 4) + 
+  triad(key, root, 5, 4) + 
+  triad(key, root, 5, 4) + "|\n" +
+                   
+  triad(key, root, 4, 4) + 
+  triad(key, root, 4, 4) + 
+  triad(key, root, 4, 4) + 
+  triad(key, root, 4, 4) + "|\n" +
+                   
+  triad(key, root, 5, 4) + 
+  triad(key, root, 5, 4) + 
+  triad(key, root, 5, 4) + 
+  triad(key, root, 5, 4) + "|\n" +
+"}"
+
+#+end_src
+
+*** DONE Generate arpeggio
+
+#+srcname: gen_arpeggio(key,root)
+#+begin_src ruby :var keys = keys-table :var key_of = keys-table[*,0] :results silent
+key_id =  key_of.index(key)
+@key    = keys[ key_id ]
+@root_id = @key.index(root)
+
+def arpeggio(key, root,ascending)
+  if ascending == 1
+    x,y = 0, 1
+  else 
+    x,y  = 7, -1
+  end
+
+  notes = ""
+  8.times do  
+    notes += @key.fetch((@root_id + x) % 7) + "16 "
+    x = x + y
+  end  
+  notes + "r2"
+end
+
+"\\relative c' { #{arpeggio(key, root,1)} } | r1 | \ 
+\\relative c'' { #{arpeggio(key, root,0)} } | r1 | \n"
+
+#+end_src
+
+*** DONE Generate Bass Line
+
+#+source: generate_bassline(root)
+#+begin_src ruby :results silent 
+one_bar =
+"  #{root}8 #{root} #{root} #{root} " + 
+"#{root} #{root} #{root} #{root}'16 #{root},16 " 
+
+"\\relative c { " + "\n" + one_bar + "|\n" + one_bar + 
+"|\n" + one_bar + "|\n" + one_bar + "|\n} " 
+
+#+end_src
+
+** Version
+#+begin_src lilypond
+
+\version "2.12.3"
+
+#+end_src
+** Arpeggios
+
+#+begin_src lilypond :noweb yes
+
+Arps = {
+  <<gen_arpeggio(key="c",root="c")>>
+  <<gen_arpeggio(key="g",root="c")>>
+
+  <<gen_arpeggio(key="d",root="cis")>>
+  <<gen_arpeggio(key="a",root="cis")>>
+  <<gen_arpeggio(key="e",root="cis")>>
+  <<gen_arpeggio(key="b",root="cis")>>
+  <<gen_arpeggio(key="ges",root="des")>>
+  <<gen_arpeggio(key="des",root="des")>>
+  <<gen_arpeggio(key="aes",root="des")>>
+
+  <<gen_arpeggio(key="ees",root="d")>>
+  <<gen_arpeggio(key="bes",root="d")>>
+  <<gen_arpeggio(key="f",root="d")>>
+  <<gen_arpeggio(key="c",root="d")>>
+  <<gen_arpeggio(key="g",root="d")>>
+  <<gen_arpeggio(key="d",root="d")>>
+  <<gen_arpeggio(key="a",root="d")>>
+
+  <<gen_arpeggio(key="e",root="dis")>>
+  <<gen_arpeggio(key="b",root="dis")>>
+  <<gen_arpeggio(key="ges",root="ees")>>
+  <<gen_arpeggio(key="des",root="ees")>>
+  <<gen_arpeggio(key="aes",root="ees")>>
+  <<gen_arpeggio(key="ees",root="ees")>>
+  <<gen_arpeggio(key="bes",root="ees")>>
+
+  <<gen_arpeggio(key="f",root="e")>>
+  <<gen_arpeggio(key="c",root="e")>>
+  <<gen_arpeggio(key="g",root="e")>>
+  <<gen_arpeggio(key="d",root="e")>>
+  <<gen_arpeggio(key="a",root="e")>>
+  <<gen_arpeggio(key="e",root="e")>>
+  <<gen_arpeggio(key="b",root="e")>>
+
+  <<gen_arpeggio(key="ges",root="f")>>
+  <<gen_arpeggio(key="des",root="f")>>
+  <<gen_arpeggio(key="aes",root="f")>>
+  <<gen_arpeggio(key="ees",root="f")>>
+  <<gen_arpeggio(key="bes",root="f")>>
+  <<gen_arpeggio(key="f",root="f")>>
+  <<gen_arpeggio(key="c",root="f")>>
+
+  <<gen_arpeggio(key="g",root="fis")>>
+  <<gen_arpeggio(key="d",root="fis")>>
+  <<gen_arpeggio(key="a",root="fis")>>
+  <<gen_arpeggio(key="e",root="fis")>>
+  <<gen_arpeggio(key="b",root="fis")>>
+  <<gen_arpeggio(key="ges",root="ges")>>
+  <<gen_arpeggio(key="des",root="ges")>>
+
+  <<gen_arpeggio(key="aes",root="g")>>
+  <<gen_arpeggio(key="ees",root="g")>>
+  <<gen_arpeggio(key="bes",root="g")>>
+  <<gen_arpeggio(key="f",root="g")>>
+  <<gen_arpeggio(key="c",root="g")>>
+  <<gen_arpeggio(key="g",root="g")>>
+  <<gen_arpeggio(key="d",root="g")>>
+
+  <<gen_arpeggio(key="a",root="gis")>>
+  <<gen_arpeggio(key="e",root="gis")>>
+  <<gen_arpeggio(key="b",root="gis")>>
+  <<gen_arpeggio(key="ges",root="aes")>>
+  <<gen_arpeggio(key="des",root="aes")>>
+  <<gen_arpeggio(key="aes",root="aes")>>
+  <<gen_arpeggio(key="ees",root="aes")>>
+
+  <<gen_arpeggio(key="bes",root="a")>>
+  <<gen_arpeggio(key="f",root="a")>>
+  <<gen_arpeggio(key="c",root="a")>>
+  <<gen_arpeggio(key="g",root="a")>>
+  <<gen_arpeggio(key="d",root="a")>>
+  <<gen_arpeggio(key="a",root="a")>>
+  <<gen_arpeggio(key="e",root="a")>>
+
+  <<gen_arpeggio(key="b",root="ais")>>
+  <<gen_arpeggio(key="ges",root="bes")>>
+  <<gen_arpeggio(key="des",root="bes")>>
+  <<gen_arpeggio(key="aes",root="bes")>>
+  <<gen_arpeggio(key="ees",root="bes")>>
+  <<gen_arpeggio(key="bes",root="bes")>>
+  <<gen_arpeggio(key="f",root="bes")>>
+
+  <<gen_arpeggio(key="c",root="b")>>
+  <<gen_arpeggio(key="g",root="b")>>
+  <<gen_arpeggio(key="d",root="b")>>
+  <<gen_arpeggio(key="a",root="b")>>
+  <<gen_arpeggio(key="e",root="b")>>
+  <<gen_arpeggio(key="b",root="b")>>
+
+  <<gen_arpeggio(key="ges",root="ces")>>
+  <<gen_arpeggio(key="des",root="c")>>
+  <<gen_arpeggio(key="aes",root="c")>>
+  <<gen_arpeggio(key="ees",root="c")>>
+  <<gen_arpeggio(key="bes",root="c")>>
+  <<gen_arpeggio(key="f",root="c")>>
+  <<gen_arpeggio(key="c",root="c")>>
+
+  < g, d, g' b c g > 1
+}
+#+end_src
+
+** Triads
+
+#+begin_src lilypond :noweb yes
+
+Triads = {
+  <<gen-triad(key="c",root="c")>>
+  <<gen-triad(key="g",root="c")>>
+
+  <<gen-triad(key="d",root="cis")>>
+  <<gen-triad(key="a",root="cis")>>
+  <<gen-triad(key="e",root="cis")>>
+  <<gen-triad(key="b",root="cis")>>
+  <<gen-triad(key="ges",root="des")>>
+  <<gen-triad(key="des",root="des")>>
+  <<gen-triad(key="aes",root="des")>>
+
+  <<gen-triad(key="ees",root="d")>>
+  <<gen-triad(key="bes",root="d")>>
+  <<gen-triad(key="f",root="d")>>
+  <<gen-triad(key="c",root="d")>>
+  <<gen-triad(key="g",root="d")>>
+  <<gen-triad(key="d",root="d")>>
+  <<gen-triad(key="a",root="d")>>
+
+  <<gen-triad(key="e",root="dis")>>
+  <<gen-triad(key="b",root="dis")>>
+  <<gen-triad(key="ges",root="ees")>>
+  <<gen-triad(key="des",root="ees")>>
+  <<gen-triad(key="aes",root="ees")>>
+  <<gen-triad(key="ees",root="ees")>>
+  <<gen-triad(key="bes",root="ees")>>
+
+  <<gen-triad(key="f",root="e")>>
+  <<gen-triad(key="c",root="e")>>
+  <<gen-triad(key="g",root="e")>>
+  <<gen-triad(key="d",root="e")>>
+  <<gen-triad(key="a",root="e")>>
+  <<gen-triad(key="e",root="e")>>
+  <<gen-triad(key="b",root="e")>>
+
+  <<gen-triad(key="ges",root="f")>>
+  <<gen-triad(key="des",root="f")>>
+  <<gen-triad(key="aes",root="f")>>
+  <<gen-triad(key="ees",root="f")>>
+  <<gen-triad(key="bes",root="f")>>
+  <<gen-triad(key="f",root="f")>>
+  <<gen-triad(key="c",root="f")>>
+
+  <<gen-triad(key="g",root="fis")>>
+  <<gen-triad(key="d",root="fis")>>
+  <<gen-triad(key="a",root="fis")>>
+  <<gen-triad(key="e",root="fis")>>
+  <<gen-triad(key="b",root="fis")>>
+  <<gen-triad(key="ges",root="ges")>>
+  <<gen-triad(key="des",root="ges")>>
+
+  <<gen-triad(key="aes",root="g")>>
+  <<gen-triad(key="ees",root="g")>>
+  <<gen-triad(key="bes",root="g")>>
+  <<gen-triad(key="f",root="g")>>
+  <<gen-triad(key="c",root="g")>>
+  <<gen-triad(key="g",root="g")>>
+  <<gen-triad(key="d",root="g")>>
+
+  <<gen-triad(key="a",root="gis")>>
+  <<gen-triad(key="e",root="gis")>>
+  <<gen-triad(key="b",root="gis")>>
+  <<gen-triad(key="ges",root="aes")>>
+  <<gen-triad(key="des",root="aes")>>
+  <<gen-triad(key="aes",root="aes")>>
+  <<gen-triad(key="ees",root="aes")>>
+
+  <<gen-triad(key="bes",root="a")>>
+  <<gen-triad(key="f",root="a")>>
+  <<gen-triad(key="c",root="a")>>
+  <<gen-triad(key="g",root="a")>>
+  <<gen-triad(key="d",root="a")>>
+  <<gen-triad(key="a",root="a")>>
+  <<gen-triad(key="e",root="a")>>
+
+  <<gen-triad(key="b",root="ais")>>
+  <<gen-triad(key="ges",root="bes")>>
+  <<gen-triad(key="des",root="bes")>>
+  <<gen-triad(key="aes",root="bes")>>
+  <<gen-triad(key="ees",root="bes")>>
+  <<gen-triad(key="bes",root="bes")>>
+  <<gen-triad(key="f",root="bes")>>
+
+  <<gen-triad(key="c",root="b")>>
+  <<gen-triad(key="g",root="b")>>
+  <<gen-triad(key="d",root="b")>>
+  <<gen-triad(key="a",root="b")>>
+  <<gen-triad(key="e",root="b")>>
+  <<gen-triad(key="b",root="b")>>
+
+  <<gen-triad(key="ges",root="ces")>>
+  <<gen-triad(key="des",root="c")>>
+  <<gen-triad(key="aes",root="c")>>
+  <<gen-triad(key="ees",root="c")>>
+  <<gen-triad(key="bes",root="c")>>
+  <<gen-triad(key="f",root="c")>>
+  <<gen-triad(key="c",root="c")>>
+
+}
+
+#+end_src
+
+** Drums (four bars)
+#+begin_src lilypond
+  
+  DrumsFourBars = {
+    \drummode {
+      bd16 hh16 hh16 hh16 sn16 hh16 hh16 hh16 
+      bd16 hh16 hh16 hh16 sn16 hh16 hh16 hh16 |
+      bd16 hh16 hh16 hh16 sn16 hh16 hh16 hh16 
+      bd16 hh16 hh16 hh16 sn16 hh16 hh16 bd16 |
+      bd16 hh16 hh16 hh16 sn16 hh16 hh16 hh16 
+      bd16 hh16 hh16 hh16 sn16 hh16 hh16 hh16 |
+      bd16 hh16 hh16 hh16 sn16 hh16 hh16 hh16 
+      bd16 hh16 hh16 hh16 sn16 hh16 sn16 bd16 |
+    }
+  }
+
+ DrumsSixteenBars = {
+   \DrumsFourBars \DrumsFourBars
+   \DrumsFourBars \DrumsFourBars
+}  
+#+end_src
+
+#+begin_src lilypond :noweb yes
+ Drums = {
+ \DrumsSixteenBars \DrumsSixteenBars \DrumsSixteenBars
+ \DrumsSixteenBars \DrumsSixteenBars \DrumsSixteenBars
+ \DrumsSixteenBars \DrumsSixteenBars \DrumsSixteenBars
+ \DrumsSixteenBars \DrumsSixteenBars \DrumsSixteenBars
+ \DrumsSixteenBars \DrumsSixteenBars \DrumsSixteenBars
+ \DrumsSixteenBars \DrumsSixteenBars \DrumsSixteenBars
+ \DrumsSixteenBars \DrumsSixteenBars \DrumsSixteenBars
+ \DrumsFourBars
+}
+
+#+end_src
+  
+** Bass
+#+begin_src lilypond :noweb yes
+
+Bass = {
+      <<generate_bassline(root="c")>>
+      <<generate_bassline(root="c")>>
+
+      <<generate_bassline(root="cis")>>
+      <<generate_bassline(root="cis")>>
+      <<generate_bassline(root="cis")>>
+      <<generate_bassline(root="cis")>>
+      <<generate_bassline(root="des")>>
+      <<generate_bassline(root="des")>>
+      <<generate_bassline(root="des")>>
+
+      <<generate_bassline(root="d")>>
+      <<generate_bassline(root="d")>>
+      <<generate_bassline(root="d")>>
+      <<generate_bassline(root="d")>>
+      <<generate_bassline(root="d")>>
+      <<generate_bassline(root="d")>>
+      <<generate_bassline(root="d")>>
+
+      <<generate_bassline(root="ees")>>
+      <<generate_bassline(root="ees")>>
+      <<generate_bassline(root="ees")>>
+      <<generate_bassline(root="ees")>>
+      <<generate_bassline(root="ees")>>
+      <<generate_bassline(root="ees")>>
+      <<generate_bassline(root="ees")>>
+
+      <<generate_bassline(root="e")>>
+      <<generate_bassline(root="e")>>
+      <<generate_bassline(root="e")>>
+      <<generate_bassline(root="e")>>
+      <<generate_bassline(root="e")>>
+      <<generate_bassline(root="e")>>
+      <<generate_bassline(root="e")>>
+
+      <<generate_bassline(root="f")>>
+      <<generate_bassline(root="f")>>
+      <<generate_bassline(root="f")>>
+      <<generate_bassline(root="f")>>
+      <<generate_bassline(root="f")>>
+      <<generate_bassline(root="f")>>
+      <<generate_bassline(root="f")>>
+
+      <<generate_bassline(root="ges")>>
+      <<generate_bassline(root="ges")>>
+      <<generate_bassline(root="ges")>>
+      <<generate_bassline(root="ges")>>
+      <<generate_bassline(root="ges")>>
+      <<generate_bassline(root="ges")>>
+      <<generate_bassline(root="ges")>>
+
+      <<generate_bassline(root="g")>>
+      <<generate_bassline(root="g")>>
+      <<generate_bassline(root="g")>>
+      <<generate_bassline(root="g")>>
+      <<generate_bassline(root="g")>>
+      <<generate_bassline(root="g")>>
+      <<generate_bassline(root="g")>>
+
+      <<generate_bassline(root="aes")>>
+      <<generate_bassline(root="aes")>>
+      <<generate_bassline(root="aes")>>
+      <<generate_bassline(root="aes")>>
+      <<generate_bassline(root="aes")>>
+      <<generate_bassline(root="aes")>>
+      <<generate_bassline(root="aes")>>
+
+      <<generate_bassline(root="a")>>
+      <<generate_bassline(root="a")>>
+      <<generate_bassline(root="a")>>
+      <<generate_bassline(root="a")>>
+      <<generate_bassline(root="a")>>
+      <<generate_bassline(root="a")>>
+      <<generate_bassline(root="a")>>
+
+      <<generate_bassline(root="bes")>>
+      <<generate_bassline(root="bes")>>
+      <<generate_bassline(root="bes")>>
+      <<generate_bassline(root="bes")>>
+      <<generate_bassline(root="bes")>>
+      <<generate_bassline(root="bes")>>
+      <<generate_bassline(root="bes")>>
+
+      <<generate_bassline(root="b")>>
+      <<generate_bassline(root="b")>>
+      <<generate_bassline(root="b")>>
+      <<generate_bassline(root="b")>>
+      <<generate_bassline(root="b")>>
+      <<generate_bassline(root="b")>>
+      <<generate_bassline(root="b")>>
+
+      <<generate_bassline(root="c")>>
+      <<generate_bassline(root="c")>>
+      <<generate_bassline(root="c")>>
+      <<generate_bassline(root="c")>>
+      <<generate_bassline(root="c")>>
+      <<generate_bassline(root="c")>>
+}
+
+#+end_src
+  
+** Number of bars to compile (showLastLength)
+#+begin_src lilypond
+
+%  showLastLength = R1*9
+ 
+#+end_src
+** Score
+#+begin_src lilypond :noweb yes
+
+  \score {
+
+  <<
+
+    \new Staff {
+      \key c \major
+      
+      \set Staff.midiInstrument = #"acoustic grand"
+      \Arps 
+    }
+
+    \new Staff {
+      \relative c' 
+      \key c \major
+      \set Staff.midiInstrument = #"acoustic grand"
+      \Triads 
+    }
+
+    \new Staff {
+      \clef bass
+      \relative c 
+      \key c \major
+      \set Staff.midiInstrument = #"slap bass 2"
+      \Bass
+    }
+
+    \new DrumStaff {
+      \Drums
+    }
+  
+  >>
+    
+    \layout {
+    }
+    \midi {
+      \context {
+        \Score
+        tempoWholesPerMinute = #(ly:make-moment 120 4)
+      }
+    }
+  }
+    
+#+end_src
+
+** Paper
+
+#+begin_src lilypond 
+
+\paper {
+  #(define dump-extents #t) 
+  
+  indent = 0\mm
+  line-width = 200\mm - 2.0 * 0.4\in
+  ragged-right = #""
+  force-assignment = #""
+  line-width = #(- line-width (* mm  3.000000))
+}
+
+#+end_src
+
+** Header
+
+#+begin_src lilypond
+
+\header {
+  title = \markup \center-column {"Modal Cycle"} 
+  composer =  \markup \center-column { "Music by" \small "Martyn Jago" }
+  poet =  \markup \center-column { "ob-lilypond" \small "example 3" }
+}
+
+#+end_src
+   
+
