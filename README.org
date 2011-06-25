@@ -5,7 +5,7 @@ using literate programming principles.
 
 ** Included Examples
 Several examples are included
- 1. Misty (Jazz Standard utilising org-mode to organise voice and other
+ 1) Misty (Jazz Standard utilising org-mode to organise voice and other
     data)
     - [[https://raw.github.com/mjago/ob-lilypond/master/song/Example-exported.html][Here is the Example Org File]] exported as HTML
     - [[https://github.com/mjago/ob-lilypond/blob/master/song/Misty/Misty.pdf?raw=true][Resultant Score]] exported in pdf format
@@ -14,12 +14,12 @@ Several examples are included
       - [[https://github.com/mjago/ob-lilypond/raw/master/song/example-page2.png][Page 2]]
       - [[https://github.com/mjago/ob-lilypond/raw/master/song/example-page3.png][Page 3]]
     - [[https://github.com/mjago/ob-lilypond/blob/master/song/Misty/Misty.midi?raw=true][Generated Midi File]]
- 2. Modal Cycles (Utilises org-babel and noweb to generate notes)
-    - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle/modal-cycle.pdf?raw%3Dtrue][Generated Score]]
-    - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle/modal-cycle.midi?raw%3Dtrue][Generated Midi File]]
- 3. Modes in the Key of C (Another example of polyglot lilypond programming)  
-    - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modes-in-Key-of-C/modes-in-key-of-c.pdf?raw%3Dtrue][Generated Score]]
-    - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modes-in-Key-of-C/modes-in-key-of-c.midi?raw%3Dtrue][Generated MIDI File]]
+ 2) Modal Cycles (Utilises org-babel and noweb to generate notes)
+    - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle/modal-cycle.pdf?raw=true][Generated Score]]
+    - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle/modal-cycle.midi?raw=true][Generated Midi File]]
+ 3) Modes in the Key of C (Another example of polyglot lilypond programming)  
+    - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modes-in-Key-of-C/modes-in-key-of-c.pdf?raw=true][Generated Score]]
+    - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modes-in-Key-of-C/modes-in-key-of-c.midi?raw=true][Generated MIDI File]]
 ** Features
  - Optional Automated LilyPond Compilation following the "Tangling"
   of a "Literate Org LilyPond" file
