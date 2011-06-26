@@ -44,7 +44,7 @@ C-g in Emacs
 ** Setup (add to emacs init file)
 The Files need to be downloaded to your relevant dotfiles directory...
 
-#+BEGIN_SRC 
+#+BEGIN_SRC sh
 
 git clone https://github.com/mjago/ob-lilypond.git ob-lilypond
 

@@ -30,7 +30,7 @@ def triad(key,root,value,interval)
 #{interval} "
 end
 
-  "\\relative c' {" + "\n" +
+  "\\relative g {" + "\n" +
   triad(key, root, 4, 4) + 
   triad(key, root, 4, 4) + 
   triad(key, root, 4, 4) + 
@@ -77,8 +77,8 @@ def arpeggio(key, root,ascending)
   notes + "r2"
 end
 
-"\\relative c' { #{arpeggio(key, root,1)} } | r1 | \ 
-\\relative c'' { #{arpeggio(key, root,0)} } | r1 | \n"
+"\\relative g { #{arpeggio(key, root,1)} } | r1 | \ 
+\\relative g'' { #{arpeggio(key, root,0)} } | r1 | \n"
 
 #+end_src
 
@@ -90,7 +90,7 @@ one_bar =
 "  #{root}8 #{root} #{root} #{root} " + 
 "#{root} #{root} #{root} #{root}'16 #{root},16 " 
 
-"\\relative c { " + "\n" + one_bar + "|\n" + one_bar + 
+"\\relative g, { " + "\n" + one_bar + "|\n" + one_bar + 
 "|\n" + one_bar + "|\n" + one_bar + "|\n} " 
 
 #+end_src
@@ -477,7 +477,6 @@ Bass = {
     }
 
     \new Staff {
-      \relative c' 
       \key c \major
       \set Staff.midiInstrument = #"acoustic grand"
       \Triads 
@@ -485,7 +484,6 @@ Bass = {
 
     \new Staff {
       \clef bass
-      \relative c 
       \key c \major
       \set Staff.midiInstrument = #"slap bass 2"
       \Bass
