@@ -91,7 +91,7 @@ LY-GEN-HTML to t")
 LY-USE-EPS to t")
 
 (defvar org-babel-default-header-args:lilypond
-  '((:results . "silent"))
+  '((:tangle . "yes") (:noweb . "yes"))
   "Default arguments to use when evaluating a lilypond source block.")
 
 (defun org-babel-expand-body:lilypond (body params)
@@ -112,10 +112,18 @@ LY-USE-EPS to t")
 
 (defun org-babel-execute:lilypond (body params)
   "This function is called by `org-babel-execute-src-block'.
-Tangle all lilypond blocks and process the result"
+tTangle all lilypond blocks and process the result"
 
+  (ly-tangle))
+
+(defun ly-tangle ()
+  "ob-lilypond specific tangle, attempts to invoke
+=ly-execute-tangled-ly= if tangle is successful. Also passes
+specific arguments to =org-babel-tangle="
+
+  (interactive)
   (when (org-babel-tangle nil "yes" "lilypond")
-      (ly-execute-tangled-ly)))
+    (ly-execute-tangled-ly)))
 
 (defun org-babel-prep-session:lilypond (session params)
   "Return an error because LilyPond exporter does not support sessions."
