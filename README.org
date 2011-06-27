@@ -3,27 +3,24 @@
 Allow LilyPond Score Generation to take place within Emacs Org-mode
 using literate programming principles.
 
-** Included Examples
+** Examples
 Several examples are included
- 1) Misty (Jazz Standard utilising org-mode to organise voice and other
+ 1. Misty (Jazz Standard utilising org-mode to organise voice and other
     data)
-    - [[https://raw.github.com/mjago/ob-lilypond/master/song/Example-exported.html][Here is the Example Org File]] exported as HTML
+    - [[https://raw.github.com/mjago/ob-lilypond/master/song/Example-exported.html][Here is an example Org LilyPond File]] exported as HTML
     - [[https://github.com/mjago/ob-lilypond/blob/master/song/Misty/Misty.pdf?raw=true][Resultant Score]] exported in pdf format
     - Generated Score export of individual Pages (png)
       - [[https://github.com/mjago/ob-lilypond/raw/master/song/example-page1.png][Page 1]]
       - [[https://github.com/mjago/ob-lilypond/raw/master/song/example-page2.png][Page 2]]
       - [[https://github.com/mjago/ob-lilypond/raw/master/song/example-page3.png][Page 3]]
     - [[https://github.com/mjago/ob-lilypond/blob/master/song/Misty/Misty.midi?raw=true][Generated Midi File]]
- 2) Modal Cycles 
-Utilises org-babel and noweb to generate notes
+ 2. Modal Cycles (Utilises org-babel and noweb to generate notes)
     - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle/modal-cycle.pdf?raw=true][Generated Score]]
     - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle/modal-cycle.midi?raw=true][Generated Midi File]]
- 3) Modal Cycles 2 
-Utilises org-babel and noweb to generate notes
-    - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle/modal-cycle-2.pdf?raw=true][Generated Score]]
-    - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle/modal-cycle-2.midi?raw=true][Generated Midi File]]
- 4) Modes in the Key of C 
-Another example of polyglot lilypond programming
+ 3. Modal Cycles 2 (Utilises org-babel and noweb to generate notes)
+    - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle-2/modal-cycle-2.pdf?raw=true][Generated Score]]
+    - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle-2/modal-cycle-2.midi?raw=true][Generated Midi File]]
+ 4. Modes in the Key of C (another example of polyglot lilypond programming)
     - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modes-in-Key-of-C/modes-in-key-of-c.pdf?raw=true][Generated Score]]
     - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modes-in-Key-of-C/modes-in-key-of-c.midi?raw=true][Generated MIDI File]]
 ** Features
@@ -114,7 +111,6 @@ Add lilypond to your list of babel languages...
 
 *** Win32
  - Currently untested
-
 
 ** Testing
 
