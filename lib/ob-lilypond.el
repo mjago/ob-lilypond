@@ -25,7 +25,7 @@
 ;; Boston, MA 02110-1301, USA.
  
 ;;; Commentary:
-
+ 
 ;; If you are planning on adding a language to org-babel we would ask
 ;; that if possible you fill out the FSF copyright assignment form
 ;; available at http://orgmode.org/request-assign-future.txt as this
@@ -91,7 +91,7 @@ LY-GEN-HTML to t")
 LY-USE-EPS to t")
 
 (defvar org-babel-default-header-args:lilypond
-  '((:tangle . "yes") (:noweb . "yes"))
+  '((:tangle . "yes") (:noweb . "yes") (:results . "silent") (:comments . "yes"))
   "Default arguments to use when evaluating a lilypond source block.")
 
 (defun org-babel-expand-body:lilypond (body params)
@@ -109,7 +109,7 @@ LY-USE-EPS to t")
 		body))))
      vars)
     body))
-
+ 
 (defun org-babel-execute:lilypond (body params)
   "This function is called by `org-babel-execute-src-block'.
 tTangle all lilypond blocks and process the result"
@@ -206,7 +206,7 @@ FILE-NAME is full path to lilypond file"
   "Mark the erroneous lines in the lilypond org buffer.
 FILE-NAME is full path to lilypond file.
 LINE is the erroneous line"
-
+ 
   (switch-to-buffer-other-window
    (concat (file-name-nondirectory
             (ly-switch-extension file-name ".org"))))
@@ -368,7 +368,7 @@ If TEST is non-nil, it contains a simulation of the OS for test purposes"
            file-name) ext))
 
 (provide 'ob-lilypond)
-
+ 
 ;;; ob-lilypond.el ends here
 
- 
+

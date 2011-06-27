@@ -1361,7 +1361,6 @@ Bass = {
 
   \new Staff {
     \key c \major
-    
     \set Staff.midiInstrument = #"acoustic grand"
     \Arps 
   }

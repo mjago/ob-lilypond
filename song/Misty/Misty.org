@@ -1,8 +1,6 @@
 * Misty - Errol Garner
 ** LilyPond Version
 
-## ;; #+BABEL: :tangle yes
-
 #+begin_src lilypond
   
 \version "2.12.3"
@@ -22,7 +20,7 @@
   }
 
 #+end_src
-      
+
 ***** Verse One
 
 #+begin_src lilypond
@@ -501,7 +499,7 @@
   }
   
 #+end_src
-
+     
 ** Number of bars to compile (showLastLength)
 
 #+begin_src lilypond
@@ -578,17 +576,18 @@
 ** Layout and Midi
 
 #+begin_src lilypond
-
-  \layout {
-    }
-    \midi {
-      \context {
-        \Score
-        tempoWholesPerMinute = #(ly:make-moment 100 4)
-      }
-    }
   
+  \layout {
   }
+  \midi {
+    \context {
+      \Score
+      tempoWholesPerMinute = #(ly:make-moment 100 4)
+    }
+  }
+
+  }
+
     
 #+end_src
 

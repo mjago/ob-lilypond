@@ -14,10 +14,16 @@ Several examples are included
       - [[https://github.com/mjago/ob-lilypond/raw/master/song/example-page2.png][Page 2]]
       - [[https://github.com/mjago/ob-lilypond/raw/master/song/example-page3.png][Page 3]]
     - [[https://github.com/mjago/ob-lilypond/blob/master/song/Misty/Misty.midi?raw=true][Generated Midi File]]
- 2) Modal Cycles (Utilises org-babel and noweb to generate notes)
+ 2) Modal Cycles 
+Utilises org-babel and noweb to generate notes
     - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle/modal-cycle.pdf?raw=true][Generated Score]]
     - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle/modal-cycle.midi?raw=true][Generated Midi File]]
- 3) Modes in the Key of C (Another example of polyglot lilypond programming)  
+ 3) Modal Cycles 2 
+Utilises org-babel and noweb to generate notes
+    - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle/modal-cycle-2.pdf?raw=true][Generated Score]]
+    - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle/modal-cycle-2.midi?raw=true][Generated Midi File]]
+ 4) Modes in the Key of C 
+Another example of polyglot lilypond programming
     - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modes-in-Key-of-C/modes-in-key-of-c.pdf?raw=true][Generated Score]]
     - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modes-in-Key-of-C/modes-in-key-of-c.midi?raw=true][Generated MIDI File]]
 ** Features
@@ -30,18 +36,36 @@ Several examples are included
  - Cross-Platform (OSX, nix, win32)
 
 ** Usage
-Hitting C-c C-c within a lilypond block initiates tangling of all
-lilypond blocks. Depending on the feature settings, ob-lilypond will 
-then either display a pdf of the score, play the generated midi file,
-or both.
 
-Hitting C-c C-v t (org-babel-tangle) will tangle blocks (where tangle
-is not disabled), but will not perform the additional options.
+*** Compiling lilypond source
+Hitting 'C-c C-c' within a lilypond block initiates ly-tangle (tangling of all
+lilypond blocks). Depending on the feature settings, ob-lilypond will 
+then either display a pdf of the score, play the generated midi file,
+both, or neither. 
+
+'M-x ly-tangle' can also be called from anywhere in the file
+and can be tied to a function key with something like...
+
+#+begin_src emacs-lisp
+
+ (global-set-key [f8] 'ly-dev-tangle)
+
+#+end_src
+
+*** Commands
+
+Some commands are included to quickly disable certain post-tangle
+activities...
+ - ly-toggle-midi-play (toggle whether midi will be played following a successful compilation)
+ - ly-toggle-pdf-display (toggle whether pdf will be displayed following a successful compilation)
+
 
 NOTE:- If using Timidity for midi playback, kill the midi stream with 
 C-g in Emacs
 
 ** Setup (add to emacs init file)
+*** Cloning ob-lilypond
+
 The Files need to be downloaded to your relevant dotfiles directory...
 
 #+BEGIN_SRC sh
@@ -50,8 +74,9 @@ git clone https://github.com/mjago/ob-lilypond.git ob-lilypond
 
 #+END_SRC
 
-...and something similar to the following placed in your Emacs init file...
+*** Emacs Initialisation file setup 
 
+Require library...
 #+BEGIN_SRC emacs-lisp
 
 (add-to-list 'load-path
@@ -60,6 +85,24 @@ git clone https://github.com/mjago/ob-lilypond.git ob-lilypond
 
 #+END_SRC
 
+
+Add lilypond to your list of babel languages...
+
+#+BEGIN_SRC emacs-lisp
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ruby . t)
+   (C . t)
+   (emacs-lisp . t)
+   (sh t)
+   (dot t)
+   (clojure t)
+   (ditaa t)
+   (lilypond t)
+   ))
+
+#+END_SRC
+ 
 ** Requirements
 *** Mac OS X
  - [[http://lilypond.org/][Lilypond]] can be obtained [[http://lilypond.org/][here]]
@@ -71,3 +114,30 @@ git clone https://github.com/mjago/ob-lilypond.git ob-lilypond
 
 *** Win32
  - Currently untested
+
+
+** Testing
+
+Tests are provided and can be run by opening
+test/ob-lilypond-tests.org and running the following commands...
+
+ - M-x eval-buffer (within ob-lilypond-tests.org
+ - M-x ert (t) 
+
+Tests are run automatically on source/test file save if ly-project
+(below) has been executed
+
+** Development
+
+Included also is dev/ob-lilypond.org which includes various helper
+commands used for development, and the development todo list
+ - ly-project (code block - evaluate with C-c C-c and execute M-x ly-project) 
+   - load appropriate files
+   - set up windows
+   - setup project development environment
+   - add continuous testing post-save hook
+   - map F4 to switch between src or test files to control file (dev/ob-lilypond.org)
+   - map F8 to 'ly-dev-tangle (tangle test/test-build/test.org file from anywhere)
+ - Remove post-save-hook code block
+ - Development todo list
+

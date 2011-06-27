@@ -1,4 +1,5 @@
 * Modal Cycle 2
+
 ** Processing
 *** DONE Keys Data
 #+tblname: keys-table
@@ -197,7 +198,7 @@ Arps = {
   <<gen_arpeggio(key="g",root="c")>>
   <<gen_arpeggio(key="c",root="c")>>
 
-  < g, d, g' b c g > 1
+  < c, g, c' e g b > 1
 }
 #+end_src
 
@@ -428,9 +429,12 @@ Bass = {
 ** Number of bars to compile (showLastLength)
 #+begin_src lilypond
 
-%  showLastLength = R1*9
+%  showLastLength = R1*17
  
 #+end_src
+
+#+results:
+
 ** Score
 #+begin_src lilypond
 

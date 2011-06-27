@@ -1,10 +1,20 @@
 
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*LilyPond%2520Version][LilyPond-Version:1]]
+
 \version "2.12.3"
+
+% LilyPond-Version:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Intro][Intro:1]]
 
 PianoVoiceOneIntro = {
   g'8( bes b d' c' ees' g' d'' |
   < c' ees' f' bes' > 2) bes'4 g' |
 }
+
+% Intro:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Verse%2520One][Verse-One:1]]
 
 PianoVoiceOneVerseOne = {
   <g bes d'> 2.( bes8) c' |
@@ -18,6 +28,10 @@ PianoVoiceOneVerseOne = {
   g'1 ~ | 
   g'2. < bes' c' ees' > 8 < ces' d' g' > 8 |
 }
+
+% Verse-One:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Verse%2520Two][Verse-Two:1]]
 
 PianoVoiceOneVerseTwo = {
   < f g bes d' > 2. < f g bes > 8 c' |
@@ -34,6 +48,10 @@ PianoVoiceOneVerseTwo = {
   \times 2/3 { < ees' g' > < g' bes' > < a' c'' >  } |
 }
 
+% Verse-Two:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Chorus][Chorus:1]]
+
 PianoVoiceOneChorus = {
   \times 2/3 { des''4 des'' des'' } < f' c'' des'' > 2 ~ |
   \times 2/3 { des''4 des'' ees'' }
@@ -48,6 +66,10 @@ PianoVoiceOneChorus = {
   < d' g' bes' > 2 < c' ees' g' bes' > 4 < g ces' d' g' > |
 }
 
+% Chorus:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Verse%2520Three][Verse-Three:1]]
+
 PianoVoiceOneVerseThree = {
   d'2. bes8 c' |
   < f bes des' > 8 c'' c'' c'' c'' bes' < g d' g' > < g des' ees' > |
@@ -61,6 +83,10 @@ PianoVoiceOneVerseThree = {
   < g c' f bes > 1 |
 }
 
+% Verse-Three:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Assembly][Assembly:1]]
+
 PianoVoiceOne = {
   \new Voice = "Voice One" {
     \voiceOne 
@@ -72,10 +98,18 @@ PianoVoiceOne = {
   }
 }
 
+% Assembly:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Intro][Intro:1]]
+
 PianoVoiceTwoIntro = {
   r1 |
   r2 < c' d' > 2 |
 }
+
+% Intro:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Verse%2520One][Verse-One:1]]
 
 PianoVoiceTwoVerseOne = {
   r2. g4       |
@@ -88,6 +122,10 @@ PianoVoiceTwoVerseOne = {
   des'4 c' ces' r  |
 }
 
+% Verse-One:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Verse%2520Two][Verse-Two:1]]
+
 PianoVoiceTwoVerseTwo = {
   r1 |
   r4 < d' ges' > < des' f' > < b des' > |
@@ -98,6 +136,10 @@ PianoVoiceTwoVerseTwo = {
   r4 < g c' > 8 < fis b > 8 < f bes > 4  < f bes > 8 < fis b > 8 |
   r1 |
 }
+
+% Verse-Two:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Chorus][Chorus:1]]
 
 PianoVoiceTwoChorus = {
   < f' bes' > 2 r2 |
@@ -110,6 +152,10 @@ PianoVoiceTwoChorus = {
   r1 |
 }
 
+% Chorus:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Verse%2520Three][Verse-Three:1]]
+
 PianoVoiceTwoVerseThree = {
   < fis a > 2 < g bes > |
   r4 < d' fis' > 4 < des' f' > 4  r4
@@ -120,6 +166,10 @@ PianoVoiceTwoVerseThree = {
   r4 < g c' > 8 < fis  b > < f bes > 4 < f bes > 8 < fis b > |
   r1 |
 }
+
+% Verse-Three:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Assembly][Assembly:1]]
 
 PianoVoiceTwo = {
   \new Voice= "Voice Two" { 
@@ -132,10 +182,18 @@ PianoVoiceTwo = {
   }
 }
 
+% Assembly:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Intro][Intro:1]]
+
 PianoVoiceThreeIntro = {
   r1 |
   r1 |
 }
+
+% Intro:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Verse%2520One][Verse-One:1]]
 
 PianoVoiceThreeVerseOne = {
   r4 r8 f d2 |
@@ -148,6 +206,10 @@ PianoVoiceThreeVerseOne = {
   a 2 aes 4 r |
 }
 
+% Verse-One:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Verse%2520Two][Verse-Two:1]]
+
 PianoVoiceThreeVerseTwo = {
   r8 bes, b, d c2 | 
   r1 |
@@ -158,6 +220,10 @@ PianoVoiceThreeVerseTwo = {
   r1 |
   bes,1 |
 }
+
+% Verse-Two:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Chorus][Chorus:1]]
 
 PianoVoiceThreeChorus = {
   bes2 \times 2/3 { a4 a des' } |
@@ -170,6 +236,10 @@ PianoVoiceThreeChorus = {
   r1 |
 }
 
+% Chorus:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Verse%2520Three][Verse-Three:1]]
+
 PianoVoiceThreeVerseThree = {
   r1 |
   aes4 a aes r4 | 
@@ -180,6 +250,10 @@ PianoVoiceThreeVerseThree = {
   r4 ees r2 |
   r1
 }
+
+% Verse-Three:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Assembly][Assembly:1]]
 
 PianoVoiceThree = {
   \new Voice = "Voice Three" {
@@ -192,10 +266,18 @@ PianoVoiceThree = {
   }
 }
 
+% Assembly:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Intro][Intro:1]]
+
 PianoVoiceFourIntro = {
   < bes, f g > 1 | 
   < bes, aes > 2 < bes, aes > 2 | 
 }
+
+% Intro:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Verse%2520One][Verse-One:1]]
 
 PianoVoiceFourVerseOne = {
   < ees, bes, > 1 |  
@@ -208,6 +290,10 @@ PianoVoiceFourVerseOne = {
   < f, ees > 2 < b, d > 4 < b, aes > 4 | 
 }
 
+% Verse-One:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Verse%2520Two][Verse-Two:1]]
+
 PianoVoiceFourVerseTwo = {
   ees,1 |
   < bes, aes > 2. ees,4 |
@@ -218,6 +304,10 @@ PianoVoiceFourVerseTwo = {
   r4 < ees, bes, > 8 < d, a, > 8 < des, aes, > 4 < des, aes, > 8 < d, a, > 8 |
   ees,1 |
 }
+
+% Verse-Two:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Chorus][Chorus:1]]
 
 PianoVoiceFourChorus = {
   bes,1 ~ |
@@ -230,6 +320,10 @@ PianoVoiceFourChorus = {
   < bes, aes > 2 < bes, aes > 2 |
 }
 
+% Chorus:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Verse%2520Three][Verse-Three:1]]
+
 PianoVoiceFourVerseThree = {
   < ees, bes, > 1 |
   bes,2. e,8 a, |
@@ -240,6 +334,10 @@ PianoVoiceFourVerseThree = {
   r4 < ees, bes, > 8 < d, a, > < des, aes, > 4 < des, aes, > 8 < d, a, >   
   < ees, bes, > 1
 }
+
+% Verse-Three:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Assembly][Assembly:1]]
 
 PianoVoiceFour = {
   \new Voice= "Voice Four" { 
@@ -252,9 +350,17 @@ PianoVoiceFour = {
   }
 }
 
+% Assembly:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Intro][Intro:1]]
+
 DrumIntro = {
   r1 r1 
 }
+
+% Intro:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Verse%2520One][Verse-One:1]]
 
 DrumVerseOne = {
   \drummode {
@@ -269,6 +375,10 @@ DrumVerseOne = {
   }  
 }
 
+% Verse-One:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Verse%2520Two][Verse-Two:1]]
+
 DrumVerseTwo = {
   \drummode {
     bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
@@ -281,6 +391,10 @@ DrumVerseTwo = {
     bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
   }
 }
+
+% Verse-Two:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Chorus][Chorus:1]]
 
 DrumChorus = {
   \drummode {
@@ -295,6 +409,10 @@ DrumChorus = {
   }
 }
 
+% Chorus:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Verse%2520Three][Verse-Three:1]]
+
 DrumVerseThree = {
   \drummode {
     bd16 hh16 hh8 hh8 hh8 sn8 hh8 hh8 hh8 
@@ -308,6 +426,10 @@ DrumVerseThree = {
   }
 }
 
+% Verse-Three:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Assembly][Assembly:1]]
+
 DrumBeats = {
   \DrumIntro
   \DrumVerseOne
@@ -316,11 +438,23 @@ DrumBeats = {
   \DrumVerseThree
 }
 
+% Assembly:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Number%2520of%2520bars%2520to%2520compile%2520(showLastLength)][Number-of-bars-to-compile-\(showLastLength\):1]]
+
 %  showLastLength = R1*8
+
+% Number-of-bars-to-compile-\(showLastLength\):1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Score%2520Start][Score-Start:1]]
 
 \score {
       
   <<
+
+% Score-Start:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Piano][Piano:1]]
 
 <<
   
@@ -352,11 +486,23 @@ DrumBeats = {
   
 >>
 
+% Piano:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Drums][Drums:1]]
+
 \new DrumStaff {
   \DrumBeats
 }
 
+% Drums:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Score%2520End][Score-End:1]]
+
 >>
+
+% Score-End:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Layout%2520and%2520Midi][Layout-and-Midi:1]]
 
 \layout {
   }
@@ -369,6 +515,10 @@ DrumBeats = {
 
 }
 
+% Layout-and-Midi:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Paper][Paper:1]]
+
 \paper {
   #(define dump-extents #t) 
   
@@ -379,8 +529,14 @@ DrumBeats = {
   line-width = #(- line-width (* mm  3.000000))
 }
 
+% Paper:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Header][Header:1]]
+
 \header {
   title = \markup \center-column {"Misty"} 
   composer =  \markup \center-column { "Music by" \small "Erroll Garner" }
   poet =  \markup \center-column { "ob-lilypond" \small "example" }
 }
+
+% Header:1 ends here

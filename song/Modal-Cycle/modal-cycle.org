@@ -18,13 +18,13 @@
 *** DONE Generate Triad
 
 #+srcname: gen-triad(key,root) 
-#+begin_src ruby :var keys = keys-table :var key_of = keys-table[*,0] :results silent
+#+begin_src ruby :var keys = keys-table :var key_of = keys-table[*,0]
 key_id =  key_of.index(key)
 @key    = keys[ key_id ]
 @root_id = @key.index(root)
 
 def triad(key,root,value,interval)
-"  < #{@key.fetch((@root_id + value -1) % 7)} \
+  "  < #{@key.fetch((@root_id + value -1) % 7)} \
 #{@key.fetch((@root_id + value +1) % 7)} \
 #{@key.fetch((@root_id + value +3) % 7)} > \
 #{interval} "
@@ -57,18 +57,17 @@ end
 *** DONE Generate arpeggio
 
 #+srcname: gen_arpeggio(key,root)
-#+begin_src ruby :var keys = keys-table :var key_of = keys-table[*,0] :results silent
+#+begin_src ruby :var keys = keys-table :var key_of = keys-table[*,0]
 key_id =  key_of.index(key)
 @key    = keys[ key_id ]
 @root_id = @key.index(root)
 
 def arpeggio(key, root,ascending)
   if ascending == 1
-    x,y = 0, 1
+    x,y = 0, 1   
   else 
     x,y  = 7, -1
   end
-
   notes = ""
   8.times do  
     notes += @key.fetch((@root_id + x) % 7) + "16 "
@@ -85,10 +84,10 @@ end
 *** DONE Generate Bass Line
 
 #+source: generate_bassline(root)
-#+begin_src ruby :results silent 
+#+begin_src ruby
 one_bar =
-"  #{root}8 #{root} #{root} #{root} " + 
-"#{root} #{root} #{root} #{root}'16 #{root},16 " 
+  "  #{root}8 #{root} #{root} #{root} " + 
+  "#{root} #{root} #{root} #{root}'16 #{root},16 " 
 
 "\\relative g, { " + "\n" + one_bar + "|\n" + one_bar + 
 "|\n" + one_bar + "|\n" + one_bar + "|\n} " 
@@ -101,9 +100,10 @@ one_bar =
 \version "2.12.3"
 
 #+end_src
+
 ** Arpeggios
 
-#+begin_src lilypond :noweb yes
+#+begin_src lilypond
 
 Arps = {
   <<gen_arpeggio(key="c",root="c")>>
@@ -210,7 +210,7 @@ Arps = {
 
 ** Triads
 
-#+begin_src lilypond :noweb yes
+#+begin_src lilypond
 
 Triads = {
   <<gen-triad(key="c",root="c")>>
@@ -337,7 +337,7 @@ Triads = {
 }  
 #+end_src
 
-#+begin_src lilypond :noweb yes
+#+begin_src lilypond
  Drums = {
  \DrumsSixteenBars \DrumsSixteenBars \DrumsSixteenBars
  \DrumsSixteenBars \DrumsSixteenBars \DrumsSixteenBars
@@ -352,7 +352,7 @@ Triads = {
 #+end_src
   
 ** Bass
-#+begin_src lilypond :noweb yes
+#+begin_src lilypond
 
 Bass = {
       <<generate_bassline(root="c")>>
@@ -463,7 +463,7 @@ Bass = {
  
 #+end_src
 ** Score
-#+begin_src lilypond :noweb yes
+#+begin_src lilypond
 
   \score {
 
@@ -471,7 +471,6 @@ Bass = {
 
     \new Staff {
       \key c \major
-      
       \set Staff.midiInstrument = #"acoustic grand"
       \Arps 
     }

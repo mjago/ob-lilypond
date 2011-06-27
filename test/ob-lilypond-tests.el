@@ -1,17 +1,17 @@
 (require 'ert)
 (require 'ob-lilypond)
 (defalias 'ert-ignore 'ert-pass)
- 
+
 (save-excursion
   (set-buffer (get-buffer-create "ob-lilypond-tests.el"))
   (setq ly-here (file-name-directory (buffer-file-name (current-buffer)))))
  
 (ert-deftest ly-test-assert ()
   (should t))
-
+ 
 (ert-deftest ly-test-ob-lilypond-feature-provision ()
   (should (featurep 'ob-lilypond)))
-
+  
 (ert-deftest ly-test-check-lilypond-alias ()
   (should (fboundp 'lilypond-mode)))
 
@@ -100,8 +100,11 @@
   (should (boundp 'ly-use-eps)))
 
 (ert-deftest ly-test-org-babel-default-header-args:lilypond ()
-  (should (equal '((:results . "silent"))
-                 org-babel-default-header-args:lilypond)))
+  (should (equal  '((:tangle . "yes")
+                    (:noweb . "yes")
+                    (:results . "silent")
+                    (:comments . "yes"))
+                  org-babel-default-header-args:lilypond)))
        
 ;;TODO finish...
 (ert-deftest ly-test-org-babel-expand-body:lilypond ()
@@ -120,29 +123,30 @@
   (kill-buffer "*lilypond*"))
 
 (ert-deftest ly-test-ly-process-compile-error ()
-  (find-file-other-window (concat ly-here "test-build/test.org"))
+  (find-file-other-window (concat ly-here "test-build/broken.org"))
   (set-buffer (get-buffer-create "*lilypond*"))
   (insert-file-contents (concat ly-here "test-build/test.error") nil nil nil t)
   (goto-char (point-min))
   (search-forward "error:" nil t)
   (should-error
-   (ly-process-compile-error (concat ly-here "test-build/test.ly"))
+   (ly-process-compile-error (concat ly-here "test-build/broken.ly"))
    :type 'error)
-  (set-buffer "test.org")
-  (should (equal 210 (point)))
+  (set-buffer "broken.org")
+  (should (equal 238 (point)))
   (exchange-point-and-mark)
-  (should (equal (+ 210 (length "line 25")) (point)))
+  (should (equal (+ 238 (length "line 25")) (point)))
   (kill-buffer "*lilypond*")
-  (kill-buffer "test.org"))
-
+  (kill-buffer "broken.org"))
+   
 (ert-deftest ly-test-ly-mark-error-line ()
-  (let ((file-name (concat ly-here "test-build/test.org"))
-        (expected-point-min 170)
-        (expected-point-max 177)
+  (let ((file-name (concat ly-here "test-build/broken.org"))
+        (expected-point-min 198)
+        (expected-point-max 205)
         (line "line 20"))
     (find-file-other-window file-name)
     (ly-mark-error-line file-name line)
-    (should (= expected-point-min (point)))
+    (should (equal expected-point-min (point)))
+  
     (exchange-point-and-mark)
     (should (= expected-point-max (point)))
     (kill-buffer (file-name-nondirectory file-name))))
@@ -154,9 +158,9 @@
     (goto-char (point-min))
     (search-forward "error:")
     (should (equal 25 (ly-parse-line-num (current-buffer))))))
- 
+  
 (ert-deftest ly-test-ly-parse-error-line ()
-  (let ((ly-file (concat ly-here "test-build/test.ly")))
+  (let ((ly-file (concat ly-here "test-build/broken.ly")))
     (should (equal "line 20"
                    (ly-parse-error-line ly-file 20)))
     (should (not (ly-parse-error-line ly-file 0)))))
@@ -169,11 +173,10 @@
     (when (not (file-exists-p pdf-file))
       (set-buffer (get-buffer-create pdf-file))
       (write-file pdf-file))
-    (should (equal
+    (should (equal 
              (concat
               (ly-determine-pdf-path) " " pdf-file)
              (ly-attempt-to-open-pdf ly-file t)))
-    (kill-buffer (file-name-nondirectory pdf-file))
     (delete-file pdf-file)
     (should (equal
              "No pdf file generated so can't display!"
@@ -192,7 +195,6 @@
              (concat
               (ly-determine-midi-path) " " midi-file)
              (ly-attempt-to-play-midi ly-file t)))
-    (kill-buffer (file-name-nondirectory midi-file))
     (delete-file midi-file)
     (should (equal
              "No midi file generated so can't play!"
@@ -222,7 +224,7 @@
                  (ly-determine-midi-path "win32")))
   (should (equal ly-nix-midi-path
                  (ly-determine-midi-path "nix"))))
-
+ 
 (ert-deftest ly-test-ly-toggle-midi-play-toggles-flag ()
   (if ly-play-midi-post-tangle
       (progn
@@ -284,4 +286,5 @@
                  (ly-switch-extension "/some/path/to/test-name" ".xyz"))))
  
 ;;; ob-lilypond-tests.el ends here
- 
+
+
