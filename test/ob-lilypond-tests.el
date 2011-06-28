@@ -25,8 +25,18 @@
     (should found))) 
      
 (ert-deftest ly-test-org-babel-prep-session:lilypond ()
- (should-error (org-babel-prep-session:lilypond nil nil))
- :type 'error)
+  (should-error (org-babel-prep-session:lilypond nil nil))
+  :type 'error)
+
+(ert-deftest ly-test-ly-version-const () 
+  (should (boundp 'ly-version)))
+
+(ert-deftest ly-test-ly-version-command ()
+  (should (equal "ob-lilypond version 0.1" (ly-version)))
+  (with-temp-buffer
+    (ly-version t)
+    (should (equal "ob-lilypond version 0.1"
+                   (buffer-substring (point-min) (point-max))))))
 
 (ert-deftest ly-test-ly-compile-lilyfile ()
   (should (equal
@@ -284,5 +294,5 @@
 (ert-deftest ly-test-ly-switch-extension-with-paths ()
   (should (equal "/some/path/to/test-name.xyz"
                   (ly-switch-extension "/some/path/to/test-name" ".xyz"))))
-  
+
 ;;; ob-lilypond-tests.el ends here

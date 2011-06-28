@@ -5,7 +5,7 @@
 ;; Authors: Shelagh Manton, Martyn Jago
 ;; Keywords: literate programming, weaving markup
 ;; Homepage: https://github.com/sshelagh/ob-lilypond
-;; Version: 0.01
+;; Version: 0.1
 
 ;;; License:
 
@@ -41,6 +41,9 @@
 (require 'ob-eval)
 (defalias 'lilypond-mode 'LilyPond-mode)
 (add-to-list 'org-babel-tangle-lang-exts '("LilyPond" . "ly"))
+
+(defconst ly-version "0.1"
+  "The version number of the file ob-lilypond.el.")
 
 (defvar ly-compile-post-tangle t
   "Following the org-babel-tangle (C-c C-v t) command,
@@ -122,8 +125,8 @@ tTangle all lilypond blocks and process the result"
 specific arguments to =org-babel-tangle="
 
   (interactive)
-  (when (org-babel-tangle nil "yes" "lilypond")
-    (ly-execute-tangled-ly)))
+  (if (org-babel-tangle nil "yes" "lilypond")
+      (ly-execute-tangled-ly) nil))
 
 (defun org-babel-prep-session:lilypond (session params)
   "Return an error because LilyPond exporter does not support sessions."
@@ -360,8 +363,14 @@ If TEST is non-nil, it contains a simulation of the OS for test purposes"
         (not ly-gen-html))
   (message (concat "HTML generation has been "
                    (if ly-gen-html "ENABLED." "DISABLED."))))
- 
-(defun ly-switch-extension (file-name ext)
+
+(defun ly-version (&optional insert-at-point)
+  (interactive)
+    (setq version (format "ob-lilypond version %s" ly-version))
+    (when insert-at-point (insert version))
+    (message version))
+
+  (defun ly-switch-extension (file-name ext)
   "Utility command to swap current FILE-NAME extension with EXT"
   
   (concat (file-name-sans-extension
