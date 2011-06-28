@@ -225,16 +225,29 @@ May need a note in docs or a test of version.
 *** WAITING Get feedback from Shelagh regarding direction and current 
 *** DONE Add :noweb "yes" and :comments "yes" as lilypond defaults
 *** TODO Modify Readme to include paths to examples
-*** TODO Add usage information [0/4]
- - [ ] LilyPond-mode setup
+*** TODO Add usage information [1/3]
  - [ ] Font-lock fontify in blocks by default
  - [ ] Practical effects of default ob-lilypond header parameters
- - [ ] List of commands
-*** TODO Post to org mailing list in hope of some feedback
+ - [X] List of commands
+*** DONE Post to org mailing list in hope of some feedback
 *** TODO How to refactor Ruby stuff in examples for DRY 
 Need to work out how to chain babel blocks which are passing parameters.
 *** TODO Re-check in Ubuntu
 *** TODO Port to a win32 machine
-*** SOMEDAY Consider drawing vector graphic output as opposed to pdf for viewing?
-*** SOMEDAY Consider the option to embed resultant partial musical output into org file 
+*** TODO Modify error marking / linking to use :headers "yes" [0/5]
+By defaulting :headers to "yes" in ob-lilypond I can map error to original
+org file more reliably by utilising the link information in the
+generated header. 
+ - [ ] Consider generating link in *lilypond* build results
+ - [ ] Make "syntax marking" optional since we have the link - or remove?
+ - [ ] Fall back to the current best guess if :headers "no" is used?
+ - [ ] If marking is used, need to expand just the relevant heading
+*** TODO Improve examples [0/4]
+ - [ ] Swap modal-cycle 1 and 2 as 2 is probably the more useful 
+ - [ ] Add notes on how modal cycles are generated and there relevance
+ - [ ] Would love to add a harmonic series example to 'evolve' major scale
+ - [ ] Check Misty - Errol Garner is out of copywright, if not swap with
+   "Empathy"
 
+*** TODO Devise a "mode" for generating liypond partials as embedded png images
+    

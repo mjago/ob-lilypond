@@ -50,7 +50,7 @@ and can be tied to a function key with something like...
 
 *** Commands
 
-Some commands are included to quickly disable certain post-tangle
+Some commands are included to quickly disable / enable certain post-tangle
 activities...
  - ly-toggle-midi-play (toggle whether midi will be played following a successful compilation)
  - ly-toggle-pdf-display (toggle whether pdf will be displayed following a successful compilation)

@@ -370,5 +370,3 @@ If TEST is non-nil, it contains a simulation of the OS for test purposes"
 (provide 'ob-lilypond)
  
 ;;; ob-lilypond.el ends here
-
-

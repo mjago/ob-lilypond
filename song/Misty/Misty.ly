@@ -505,13 +505,13 @@ DrumBeats = {
 % [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Misty/Misty.org::*Layout%2520and%2520Midi][Layout-and-Midi:1]]
 
 \layout {
+}
+\midi {
+  \context {
+    \Score
+    tempoWholesPerMinute = #(ly:make-moment 100 4)
   }
-  \midi {
-    \context {
-      \Score
-      tempoWholesPerMinute = #(ly:make-moment 100 4)
-    }
-  }
+}
 
 }
 
