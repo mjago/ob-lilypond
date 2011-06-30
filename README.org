@@ -2,17 +2,8 @@
 ** Purpose
 Allow LilyPond Score Generation to take place within Emacs Org-mode
 using literate programming principles.
-
 ** Examples
 Several examples are included
-*** Misty (Jazz Standard utilising org-mode to organise voice and other data)
-      - [[https://raw.github.com/mjago/ob-lilypond/master/song/Example-exported.html][Here is an example Org LilyPond File]] exported as HTML
-      - [[https://github.com/mjago/ob-lilypond/blob/master/song/Misty/Misty.pdf?raw=true][Resultant Score]] exported in pdf format
-      - Generated Score export of individual Pages (png)
-        - [[https://github.com/mjago/ob-lilypond/raw/master/song/example-page1.png][Page 1]]
-        - [[https://github.com/mjago/ob-lilypond/raw/master/song/example-page2.png][Page 2]]
-        - [[https://github.com/mjago/ob-lilypond/raw/master/song/example-page3.png][Page 3]]
-      - [[https://github.com/mjago/ob-lilypond/blob/master/song/Misty/Misty.midi?raw=true][Generated Midi File]]
 *** Modal Cycles (Utilises org-babel and noweb to generate notes)
       - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle/modal-cycle.pdf?raw=true][Generated Score]]
       - [[https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle/modal-cycle.midi?raw=true][Generated Midi File]]
@@ -30,9 +21,7 @@ Several examples are included
  - Highlights syntax errors in Org file following a failed compilation
  - Integrates with LilyPond-Mode
  - Cross-Platform (OSX, nix, win32)
-
 ** Usage
-
 *** Compiling lilypond source
 Hitting 'C-c C-c' within a lilypond block initiates ly-tangle (tangling of all
 lilypond blocks). Depending on the feature settings, ob-lilypond will 
@@ -57,7 +46,6 @@ activities...
 
 NOTE:- If using Timidity for midi playback, kill the midi stream with 
 C-g in Emacs
-
 ** Setup (add to emacs init file)
 *** Cloning ob-lilypond
 
@@ -79,7 +67,6 @@ Require library...
 (require 'ob-lilypond)
 
 #+END_SRC
-
 
 Add lilypond to your list of babel languages...
 
@@ -111,7 +98,6 @@ Add lilypond to your list of babel languages...
  - Currently untested
 
 ** Testing
-
 Tests are provided and can be run by opening
 test/ob-lilypond-tests.org and running the following commands...
 
@@ -122,7 +108,6 @@ Tests are run automatically on source/test file save if ly-project
 (below) has been executed
 
 ** Development
-
 Included also is dev/ob-lilypond.org which includes various helper
 commands used for development, and the development todo list
  - ly-project (code block - evaluate with C-c C-c and execute M-x ly-project) 

@@ -1,14 +1,14 @@
 ;;; ob-lilypond.el --- org-babel functions for lilypond evaluation
-
-;; Copyright (C) Shelagh Manton, Martyn Jago
-
-;; Authors: Shelagh Manton, Martyn Jago
-;; Keywords: literate programming, weaving markup
-;; Homepage: https://github.com/sshelagh/ob-lilypond
-;; Version: 0.1
-
+;;
+;; Copyright (C) 2010  Free Software Foundation, Inc.
+;;
+;; Author: Martyn Jago
+;; Keywords: babel language, literate programming
+;; Homepage: https://github.com/mjago/ob-lilypond
+;; Version: 0.2
+;;
 ;;; License:
-
+;;
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation; either version 3, or (at your option)
@@ -23,26 +23,19 @@
 ;; along with GNU Emacs; see the file COPYING. If not, write to the
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
- 
+;; 
 ;;; Commentary:
- 
-;; If you are planning on adding a language to org-babel we would ask
-;; that if possible you fill out the FSF copyright assignment form
-;; available at http://orgmode.org/request-assign-future.txt as this
-;; will make it possible to include your language support in the core
-;; of Org-mode, otherwise unassigned language support files can still
-;; be included in the contrib/ directory of the Org-mode repository.
-
-;;; Requirements:
-
-;; You need to have a copy of LilyPond
+;; 
+;; Installation / usage info, and examples are available at
+;; https://github.com/mjago/ob-lilypond
+;;
 
 (require 'ob)
 (require 'ob-eval)
 (defalias 'lilypond-mode 'LilyPond-mode)
 (add-to-list 'org-babel-tangle-lang-exts '("LilyPond" . "ly"))
 
-(defconst ly-version "0.1"
+(defconst ly-version "0.2"
   "The version number of the file ob-lilypond.el.")
 
 (defvar ly-compile-post-tangle t

@@ -32,10 +32,10 @@
   (should (boundp 'ly-version)))
 
 (ert-deftest ly-test-ly-version-command ()
-  (should (equal "ob-lilypond version 0.1" (ly-version)))
+  (should (equal "ob-lilypond version 0.2" (ly-version)))
   (with-temp-buffer
     (ly-version t)
-    (should (equal "ob-lilypond version 0.1"
+    (should (equal "ob-lilypond version 0.2"
                    (buffer-substring (point-min) (point-max))))))
 
 (ert-deftest ly-test-ly-compile-lilyfile ()
@@ -115,7 +115,7 @@
                     (:results . "silent")
                     (:comments . "yes"))
                   org-babel-default-header-args:lilypond)))
-       
+
 ;;TODO finish...
 (ert-deftest ly-test-org-babel-expand-body:lilypond ()
   (should (equal "This is a test"
