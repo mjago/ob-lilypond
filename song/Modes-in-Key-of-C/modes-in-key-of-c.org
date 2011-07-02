@@ -1,10 +1,9 @@
 * Modes in the Key of C
 ** Processes
-
 *** Generate Bass Line
 
-#+source: generate_bassline(root)
-#+begin_src ruby :cache yes
+#+source: generate_bassline(root="")
+#+begin_src ruby
 
 one_bar =
 "#{root},,8 #{root}, #{root}, #{root}, " + 
@@ -13,12 +12,13 @@ one_bar =
 
 #+end_src
 
-#+results[2796c32a37552b65a84603ee0bccd892651ccd01]: generate_bassline
+#+results: generate_bassline
+: ,,8 , , , ,, , , 16 ,16 | ,,8 , , , ,, , , 16 ,16 | ,,8 , , , ,, , , 16 ,16 | ,,8 , , , ,, , , 16 ,16 | 
 
 *** Generate Triad
 
-#+source: generate_triad_sequence(root,chord)
-#+begin_src ruby :cache yes
+#+source: generate_triad_sequence(root="c",chord="c")
+#+begin_src ruby
 
 @key_of_c = ["c","d","e","f","g","a","b"]
 @key_of_g = ["g","a","b","c","d","e","fis"]
@@ -27,30 +27,28 @@ def triad(key, root, chord, duration)
   note = key.index(root) + (chord - 1)
   "< " +
   key.fetch(key.index(root)) + "' "+
-  key.fetch(note % 7)       + "'" * (note       < 7 ? 1 : 2) + " " +
-  key.fetch((note + 2) % 7) + "'" * ((note + 2) < 7 ? 1 : 2) + " " +
-  key.fetch((note + 4) % 7) + "'" * ((note + 4) < 7 ? 1 : 2) + " " +
+  key.fetch(note % 7)       + "'" + # * (note       < 7 ? 1 : 2) + " " +
+  key.fetch((note + 2) % 7) + "'" + # * ((note + 2) < 7 ? 1 : 2) + " " +
+  key.fetch((note + 4) % 7) + "'" + # * ((note + 4) < 7 ? 1 : 2) + " " +
   ">" + " " + duration.to_s
 end
 
-"{" + triad(@key_of_c, root, chord, 4) + 
-      triad(@key_of_c, root, chord, 4) + 
-      triad(@key_of_c, root, chord, 4) + 
-      triad(@key_of_c, root, chord, 4) + "}"
+ triad(@key_of_c, root, chord, 4) + 
+ triad(@key_of_c, root, chord, 4) + 
+ triad(@key_of_c, root, chord, 4) + 
+ triad(@key_of_c, root, chord, 4) 
 
 #+end_src
 
-#+results[6d9a8ca414bc46b504328e93a64dd3913631f3df]: generate_triad_sequence
-
 *** Generate arpeggio
 
-#+source: generate_arpeggio(root,ascending)
-#+begin_src ruby :cache yes
+#+source: generate_arpeggio(root="c",ascending="t")
+#+begin_src ruby
 
 @key_of_c = ["c","d","e","f","g","a","b"]
 @key_of_g = ["g","a","b","c","d","e","fis"]
 
-def note (key, root, value)
+def note(key, root, value)
   value = key.index(root) + value
   note_value = key.fetch(value % 7)
   pitch = "'"
@@ -76,23 +74,21 @@ arpeggio @key_of_c, root, ascending
 
 #+end_src
 
-#+results[511d140c23e35dd7e3e49d5fef405e01615b4085]: generate_arpeggio
+#+results: generate_arpeggio
+: c''16 b'16 a'16 g'16 f'16 e'16 d'16 c'16 r2 
 
 ** Version
 
-#+begin_src lilypond  :cache yes
+#+begin_src lilypond 
 
 \version "2.12.3"
 
 #+end_src
 
-#+results[c7ad2cde455e22200180abf2a6fbb175224e27e9]:
-
 ** Notes
-
 *** Arpeggios
 
-#+begin_src lilypond  :cache yes
+#+begin_src lilypond 
 
 Carp = {
   <<generate_arpeggio(root="c",ascending=1)>>
@@ -131,11 +127,9 @@ Farp = {
 
 #+end_src
 
-#+results[846c9dbdcb8a9237413348c3c80221d5640359c7]:
-
 *** Triads
 
-#+begin_src lilypond :cache yes
+#+begin_src lilypond
 
 Ctriads = {
   <<generate_triad_sequence(root="c",chord=4)>>
@@ -174,11 +168,9 @@ Ftriads = {
 
 #+end_src
 
-#+results[451541a75799bd4bcf4ae0c43613a0e49dbc59b1]:
-
 ** Drums (four bars)
 
-#+begin_src lilypond :cache yes
+#+begin_src lilypond
   
   DrumsFourBars = {
     \drummode {
@@ -195,18 +187,16 @@ Ftriads = {
   
 #+end_src
 
-#+results[9c0c1cf990848f9c058c5f5e9b328f166193021b]:
-
 ** Number of bars to compile (showLastLength)
 
-#+begin_src lilypond :cache yes
+#+begin_src lilypond
 
 %  showLastLength = R1*8
  
 #+end_src
 
 ** Score
-#+begin_src lilypond :cache yes
+#+begin_src lilypond
 
   \score {
 
@@ -316,11 +306,9 @@ Ftriads = {
     
 #+end_src
 
-#+results[b2a9f3ae28b8d1cd2cbce74aab38caa39322b5ca]:
-
 ** Paper
 
-#+begin_src lilypond  :cache yes
+#+begin_src lilypond 
 
 \paper {
   #(define dump-extents #t) 
@@ -334,11 +322,9 @@ Ftriads = {
 
 #+end_src
 
-#+results[c777eba66c787cb93bc2869980a80b8101883996]:
-
 ** Header
 
-#+begin_src lilypond :cache yes
+#+begin_src lilypond
 
 \header {
   title = \markup \center-column {"Modes in the Key of C"} 
@@ -348,6 +334,3 @@ Ftriads = {
 
 #+end_src
 
-#+results[9d32edbdb5e3e5d0fa6fa3eb35e6bb05d606d096]:
-
-   

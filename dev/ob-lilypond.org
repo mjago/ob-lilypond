@@ -242,8 +242,8 @@ generated header.
  - [ ] Make "syntax marking" optional since we have the link - or remove?
  - [ ] Fall back to the current best guess if :headers "no" is used?
  - [ ] If marking is used, need to expand just the relevant heading
-*** TODO Improve examples [0/4]
- - [ ] Swap modal-cycle 1 and 2 as 2 is probably the more useful 
+*** TODO Improve examples [1/4]
+ - [X] Swap modal-cycle 1 and 2 as 2 is probably the more useful 
  - [ ] Add notes on how modal cycles are generated and there relevance
  - [ ] Would love to add a harmonic series example to 'evolve' major scale
  - [ ] Check Misty - Errol Garner is out of copywright, if not swap with

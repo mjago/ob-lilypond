@@ -47,38 +47,38 @@ Farp = {
 % [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modes-in-Key-of-C/modes-in-key-of-c.org::*Triads][Triads:1]]
 
 Ctriads = {
-  {< c' f' a' c'' > 4< c' f' a' c'' > 4< c' f' a' c'' > 4< c' f' a' c'' > 4}
-  {< c' g' b' d'' > 4< c' g' b' d'' > 4< c' g' b' d'' > 4< c' g' b' d'' > 4}
+  < c' f'a'c'> 4< c' f'a'c'> 4< c' f'a'c'> 4< c' f'a'c'> 4
+  < c' g'b'd'> 4< c' g'b'd'> 4< c' g'b'd'> 4< c' g'b'd'> 4
 }
 
 Gtriads = {
-  {< g' c'' e'' g'' > 4< g' c'' e'' g'' > 4< g' c'' e'' g'' > 4< g' c'' e'' g'' > 4}
-  {< g' d'' f'' a'' > 4< g' d'' f'' a'' > 4< g' d'' f'' a'' > 4< g' d'' f'' a'' > 4}
+  < g' c'e'g'> 4< g' c'e'g'> 4< g' c'e'g'> 4< g' c'e'g'> 4
+  < g' d'f'a'> 4< g' d'f'a'> 4< g' d'f'a'> 4< g' d'f'a'> 4
 }
 
 Dtriads = {
-  {< d' g' b' d'' > 4< d' g' b' d'' > 4< d' g' b' d'' > 4< d' g' b' d'' > 4}
-  {< d' a' c'' e'' > 4< d' a' c'' e'' > 4< d' a' c'' e'' > 4< d' a' c'' e'' > 4}
+  < d' g'b'd'> 4< d' g'b'd'> 4< d' g'b'd'> 4< d' g'b'd'> 4
+  < d' a'c'e'> 4< d' a'c'e'> 4< d' a'c'e'> 4< d' a'c'e'> 4
 }
 
 Atriads = {
-  {< a' d'' f'' a'' > 4< a' d'' f'' a'' > 4< a' d'' f'' a'' > 4< a' d'' f'' a'' > 4}
-  {< a' e'' g'' b'' > 4< a' e'' g'' b'' > 4< a' e'' g'' b'' > 4< a' e'' g'' b'' > 4}
+  < a' d'f'a'> 4< a' d'f'a'> 4< a' d'f'a'> 4< a' d'f'a'> 4
+  < a' e'g'b'> 4< a' e'g'b'> 4< a' e'g'b'> 4< a' e'g'b'> 4
 }
 
 Etriads = {
-  {< e' a' c'' e'' > 4< e' a' c'' e'' > 4< e' a' c'' e'' > 4< e' a' c'' e'' > 4}
-  {< e' b' d'' f'' > 4< e' b' d'' f'' > 4< e' b' d'' f'' > 4< e' b' d'' f'' > 4}
+  < e' a'c'e'> 4< e' a'c'e'> 4< e' a'c'e'> 4< e' a'c'e'> 4
+  < e' b'd'f'> 4< e' b'd'f'> 4< e' b'd'f'> 4< e' b'd'f'> 4
 }
 
 Btriads = {
-  {< b' e'' g'' b'' > 4< b' e'' g'' b'' > 4< b' e'' g'' b'' > 4< b' e'' g'' b'' > 4}
-  {< b' f'' a'' c'' > 4< b' f'' a'' c'' > 4< b' f'' a'' c'' > 4< b' f'' a'' c'' > 4}
+  < b' e'g'b'> 4< b' e'g'b'> 4< b' e'g'b'> 4< b' e'g'b'> 4
+  < b' f'a'c'> 4< b' f'a'c'> 4< b' f'a'c'> 4< b' f'a'c'> 4
 }
 
 Ftriads = {
-  {< f' b' d'' f'' > 4< f' b' d'' f'' > 4< f' b' d'' f'' > 4< f' b' d'' f'' > 4}
-  {< f' c'' e'' g'' > 4< f' c'' e'' g'' > 4< f' c'' e'' g'' > 4< f' c'' e'' g'' > 4}
+  < f' b'd'f'> 4< f' b'd'f'> 4< f' b'd'f'> 4< f' b'd'f'> 4
+  < f' c'e'g'> 4< f' c'e'g'> 4< f' c'e'g'> 4< f' c'e'g'> 4
 }
 
 % Triads:1 ends here

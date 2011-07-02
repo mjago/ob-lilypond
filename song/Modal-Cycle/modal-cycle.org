@@ -18,7 +18,7 @@
 
 *** DONE Generate Triad
 
-#+srcname: gen-triad(key,root) 
+#+srcname: gen-triad(key="c",root="c") 
 #+begin_src ruby :var keys = keys-table :var key_of = keys-table[*,0] :results silent
 @key_id =  key_of.index(key)
 @key    = keys[ @key_id ]
@@ -58,13 +58,13 @@ end
 
 *** DONE Generate arpeggio
 
-#+srcname: gen_arpeggio(key,root)
+#+srcname: gen_arpeggio(key="c",root="c")
 #+begin_src ruby :var keys = keys-table :var key_of = keys-table[*,0]
 key_id =  key_of.index(key)
 @key    = keys[ key_id ]
 @root_id = @key.index(root)
 
-def arpeggio(key, root,ascending)
+def arpeggio (key, root,ascending)
   if ascending == 1
     x,y = 0, 1   
   else 
@@ -78,14 +78,18 @@ def arpeggio(key, root,ascending)
   notes + "r2"
 end
 
-"\\relative c { #{arpeggio(key, root,1)} } | r1 | \ 
-\\relative c'' { #{arpeggio(key, root,0)} } | r1 | \n"
+"\\relative c { #{arpeggio (key, root,1)} } | r1 | \ 
+\\relative c'' { #{arpeggio (key, root,0)} } | r1 | \n"
 
 #+end_src
 
+#+results: gen_arpeggio
+: \relative c { c16 d16 e16 f16 g16 a16 b16 c16 r2 } | r1 |  
+: \relative c'' { c16 b16 a16 g16 f16 e16 d16 c16 r2 } | r1 | 
+
 *** DONE Generate Bass Line
 
-#+source: generate_bassline(key,root)
+#+source: generate_bassline(key="c",root="c")
 #+begin_src ruby :results silent :var keys = keys-table :var key_of = keys-table[*,0]
 key_id  = key_of.index(key)
 key     = keys[ key_id ]
@@ -100,13 +104,16 @@ one_bar =
 "|\n" + one_bar + "|\n" + one_bar + "|\n} " 
 
 #+end_src
+    
+** TODO Version
+Do something here
 
-** Version
 #+begin_src lilypond
 
 \version "2.12.3"
 
 #+end_src
+
 ** Arpeggios
 
 #+begin_src lilypond
@@ -292,7 +299,6 @@ Triads = {
   <<gen-triad(key="d",root="cis")>>
   <<gen-triad(key="g",root="c")>>
   <<gen-triad(key="c",root="c")>>
-
 }
 
 #+end_src

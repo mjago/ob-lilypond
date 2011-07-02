@@ -1,5 +1,11 @@
 
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle-2/modal-cycle-2.org::*Version][Version:1]]
+
 \version "2.12.3"
+
+% Version:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle-2/modal-cycle-2.org::*Arpeggios][Arpeggios:1]]
 
 Arps = {
   \relative g { c16 d16 e16 f16 g16 a16 b16 c16 r2 } | r1 |  
@@ -272,6 +278,10 @@ Arps = {
 
   < g, d, g' b c g > 1
 }
+
+% Arpeggios:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle-2/modal-cycle-2.org::*Triads][Triads:1]]
 
 Triads = {
   \relative g {
@@ -799,6 +809,10 @@ Triads = {
 
 }
 
+% Triads:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle-2/modal-cycle-2.org::*Drums%2520(four%2520bars)][Drums-\(four-bars\):1]]
+
 DrumsFourBars = {
     \drummode {
       bd16 hh16 hh16 hh16 sn16 hh16 hh16 hh16 
@@ -817,6 +831,10 @@ DrumsFourBars = {
    \DrumsFourBars \DrumsFourBars
 }
 
+% Drums-\(four-bars\):1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle-2/modal-cycle-2.org::*Drums%2520(four%2520bars)][Drums-\(four-bars\):2]]
+
 Drums = {
  \DrumsSixteenBars \DrumsSixteenBars \DrumsSixteenBars
  \DrumsSixteenBars \DrumsSixteenBars \DrumsSixteenBars
@@ -827,6 +845,10 @@ Drums = {
  \DrumsSixteenBars \DrumsSixteenBars \DrumsSixteenBars
  \DrumsFourBars
 }
+
+% Drums-\(four-bars\):2 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle-2/modal-cycle-2.org::*Bass][Bass:1]]
 
 Bass = {
       \relative g, { 
@@ -1353,7 +1375,15 @@ Bass = {
       } 
 }
 
+% Bass:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle-2/modal-cycle-2.org::*Number%2520of%2520bars%2520to%2520compile%2520(showLastLength)][Number-of-bars-to-compile-\(showLastLength\):1]]
+
 %  showLastLength = R1*9
+
+% Number-of-bars-to-compile-\(showLastLength\):1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle-2/modal-cycle-2.org::*Score][Score:1]]
 
 \score {
 
@@ -1394,6 +1424,10 @@ Bass = {
   }
 }
 
+% Score:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle-2/modal-cycle-2.org::*Paper][Paper:1]]
+
 \paper {
   #(define dump-extents #t) 
   
@@ -1404,8 +1438,14 @@ Bass = {
   line-width = #(- line-width (* mm  3.000000))
 }
 
+% Paper:1 ends here
+
+% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle-2/modal-cycle-2.org::*Header][Header:1]]
+
 \header {
   title = \markup \center-column {"Modal Cycle"} 
   composer =  \markup \center-column { "Music by" \small "Martyn Jago" }
   poet =  \markup \center-column { "ob-lilypond" \small "example 3" }
 }
+
+% Header:1 ends here
