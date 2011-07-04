@@ -1,35 +1,33 @@
 ;;; ob-lilypond.el --- org-babel functions for lilypond evaluation
-;;
+
 ;; Copyright (C) 2010  Free Software Foundation, Inc.
-;;
+
 ;; Author: Martyn Jago
 ;; Keywords: babel language, literate programming
 ;; Homepage: https://github.com/mjago/ob-lilypond
 ;; Version: 0.2
-;;
-;;; License:
-;;
-;; This program is free software; you can redistribute it and/or modify
+
+;; This file is part of GNU Emacs.
+
+;; GNU Emacs is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation; either version 3, or (at your option)
-;; any later version.
-;;
-;; This program is distributed in the hope that it will be useful,
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; GNU Emacs is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;; GNU General Public License for more details.
-;;
+
 ;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs; see the file COPYING. If not, write to the
-;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
-;; Boston, MA 02110-1301, USA.
-;; 
+;; along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
+
 ;;; Commentary:
-;; 
+
 ;; Installation / usage info, and examples are available at
 ;; https://github.com/mjago/ob-lilypond
-;;
 
+;;; Code:
 (require 'ob)
 (require 'ob-eval)
 (defalias 'lilypond-mode 'LilyPond-mode)
@@ -244,14 +242,15 @@ LINE is the erroneous line"
 FILE-NAME is full path to lilypond file.
 LINENO is the number of the erroneous line"
  
-  (set-buffer (get-buffer-create "temp-buf"))
-  (insert-file-contents (ly-switch-extension file-name ".ly")
-                        nil nil nil t)
-  (if (> lineNo 0)
-      (progn
-        (goto-line lineNo)
-        (buffer-substring (point) (point-at-eol)))
-    nil))
+  (with-temp-buffer
+    (insert-file-contents (ly-switch-extension file-name ".ly")
+			  nil nil nil t)
+    (if (> lineNo 0)
+	(progn
+	  (goto-char (point-min))
+	  (forward-line (- lineNo 1))
+	  (buffer-substring (point) (point-at-eol)))
+      nil)))
     
 (defun ly-attempt-to-open-pdf (file-name &optional test)
   "Attempt to display the generated pdf file
@@ -370,5 +369,7 @@ If TEST is non-nil, it contains a simulation of the OS for test purposes"
            file-name) ext))
 
 (provide 'ob-lilypond)
+
+;; arch-tag: ac449eea-2cf2-4dc5-ae33-426f57ba4894
  
 ;;; ob-lilypond.el ends here

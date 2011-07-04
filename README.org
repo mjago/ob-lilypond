@@ -43,32 +43,22 @@ Some commands are included to quickly disable / enable certain post-tangle
 activities...
  - ly-toggle-midi-play (toggle whether midi will be played following a successful compilation)
  - ly-toggle-pdf-display (toggle whether pdf will be displayed following a successful compilation)
+ - ly-version (display ob-lilypond version information)
+ - ly-versions (display emacs, org-mode, and ob-lilypond versions)
 
 NOTE:- If using Timidity for midi playback, kill the midi stream with 
 C-g in Emacs
 ** Setup (add to emacs init file)
-*** Cloning ob-lilypond
 
-The Files need to be downloaded to your relevant dotfiles directory...
+To use ob-lilypond, you must be on a very recent version of org-mode,
+since it relies on a command that has been changed very recently and
+will break on older versions (it is also included in the latest
+org-mode by default).
 
-#+BEGIN_SRC sh
+For information on obtaining the latest org-mode follow this link
+to the [[http://orgmode.org/manual/Installation.html][org-mode manual]] and follow the instructions.
 
-git clone https://github.com/mjago/ob-lilypond.git ob-lilypond
-
-#+END_SRC
-
-*** Emacs Initialisation file setup 
-
-Require library...
-#+BEGIN_SRC emacs-lisp
-
-(add-to-list 'load-path
-             (concat dotfiles-dir  "ob-lilypond/lib"))
-(require 'ob-lilypond)
-
-#+END_SRC
-
-Add lilypond to your list of babel languages...
+Then, add lilypond to your list of babel languages...
 
 #+BEGIN_SRC emacs-lisp
 (org-babel-do-load-languages
@@ -84,6 +74,14 @@ Add lilypond to your list of babel languages...
    ))
 
 #+END_SRC
+
+To ensure all is correct type in the following command...
+
+#+begin_src
+
+M-x ly-version
+
+#+end_src
  
 ** Requirements
 *** Mac OS X
@@ -107,16 +105,24 @@ test/ob-lilypond-tests.org and running the following commands...
 Tests are run automatically on source/test file save if ly-project
 (below) has been executed
 
+** TODO todo [0/5]
+
+ - [ ] Add basic mode and make default
+ - [ ] Add recomendations for use of "Arrangement mode" (font-lock,confirmations)
+ - [ ] Add recomendations for use of "basic mode"
+ - [ ] Add ly-versions
+ - [ ] fix development and test paths
+
 ** Development
 Included also is dev/ob-lilypond.org which includes various helper
 commands used for development, and the development todo list
- - ly-project (code block - evaluate with C-c C-c and execute M-x ly-project) 
+ - ly-project (code block - eval with C-c C-c and execute M-x ly-project) 
    - load appropriate files
    - set up windows
    - setup project development environment
    - add continuous testing post-save hook
    - map F4 to switch between src or test files to control file (dev/ob-lilypond.org)
-   - map F8 to 'ly-dev-tangle (tangle test/test-build/test.org file from anywhere)
+   - map F8 to 'ly-dev-tangle (tangle testing/test-build/test.org file from anywhere)
  - Remove post-save-hook code block
  - Development todo list
 
