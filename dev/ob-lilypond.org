@@ -166,7 +166,7 @@ file to org-babel-tangle
 *** DONE Add exported link to readme
 *** DONE Add ly-toggle-png-generation command
 *** DONE Port to Ubuntu
-*** TODO Finish tests [39/42]
+*** TODO Finish tests [42/45]
  1. [X] (defalias 'lilypond-mode 'LilyPond-mode)
  2. [X] list 'org-babel-tangle-lang-exts '("LilyPond" . "ly"))
  3. [X] (defconst ly-version "0.1"
@@ -186,7 +186,7 @@ file to org-babel-tangle
  17. [X] ly-gen-svg nil)
  18. [X] ly-gen-html nil)
  19. [X] ly-use-eps nil)
- 20. [X] org-babel-default-header-args:lilypond
+ 20. [X] ly-arrangement-mode)
  21. [ ] org-babel-expand-body:lilypond (body params)
  22. [ ] org-babel-execute:lilypond (body params)
  23. [X] org-babel-prep-session:lilypond (session params)
@@ -206,9 +206,12 @@ file to org-babel-tangle
  37. [X] ly-toggle-pdf-display ()
  38. [X] ly-toggle-png-generation ()
  39. [X] ly-toggle-html-generation ()
- 40. [X] (defun ly-version (&optional insert-at-point)
- 41. [X] ly-switch-extension (file-name ext)
- 42. [X] (provide 'ob-lilypond)
+ 40. [X] ly-toggle-arrangement-mode ()
+ 41. [X] (defun ly-version (&optional insert-at-point)
+ 42. [X] ly-switch-extension (file-name ext)
+ 43. [X] (provide 'ob-lilypond)
+ 44. [X] ly-set-header-args (mode)
+ 45. [X] ly-set-header-args (mode)
 
 *** DONE Figure out export with lower case lilypond restriction
 *** DONE Decide How to handle OS dependencies
@@ -254,3 +257,10 @@ generated header.
 
 *** TODO Devise a "mode" for generating liypond partials as embedded png images
 *** TODO Check out lyqi-mode  
+*** TODO Arrangement mode [3/4]
+ - [X] add var
+ - [X] add toggle
+ - [ ] add instruction
+ - [X] modify header assignment
+ - [ ] modify execute command
+

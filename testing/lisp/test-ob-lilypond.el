@@ -108,12 +108,15 @@
 (ert-deftest ob-lilypond/use-eps ()
   (should (boundp 'ly-use-eps)))
 
-(ert-deftest ob-lilypond/org-babel-default-header-args:lilypond ()
-  (should (equal  '((:tangle . "yes")
-                    (:noweb . "yes")
-                    (:results . "silent")
-                    (:comments . "yes"))
-                  org-babel-default-header-args:lilypond)))
+(ert-deftest ob-lilypond/ly-arrangement-mode ()
+  (should (boundp 'ly-arrangement-mode)))
+
+;; (ert-deftest ob-lilypond/org-babel-default-header-args:lilypond ()
+;;   (should (equal  '((:tangle . "yes")
+;;                     (:noweb . "yes")
+;;                     (:results . "silent")
+;;                     (:comments . "yes"))
+;;                   org-babel-default-header-args:lilypond)))
 
 ;;TODO finish...
 (ert-deftest ob-lilypond/org-babel-expand-body:lilypond ()
@@ -257,7 +260,7 @@
                  (ly-determine-midi-path "win32")))
   (should (equal ly-nix-midi-path
                  (ly-determine-midi-path "nix"))))
- 
+
 (ert-deftest ob-lilypond/ly-toggle-midi-play-toggles-flag ()
   (if ly-play-midi-post-tangle
       (progn
@@ -281,6 +284,18 @@
     (should ly-display-pdf-post-tangle)
     (ly-toggle-pdf-display)
     (should (not ly-display-pdf-post-tangle))))
+
+(ert-deftest ob-lilypond/ly-toggle-arrangement-mode ()
+  (if ly-arrangement-mode
+      (progn
+        (ly-toggle-arrangement-mode)
+        (should (not ly-arrangement-mode))
+        (ly-toggle-arrangement-mode)
+        (should ly-arrangement-mode))
+    (ly-toggle-arrangement-mode)
+    (should ly-arrangement-mode)
+    (ly-toggle-arrangement-mode)
+    (should (not ly-arrangement-mode))))
 
 (ert-deftest ob-lilypond/ly-toggle-png-generation-toggles-flag ()
   (if ly-gen-png
@@ -318,6 +333,26 @@
   (should (equal "/some/path/to/test-name.xyz"
                   (ly-switch-extension "/some/path/to/test-name" ".xyz"))))
 
+(ert-deftest ob-lilypond/ly-get-header-args ()
+  (should (equal '((:tangle . "yes")
+                   (:noweb . "yes")
+                   (:results . "silent")
+                   (:comments . "yes"))
+                 (ly-set-header-args t)))
+  (should (equal '()
+                 (ly-set-header-args nil))))
+
+(ert-deftest ob-lilypond/ly-set-header-args ()
+  (ly-set-header-args t)
+  (should (equal '((:tangle . "yes")
+                   (:noweb . "yes")
+                   (:results . "silent")
+                   (:comments . "yes"))
+                 org-babel-default-header-args:lilypond))
+  (ly-set-header-args nil)
+  (should (equal '()
+                 org-babel-default-header-args:lilypond)))
+                 
 (provide 'test-ob-lilypond)
 
 ;;; test-ob-lilypond.el ends here
