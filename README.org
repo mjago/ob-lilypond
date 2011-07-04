@@ -99,14 +99,16 @@ test/ob-lilypond-tests.org and running the following commands...
 Tests are run automatically on source/test file save if ly-project
 (below) has been executed
 
-** TODO todo [0/5]
+** TODO TODO [0/8]
 
- - [ ] Add basic mode and make default
- - [ ] Add recomendations for use of "Arrangement mode" (font-lock,confirmations)
- - [ ] Add recomendations for use of "basic mode"
- - [ ] Add ly-versions
+ - [ ] add basic mode and make default
+ - [ ] add recomendations for use of "Arrangement mode" (font-lock,confirmations)
+ - [ ] add recomendations for use of "basic mode"
+ - [ ] add ly-versions
  - [ ] fix development and test paths
-
+ - [ ] add very minimal example for Basic mode
+ - [ ] add very minimal example for Arrangement mode
+ - [ ] add link to freely available Timidity soundfile
 ** Development
 Included also is dev/ob-lilypond.org which includes various helper
 commands used for development, and the development todo list
