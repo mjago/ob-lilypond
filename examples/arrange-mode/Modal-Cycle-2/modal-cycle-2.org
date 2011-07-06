@@ -458,9 +458,6 @@ Bass = {
 
 #+end_src
 
-#+results:
-
-
 ** Number of bars to compile (showLastLength)
 #+begin_src lilypond
 
