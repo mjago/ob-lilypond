@@ -1,5 +1,7 @@
 # ob-lilypond 
+
 ### (Score Engraving and Arrangement in Emacs OrgMode)
+
 ![mixolydian-mode](https://github.com/mjago/ob-lilypond/raw/master/examples/basic-mode/html-example/mixolydian.png)
 
 ### Purpose
@@ -8,8 +10,11 @@ with optional auditioning via midi, whilst leveraging the full power of org mode
 
 ### Usage
 There are two modes available with ob-lilypond
+
   - **basic-mode (default)**
+
   - **arrange-mode**
+
 Which you use depends on what you intend to do.
 
 ### Basic Mode
@@ -30,7 +35,6 @@ Following are some examples generated in ob-lilypond Basic Mode...
 In Basic Mode Hitting 'C-c C-c' within a lilypond block will compile the block. Exporting of all blocks and org file contents is initialted with 'C-c C-e' (standard org mode export keys). 
 
 ### Arrange Mode
-
 Arrange Mode allows you to develop complete pieces of score, whilst organising sections of the piece
 in typical org mode ways. And because you are in Emacs org mode, you are free to use literate
 programming techniques to generate things programmatically / store information in tables etc.
@@ -95,8 +99,10 @@ Then, add lilypond to your list of babel languages (in your init file)...
 To ensure all is correct consider running the tests (see below)
 
 ### Requirements
+
 #### Mac OS X
  - LilyPond may be [downloaded here](http://lilypond.org/)
+
 #### Nix
   - LilyPond is [available here](http://lilypond.org/) or via the the package manager
   - For MIDI, **Timidity** is [available here](http://timidity.sourceforge.net/) or via the package manager
