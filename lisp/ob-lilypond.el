@@ -5,7 +5,7 @@
 ;; Author: Martyn Jago
 ;; Keywords: babel language, literate programming
 ;; Homepage: https://github.com/mjago/ob-lilypond
-;; Version: 0.2
+;; Version: 0.3
 
 ;; This file is part of GNU Emacs.
 
@@ -33,7 +33,7 @@
 (defalias 'lilypond-mode 'LilyPond-mode)
 (add-to-list 'org-babel-tangle-lang-exts '("LilyPond" . "ly"))
 
-(defconst ly-version "0.2"
+(defconst ly-version "0.3"
   "The version number of the file ob-lilypond.el.")
 
 (defvar ly-compile-post-tangle t
@@ -84,9 +84,9 @@ LY-GEN-HTML to t")
 "You can force the compiler to use the EPS backend by setting
 LY-USE-EPS to t")
 
-(defvar ly-arrangement-mode nil
-  "Arrangement mode is turned on by setting LY-ARRANGEMENT-MODE
-to t. In Arrangement mode the following settings are altered
+(defvar ly-arrange-mode nil
+  "Arrange mode is turned on by setting LY-ARRANGE-MODE
+to t. In Arrange mode the following settings are altered
 from default...
 :tangle yes,    :noweb yes
 :results silent :comments yes.
@@ -111,12 +111,13 @@ blocks")
  
 (defun org-babel-execute:lilypond (body params)
   "This function is called by `org-babel-execute-src-block'.
-Depending on whether we are in arrangement mode either:
+Depending on whether we are in arrange mode either:
 1. Attempt to execute lilypond block according to header settings
   (This is the default basic mode)
-2. Tangle all lilypond blocks and process the result (arrangement mode)"
+2. Tangle all lilypond blocks and process the result (arrange mode)"
 
-  (if ly-arrangement-mode
+  (ly-set-header-args ly-arrange-mode)
+  (if ly-arrange-mode
       (ly-tangle)
     (ly-process-basic body params)))
 
@@ -131,12 +132,29 @@ specific arguments to =org-babel-tangle="
 
 (defun ly-process-basic (body params)
   "Execute a lilypond block in basic mode"
-
+  
   (let* ((result-params (cdr (assoc :result-params params)))
 	 (out-file (cdr (assoc :file params)))
 	 (cmdline (or (cdr (assoc :cmdline params))
-		      (format "" (file-name-extension out-file))))))
-  (error "todo"))
+		      ""))
+	 (in-file (org-babel-temp-file "dot-")))
+
+    (with-temp-file in-file
+      (insert (org-babel-expand-body:dot body params)))
+    
+    (org-babel-eval
+     (concat
+      (ly-determine-ly-path)
+      " -dbackend=eps "
+      "-dno-gs-load-fonts "
+      "-dinclude-eps-fonts "
+      "--png "
+      "--output="
+      (file-name-sans-extension out-file)
+      " "
+      cmdline
+      in-file) "")
+    ) nil)
 
 (defun org-babel-prep-session:lilypond (session params)
   "Return an error because LilyPond exporter does not support sessions."
@@ -180,7 +198,7 @@ FILE-NAME is full path to lilypond (.ly) file"
         (arg-3 "*lilypond*")           ;buffer
         (arg-4 t)                      ;display
         (arg-5 (if ly-gen-png  "--png"  "")) ;&rest...
-        (arg-6 (if ly-gen-html "--html" ""))
+  (arg-6 (if ly-gen-html "--html" ""))
         (arg-7 (if ly-use-eps  "-dbackend=eps" ""))
         (arg-8 (if ly-gen-svg  "-dbackend=svg" ""))
         (arg-9 (concat "--output=" (file-name-sans-extension file-name)))
@@ -375,14 +393,14 @@ If TEST is non-nil, it contains a simulation of the OS for test purposes"
   (message (concat "HTML generation has been "
                    (if ly-gen-html "ENABLED." "DISABLED."))))
 
-(defun ly-toggle-arrangement-mode ()
-  "Toggle whether in Arrangement mode or Basic mode"
+(defun ly-toggle-arrange-mode ()
+  "Toggle whether in Arrange mode or Basic mode"
 
   (interactive)
-  (setq ly-arrangement-mode
-        (not ly-arrangement-mode))
-  (message (concat "Arrangement mode has been "
-                   (if ly-arrangement-mode "ENABLED." "DISABLED."))))
+  (setq ly-arrange-mode
+        (not ly-arrange-mode))
+  (message (concat "Arrange mode has been "
+                   (if ly-arrange-mode "ENABLED." "DISABLED."))))
 
 (defun ly-version (&optional insert-at-point)
   (interactive)
@@ -398,18 +416,20 @@ If TEST is non-nil, it contains a simulation of the OS for test purposes"
 
 (defun ly-get-header-args (mode)
   "Default arguments to use when evaluating a lilypond
-source block. These depend upon whether we are in arrangement
-mode i.e. ARRANGEMENT MODE is t"
+source block. These depend upon whether we are in arrange
+mode i.e. ARRANGE-MODE is t"
   (cond (mode
          '((:tangle . "yes")
            (:noweb . "yes")
            (:results . "silent")
            (:comments . "yes")))
-        ( t '())))
+        (t
+         '((:results . "file")
+           (:exports . "results")))))
 
 (defun ly-set-header-args (mode)
   "Set org-babel-default-header-args:lilypond
-dependent on LY-ARRANGEMENT-MODE"
+dependent on LY-ARRANGE-MODE"
   (setq org-babel-default-header-args:lilypond
         (ly-get-header-args mode)))
 

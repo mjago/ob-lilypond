@@ -224,13 +224,14 @@ file to org-babel-tangle
 **** DONE Reduced scope of (save-excursion) to avoid this - doesn't help
 **** DONE Perhaps need unwind-protection - causes issues
 **** TODO Modify error marking to use absolute block size counting for location
-**** TODO Research when an extra option was added to THE FRONT of org-babel-tangle option list
-May need a note in docs or a test of version.
+*** DONE Research when an extra option was added to THE FRONT of org-babel-tangle option list
+May need a note in docs or a test of version? 
+  Put note in README
 
 *** DONE Add examples using org-babel for programmatic note generation
 *** WAITING Get feedback from Shelagh regarding direction and current 
 *** DONE Add :noweb "yes" and :comments "yes" as lilypond defaults
-*** TODO Modify Readme to include paths to examples
+*** DONE Modify Readme to include paths to examples
 *** TODO Add usage information [1/3]
  - [ ] Font-lock fontify in blocks by default
  - [ ] Practical effects of default ob-lilypond header parameters
@@ -255,7 +256,8 @@ generated header.
  - [ ] Check Misty - Errol Garner is out of copywright, if not swap with
    "Empathy"
 
-*** TODO Devise a "mode" for generating liypond partials as embedded png images
+*** DONE Devise a "mode" for generating liypond partials as embedded png images
+This is now the default mode
 *** TODO Check out lyqi-mode  
 *** TODO Arrangement mode [3/4]
  - [X] add var
@@ -263,4 +265,6 @@ generated header.
  - [ ] add instruction
  - [X] modify header assignment
  - [ ] modify execute command
+*** TODO Update readme and readme links to suit new mode
+*** TODO ly-versions or ly-settings?
 

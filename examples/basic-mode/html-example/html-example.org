@@ -1,0 +1,141 @@
+#+TITLE: Modes in the Key of C
+#+DATE:
+#+OPTIONS: timestamp:nil num:nil toc:nil 
+#+LaTeX_HEADER: \usepackage[cm]{fullpage}
+#+source: version
+#+begin_src ruby :exports none :results silent
+"\\version \"2.12.3\""
+#+end_src
+#+source: paper
+#+begin_src ruby :exports none :results silent
+"\\paper{
+indent=0\\mm
+line-width=170\\mm
+oddFooterMarkup=##f
+oddHeaderMarkup=##f
+bookTitleMarkup=##f
+scoreTitleMarkup=##f
+}"
+#+end_src
+
+* Ionian Mode
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a enim commodo mollis. Praesent eleifend turpis sed mi accumsan eget fringilla odio malesuada. Mauris justo nibh, aliquam eget egestas eu, eleifend id enim. Maecenas sed arcu vel ligula consectetur porttitor dapibus at enim. Sed eu urna vel diam dignissim tempus. Sed in tortor turpis, eget commodo eros. Duis in elementum magna. Sed bibendum mattis leo, vel rutrum odio facilisis iaculis. Vestibulum odio tortor, vehicula eu tempor sit amet, ultrices eu mi. Integer accumsan lacus a leo mattis pretium. Proin velit quam, vestibulum at porttitor vel, fringilla a est.
+#+LaTeX: \linebreak
+#+ATTR_LaTeX: width=17cm 
+#+begin_src lilypond :file ionian.png :noweb yes
+
+  <<version()>> 
+  <<paper()>>
+  \relative c' { 
+    c d e f g a b c b a g f e d c d  
+    e f g a b c b a g f e d c1
+}
+#+end_src
+
+#+results[b6f02133ff6782f3aa5fef725c98af973c0dd1b2]:
+[[file:ionian.png]]
+
+* Dorian Mode
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a enim commodo mollis. Praesent eleifend turpis sed mi accumsan eget fringilla odio malesuada. Mauris justo nibh, aliquam eget egestas eu, eleifend id enim. Maecenas sed arcu vel ligula consectetur porttitor dapibus at enim. Sed eu urna vel diam dignissim tempus. Sed in tortor turpis, eget commodo eros. Duis in elementum magna. Sed bibendum mattis leo, vel rutrum odio facilisis iaculis. Vestibulum odio tortor, vehicula eu tempor sit amet, ultrices eu mi. Integer accumsan lacus a leo mattis pretium. Proin velit quam, vestibulum at porttitor vel, fringilla a est.
+#+LaTeX: \linebreak
+#+ATTR_LaTeX: width=17cm
+#+begin_src lilypond :file dorian.png :noweb yes
+
+  <<version()>> 
+  <<paper()>>
+
+  \relative c' { 
+    d e f g a b c d c b a g f e d e 
+    f g a b c d c b a g f e d1
+}
+#+end_src
+
+#+results[f71fe2d84b038a7cb89d99e0cf172f70b16157da]:
+[[file:dorian.png]]
+
+* Phrygian Mode
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a enim commodo mollis. Praesent eleifend turpis sed mi accumsan eget fringilla odio malesuada. Mauris justo nibh, aliquam eget egestas eu, eleifend id enim. Maecenas sed arcu vel ligula consectetur porttitor dapibus at enim. Sed eu urna vel diam dignissim tempus. Sed in tortor turpis, eget commodo eros. Duis in elementum magna. Sed bibendum mattis leo, vel rutrum odio facilisis iaculis. Vestibulum odio tortor, vehicula eu tempor sit amet, ultrices eu mi. Integer accumsan lacus a leo mattis pretium. Proin velit quam, vestibulum at porttitor vel, fringilla a est.
+#+LaTeX: \linebreak
+#+ATTR_LaTeX: width=17cm
+#+begin_src lilypond :file phrygian.png :noweb yes
+
+  <<version()>> 
+  <<paper()>>
+  \relative c' { 
+    e f g a b c d e d c b a g f e f
+    g a b c d e d c b a g f e1
+}
+#+end_src
+
+#+results[061376b3007af82f0d1ebc4ee646c185537254a1]:
+[[file:phrygian.png]]
+
+* Lydian Mode
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a enim commodo mollis. Praesent eleifend turpis sed mi accumsan eget fringilla odio malesuada. Mauris justo nibh, aliquam eget egestas eu, eleifend id enim. Maecenas sed arcu vel ligula consectetur porttitor dapibus at enim. Sed eu urna vel diam dignissim tempus. Sed in tortor turpis, eget commodo eros. Duis in elementum magna. Sed bibendum mattis leo, vel rutrum odio facilisis iaculis. Vestibulum odio tortor, vehicula eu tempor sit amet, ultrices eu mi. Integer accumsan lacus a leo mattis pretium. Proin velit quam, vestibulum at porttitor vel, fringilla a est.
+#+LaTeX: \linebreak
+#+ATTR_LaTeX: width=17cm
+#+begin_src lilypond :file lydian.png :noweb yes
+
+  <<version()>> 
+  <<paper()>>
+  \relative c' { 
+    f g a b c d e f e d c b a g f g
+    a b c d e f e d c b a g f1
+}
+#+end_src
+
+#+results[d58e00b534d68526a67778e04c1f7cd4d5a96484]:
+[[file:lydian.png]]
+
+* Mixolydian Mode
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a enim commodo mollis. Praesent eleifend turpis sed mi accumsan eget fringilla odio malesuada. Mauris justo nibh, aliquam eget egestas eu, eleifend id enim. Maecenas sed arcu vel ligula consectetur porttitor dapibus at enim. Sed eu urna vel diam dignissim tempus. Sed in tortor turpis, eget commodo eros. Duis in elementum magna. Sed bibendum mattis leo, vel rutrum odio facilisis iaculis. Vestibulum odio tortor, vehicula eu tempor sit amet, ultrices eu mi. Integer accumsan lacus a leo mattis pretium. Proin velit quam, vestibulum at porttitor vel, fringilla a est.
+#+LaTeX: \linebreak
+#+ATTR_LaTeX: width=17cm
+#+begin_src lilypond :file mixolydian.png :noweb yes
+
+  <<version()>> 
+  <<paper()>>
+  \relative c' { 
+    g a b c d e f g f e d c b a g a
+    b c d e f g f e d c b a g1
+}
+#+end_src
+
+#+results[1592576a07b686caa52b87d207c6bfe7f0d3140b]:
+[[file:mixolydian.png]]
+
+* Aeolian Mode
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a enim commodo mollis. Praesent eleifend turpis sed mi accumsan eget fringilla odio malesuada. Mauris justo nibh, aliquam eget egestas eu, eleifend id enim. Maecenas sed arcu vel ligula consectetur porttitor dapibus at enim. Sed eu urna vel diam dignissim tempus. Sed in tortor turpis, eget commodo eros. Duis in elementum magna. Sed bibendum mattis leo, vel rutrum odio facilisis iaculis. Vestibulum odio tortor, vehicula eu tempor sit amet, ultrices eu mi. Integer accumsan lacus a leo mattis pretium. Proin velit quam, vestibulum at porttitor vel, fringilla a est.
+#+LaTeX: \linebreak
+#+ATTR_LaTeX: width=17cm
+#+begin_src lilypond :file aeolian.png :noweb yes
+
+  <<version()>> 
+  <<paper()>>
+  \relative c' { 
+    a b c d e f g a g f e d c b a b 
+    c d e f g a g f e d c b a1
+}
+#+end_src
+
+#+results[26634ac681a45c0571dba57662f8242b19466847]:
+[[file:aeolian.png]]
+
+* Locrian Mode
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a enim commodo mollis. Praesent eleifend turpis sed mi accumsan eget fringilla odio malesuada. Mauris justo nibh, aliquam eget egestas eu, eleifend id enim. Maecenas sed arcu vel ligula consectetur porttitor dapibus at enim.
+#+LaTeX: \linebreak
+#+ATTR_LaTeX: width=17cm
+#+begin_src lilypond :file locrian.png :noweb yes
+
+  <<version()>> 
+  <<paper()>>
+  \relative c' { 
+    b c d e f g a b a g f e d c b c
+    d e f g a b a g f e d c b1
+}
+#+end_src
+
+#+results[5f18b6e697933ec92767630f531d5ac5dbaa232e]:
+[[file:locrian.png]]
+
