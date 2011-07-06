@@ -94,7 +94,7 @@ one_bar =
 
 #+end_src
 
-** TODO Version
+** Version
    SCHEDULED: <2011-07-08 Fri>
 
 #+begin_src lilypond
