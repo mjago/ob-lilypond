@@ -101,8 +101,7 @@ one_bar =
 
 #+end_src
     
-** TODO Version
-Do something here
+** Version
 
 #+begin_src lilypond
 
