@@ -47,16 +47,16 @@ To change the default mode to Arrange Mode, put the following in your emacs init
 
 Following are examples generated using ob-lilypond in Arrange Mode...
 
- - [Modal Cycles (Utilises org-babel and noweb to generate notes](https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle/modal-cycle.pdf?raw=true) (pdf)
- - [Generated Midi File](https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle/modal-cycle.midi?raw=true)
+ - [Modal Cycles (Utilises org-babel and noweb to generate notes)](https://github.com/mjago/ob-lilypond/blob/master/examples/arrange-mode/Modal-Cycle/modal-cycle.pdf?raw=true) (pdf)
+ - [Generated Midi File](https://github.com/mjago/ob-lilypond/blob/master/examples/arrange-mode/Modal-Cycle/modal-cycle.midi?raw=true)
  - [Source Org File](https://github.com/mjago/ob-lilypond/blob/master/examples/arrange-mode/Modal-Cycle/modal-cycle.org)
 
- - [Modal Cycles 2 (Utilises org-babel and noweb to generate notes)](https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle-2/modal-cycle-2.pdf?raw=true) (pdf)
- - [Generated Midi File](https://github.com/mjago/ob-lilypond/blob/master/song/Modal-Cycle-2/modal-cycle-2.midi?raw=true)
+ - [Modal Cycles 2 (Utilises org-babel and noweb to generate notes)](https://github.com/mjago/ob-lilypond/blob/master/examples/arrange-mode/Modal-Cycle-2/modal-cycle-2.pdf?raw=true) (pdf)
+ - [Generated Midi File](https://github.com/mjago/ob-lilypond/blob/master/examples/arrange-mode/Modal-Cycle-2/modal-cycle-2.midi?raw=true)
  - [Source Org File](https://github.com/mjago/ob-lilypond/blob/master/examples/arrange-mode/Modal-Cycle-2/modal-cycle-2.org)
 
- - [Modes in the Key of C (another example of polyglot lilypond programming)](https://github.com/mjago/ob-lilypond/blob/master/song/Modes-in-Key-of-C/modes-in-key-of-c.pdf?raw=true) (pdf)
- - [Generated Midi File](https://github.com/mjago/ob-lilypond/blob/master/song/Modes-in-Key-of-C/modes-in-key-of-c.midi?raw=true)
+ - [Modes in the Key of C (another example of polyglot lilypond programming)](https://github.com/mjago/ob-lilypond/blob/master/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.pdf?raw=true) (pdf)
+ - [Generated Midi File](https://github.com/mjago/ob-lilypond/blob/master/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.midi?raw=true)
  - [Source Org File](https://github.com/mjago/ob-lilypond/blob/master/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.org)
 
 #### Tangling and Compiling LilyPond Blocks
