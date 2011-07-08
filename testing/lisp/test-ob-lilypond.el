@@ -2,7 +2,9 @@
   (set-buffer (get-buffer-create "test-ob-lilypond.el"))
   (setq ly-here
         (file-name-directory
-        (or load-file-name (buffer-file-name)))))
+         (or load-file-name (buffer-file-name)))))
+
+(require 'ob-lilypond)
  
 (ert-deftest ob-lilypond/assert ()
   (should t))
