@@ -1,267 +1,267 @@
 
-% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle/modal-cycle.org::*Version][Version:1]]
+% [[file:~/ob-lilypond/examples/arrange-mode/Modal-Cycle/modal-cycle.org::*Version][Version:1]]
 
 \version "2.12.3"
 
 % Version:1 ends here
 
-% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle/modal-cycle.org::*Arpeggios][Arpeggios:1]]
+% [[file:~/ob-lilypond/examples/arrange-mode/Modal-Cycle/modal-cycle.org::*Arpeggios][Arpeggios:1]]
 
 Arps = {
-  \relative c { c16 d16 e16 f16 g16 a16 b16 c16 r2 } | r1 |  
-  \relative c'' { c16 b16 a16 g16 f16 e16 d16 c16 r2 } | r1 | 
+  \relative c {c16 d16 e16 f16 g16 a16 b16 c16 r2 } | r1 |  
+  \relative c'' {c16 b16 a16 g16 f16 e16 d16 c16 r2 } | r1 | 
   
-  \relative c { c16 d16 e16 f16 g16 a16 bes16 c16 r2 } | r1 |  
-  \relative c'' { c16 bes16 a16 g16 f16 e16 d16 c16 r2 } | r1 | 
+  \relative c {c16 d16 e16 f16 g16 a16 bes16 c16 r2 } | r1 |  
+  \relative c'' {c16 bes16 a16 g16 f16 e16 d16 c16 r2 } | r1 | 
   
-  \relative c { c16 d16 ees16 f16 g16 a16 bes16 c16 r2 } | r1 |  
-  \relative c'' { c16 bes16 a16 g16 f16 ees16 d16 c16 r2 } | r1 | 
+  \relative c {c16 d16 ees16 f16 g16 a16 bes16 c16 r2 } | r1 |  
+  \relative c'' {c16 bes16 a16 g16 f16 ees16 d16 c16 r2 } | r1 | 
   
-  \relative c { c16 d16 ees16 f16 g16 aes16 bes16 c16 r2 } | r1 |  
-  \relative c'' { c16 bes16 aes16 g16 f16 ees16 d16 c16 r2 } | r1 | 
+  \relative c {c16 d16 ees16 f16 g16 aes16 bes16 c16 r2 } | r1 |  
+  \relative c'' {c16 bes16 aes16 g16 f16 ees16 d16 c16 r2 } | r1 | 
   
-  \relative c { c16 des16 ees16 f16 g16 aes16 bes16 c16 r2 } | r1 |  
-  \relative c'' { c16 bes16 aes16 g16 f16 ees16 des16 c16 r2 } | r1 | 
+  \relative c {c16 des16 ees16 f16 g16 aes16 bes16 c16 r2 } | r1 |  
+  \relative c'' {c16 bes16 aes16 g16 f16 ees16 des16 c16 r2 } | r1 | 
   
-  \relative c { c16 des16 ees16 f16 ges16 aes16 bes16 c16 r2 } | r1 |  
-  \relative c'' { c16 bes16 aes16 ges16 f16 ees16 des16 c16 r2 } | r1 | 
+  \relative c {c16 des16 ees16 f16 ges16 aes16 bes16 c16 r2 } | r1 |  
+  \relative c'' {c16 bes16 aes16 ges16 f16 ees16 des16 c16 r2 } | r1 | 
   
-  \relative c { ces16 des16 ees16 f16 ges16 aes16 bes16 ces16 r2 } | r1 |  
-  \relative c'' { ces16 bes16 aes16 ges16 f16 ees16 des16 ces16 r2 } | r1 | 
+  \relative c {ces16 des16 ees16 f16 ges16 aes16 bes16 ces16 r2 } | r1 |  
+  \relative c'' {ces16 bes16 aes16 ges16 f16 ees16 des16 ces16 r2 } | r1 | 
   
-  \relative c { b16 cis16 dis16 e16 fis16 gis16 ais16 b16 r2 } | r1 |  
-  \relative c'' { b16 ais16 gis16 fis16 e16 dis16 cis16 b16 r2 } | r1 | 
+  \relative c {b16 cis16 dis16 e16 fis16 gis16 ais16 b16 r2 } | r1 |  
+  \relative c'' {b16 ais16 gis16 fis16 e16 dis16 cis16 b16 r2 } | r1 | 
   
-  \relative c { b16 cis16 dis16 e16 fis16 gis16 a16 b16 r2 } | r1 |  
-  \relative c'' { b16 a16 gis16 fis16 e16 dis16 cis16 b16 r2 } | r1 | 
+  \relative c {b16 cis16 dis16 e16 fis16 gis16 a16 b16 r2 } | r1 |  
+  \relative c'' {b16 a16 gis16 fis16 e16 dis16 cis16 b16 r2 } | r1 | 
   
-  \relative c { b16 cis16 d16 e16 fis16 gis16 a16 b16 r2 } | r1 |  
-  \relative c'' { b16 a16 gis16 fis16 e16 d16 cis16 b16 r2 } | r1 | 
+  \relative c {b16 cis16 d16 e16 fis16 gis16 a16 b16 r2 } | r1 |  
+  \relative c'' {b16 a16 gis16 fis16 e16 d16 cis16 b16 r2 } | r1 | 
   
-  \relative c { b16 cis16 d16 e16 fis16 g16 a16 b16 r2 } | r1 |  
-  \relative c'' { b16 a16 g16 fis16 e16 d16 cis16 b16 r2 } | r1 | 
+  \relative c {b16 cis16 d16 e16 fis16 g16 a16 b16 r2 } | r1 |  
+  \relative c'' {b16 a16 g16 fis16 e16 d16 cis16 b16 r2 } | r1 | 
   
-  \relative c { b16 c16 d16 e16 fis16 g16 a16 b16 r2 } | r1 |  
-  \relative c'' { b16 a16 g16 fis16 e16 d16 c16 b16 r2 } | r1 | 
+  \relative c {b16 c16 d16 e16 fis16 g16 a16 b16 r2 } | r1 |  
+  \relative c'' {b16 a16 g16 fis16 e16 d16 c16 b16 r2 } | r1 | 
   
-  \relative c { b16 c16 d16 e16 f16 g16 a16 b16 r2 } | r1 |  
-  \relative c'' { b16 a16 g16 f16 e16 d16 c16 b16 r2 } | r1 | 
+  \relative c {b16 c16 d16 e16 f16 g16 a16 b16 r2 } | r1 |  
+  \relative c'' {b16 a16 g16 f16 e16 d16 c16 b16 r2 } | r1 | 
   
-  \relative c { bes16 c16 d16 e16 f16 g16 a16 bes16 r2 } | r1 |  
-  \relative c'' { bes16 a16 g16 f16 e16 d16 c16 bes16 r2 } | r1 | 
+  \relative c {bes16 c16 d16 e16 f16 g16 a16 bes16 r2 } | r1 |  
+  \relative c'' {bes16 a16 g16 f16 e16 d16 c16 bes16 r2 } | r1 | 
   
-  \relative c { bes16 c16 d16 ees16 f16 g16 a16 bes16 r2 } | r1 |  
-  \relative c'' { bes16 a16 g16 f16 ees16 d16 c16 bes16 r2 } | r1 | 
+  \relative c {bes16 c16 d16 ees16 f16 g16 a16 bes16 r2 } | r1 |  
+  \relative c'' {bes16 a16 g16 f16 ees16 d16 c16 bes16 r2 } | r1 | 
   
-  \relative c { bes16 c16 d16 ees16 f16 g16 aes16 bes16 r2 } | r1 |  
-  \relative c'' { bes16 aes16 g16 f16 ees16 d16 c16 bes16 r2 } | r1 | 
+  \relative c {bes16 c16 d16 ees16 f16 g16 aes16 bes16 r2 } | r1 |  
+  \relative c'' {bes16 aes16 g16 f16 ees16 d16 c16 bes16 r2 } | r1 | 
   
-  \relative c { bes16 c16 des16 ees16 f16 g16 aes16 bes16 r2 } | r1 |  
-  \relative c'' { bes16 aes16 g16 f16 ees16 des16 c16 bes16 r2 } | r1 | 
+  \relative c {bes16 c16 des16 ees16 f16 g16 aes16 bes16 r2 } | r1 |  
+  \relative c'' {bes16 aes16 g16 f16 ees16 des16 c16 bes16 r2 } | r1 | 
   
-  \relative c { bes16 c16 des16 ees16 f16 ges16 aes16 bes16 r2 } | r1 |  
-  \relative c'' { bes16 aes16 ges16 f16 ees16 des16 c16 bes16 r2 } | r1 | 
+  \relative c {bes16 c16 des16 ees16 f16 ges16 aes16 bes16 r2 } | r1 |  
+  \relative c'' {bes16 aes16 ges16 f16 ees16 des16 c16 bes16 r2 } | r1 | 
   
-  \relative c { bes16 ces16 des16 ees16 f16 ges16 aes16 bes16 r2 } | r1 |  
-  \relative c'' { bes16 aes16 ges16 f16 ees16 des16 ces16 bes16 r2 } | r1 | 
+  \relative c {bes16 ces16 des16 ees16 f16 ges16 aes16 bes16 r2 } | r1 |  
+  \relative c'' {bes16 aes16 ges16 f16 ees16 des16 ces16 bes16 r2 } | r1 | 
   
-  \relative c { ais16 b16 cis16 dis16 e16 fis16 gis16 ais16 r2 } | r1 |  
-  \relative c'' { ais16 gis16 fis16 e16 dis16 cis16 b16 ais16 r2 } | r1 | 
+  \relative c {ais16 b16 cis16 dis16 e16 fis16 gis16 ais16 r2 } | r1 |  
+  \relative c'' {ais16 gis16 fis16 e16 dis16 cis16 b16 ais16 r2 } | r1 | 
   
-  \relative c { a16 b16 cis16 dis16 e16 fis16 gis16 a16 r2 } | r1 |  
-  \relative c'' { a16 gis16 fis16 e16 dis16 cis16 b16 a16 r2 } | r1 | 
+  \relative c {a16 b16 cis16 dis16 e16 fis16 gis16 a16 r2 } | r1 |  
+  \relative c'' {a16 gis16 fis16 e16 dis16 cis16 b16 a16 r2 } | r1 | 
   
-  \relative c { a16 b16 cis16 d16 e16 fis16 gis16 a16 r2 } | r1 |  
-  \relative c'' { a16 gis16 fis16 e16 d16 cis16 b16 a16 r2 } | r1 | 
+  \relative c {a16 b16 cis16 d16 e16 fis16 gis16 a16 r2 } | r1 |  
+  \relative c'' {a16 gis16 fis16 e16 d16 cis16 b16 a16 r2 } | r1 | 
   
-  \relative c { a16 b16 cis16 d16 e16 fis16 g16 a16 r2 } | r1 |  
-  \relative c'' { a16 g16 fis16 e16 d16 cis16 b16 a16 r2 } | r1 | 
+  \relative c {a16 b16 cis16 d16 e16 fis16 g16 a16 r2 } | r1 |  
+  \relative c'' {a16 g16 fis16 e16 d16 cis16 b16 a16 r2 } | r1 | 
   
-  \relative c { a16 b16 c16 d16 e16 fis16 g16 a16 r2 } | r1 |  
-  \relative c'' { a16 g16 fis16 e16 d16 c16 b16 a16 r2 } | r1 | 
+  \relative c {a16 b16 c16 d16 e16 fis16 g16 a16 r2 } | r1 |  
+  \relative c'' {a16 g16 fis16 e16 d16 c16 b16 a16 r2 } | r1 | 
   
-  \relative c { a16 b16 c16 d16 e16 f16 g16 a16 r2 } | r1 |  
-  \relative c'' { a16 g16 f16 e16 d16 c16 b16 a16 r2 } | r1 | 
+  \relative c {a16 b16 c16 d16 e16 f16 g16 a16 r2 } | r1 |  
+  \relative c'' {a16 g16 f16 e16 d16 c16 b16 a16 r2 } | r1 | 
   
-  \relative c { a16 bes16 c16 d16 e16 f16 g16 a16 r2 } | r1 |  
-  \relative c'' { a16 g16 f16 e16 d16 c16 bes16 a16 r2 } | r1 | 
+  \relative c {a16 bes16 c16 d16 e16 f16 g16 a16 r2 } | r1 |  
+  \relative c'' {a16 g16 f16 e16 d16 c16 bes16 a16 r2 } | r1 | 
   
-  \relative c { a16 bes16 c16 d16 ees16 f16 g16 a16 r2 } | r1 |  
-  \relative c'' { a16 g16 f16 ees16 d16 c16 bes16 a16 r2 } | r1 | 
+  \relative c {a16 bes16 c16 d16 ees16 f16 g16 a16 r2 } | r1 |  
+  \relative c'' {a16 g16 f16 ees16 d16 c16 bes16 a16 r2 } | r1 | 
   
-  \relative c { aes16 bes16 c16 d16 ees16 f16 g16 aes16 r2 } | r1 |  
-  \relative c'' { aes16 g16 f16 ees16 d16 c16 bes16 aes16 r2 } | r1 | 
+  \relative c {aes16 bes16 c16 d16 ees16 f16 g16 aes16 r2 } | r1 |  
+  \relative c'' {aes16 g16 f16 ees16 d16 c16 bes16 aes16 r2 } | r1 | 
   
-  \relative c { aes16 bes16 c16 des16 ees16 f16 g16 aes16 r2 } | r1 |  
-  \relative c'' { aes16 g16 f16 ees16 des16 c16 bes16 aes16 r2 } | r1 | 
+  \relative c {aes16 bes16 c16 des16 ees16 f16 g16 aes16 r2 } | r1 |  
+  \relative c'' {aes16 g16 f16 ees16 des16 c16 bes16 aes16 r2 } | r1 | 
   
-  \relative c { aes16 bes16 c16 des16 ees16 f16 ges16 aes16 r2 } | r1 |  
-  \relative c'' { aes16 ges16 f16 ees16 des16 c16 bes16 aes16 r2 } | r1 | 
+  \relative c {aes16 bes16 c16 des16 ees16 f16 ges16 aes16 r2 } | r1 |  
+  \relative c'' {aes16 ges16 f16 ees16 des16 c16 bes16 aes16 r2 } | r1 | 
   
-  \relative c { aes16 bes16 ces16 des16 ees16 f16 ges16 aes16 r2 } | r1 |  
-  \relative c'' { aes16 ges16 f16 ees16 des16 ces16 bes16 aes16 r2 } | r1 | 
+  \relative c {aes16 bes16 ces16 des16 ees16 f16 ges16 aes16 r2 } | r1 |  
+  \relative c'' {aes16 ges16 f16 ees16 des16 ces16 bes16 aes16 r2 } | r1 | 
   
-  \relative c { gis16 ais16 b16 cis16 dis16 e16 fis16 gis16 r2 } | r1 |  
-  \relative c'' { gis16 fis16 e16 dis16 cis16 b16 ais16 gis16 r2 } | r1 | 
+  \relative c {gis16 ais16 b16 cis16 dis16 e16 fis16 gis16 r2 } | r1 |  
+  \relative c'' {gis16 fis16 e16 dis16 cis16 b16 ais16 gis16 r2 } | r1 | 
   
-  \relative c { gis16 a16 b16 cis16 dis16 e16 fis16 gis16 r2 } | r1 |  
-  \relative c'' { gis16 fis16 e16 dis16 cis16 b16 a16 gis16 r2 } | r1 | 
+  \relative c {gis16 a16 b16 cis16 dis16 e16 fis16 gis16 r2 } | r1 |  
+  \relative c'' {gis16 fis16 e16 dis16 cis16 b16 a16 gis16 r2 } | r1 | 
   
-  \relative c { gis16 a16 b16 cis16 d16 e16 fis16 gis16 r2 } | r1 |  
-  \relative c'' { gis16 fis16 e16 d16 cis16 b16 a16 gis16 r2 } | r1 | 
+  \relative c {gis16 a16 b16 cis16 d16 e16 fis16 gis16 r2 } | r1 |  
+  \relative c'' {gis16 fis16 e16 d16 cis16 b16 a16 gis16 r2 } | r1 | 
   
-  \relative c { g16 a16 b16 cis16 d16 e16 fis16 g16 r2 } | r1 |  
-  \relative c'' { g16 fis16 e16 d16 cis16 b16 a16 g16 r2 } | r1 | 
+  \relative c {g16 a16 b16 cis16 d16 e16 fis16 g16 r2 } | r1 |  
+  \relative c'' {g16 fis16 e16 d16 cis16 b16 a16 g16 r2 } | r1 | 
   
-  \relative c { g16 a16 b16 c16 d16 e16 fis16 g16 r2 } | r1 |  
-  \relative c'' { g16 fis16 e16 d16 c16 b16 a16 g16 r2 } | r1 | 
+  \relative c {g16 a16 b16 c16 d16 e16 fis16 g16 r2 } | r1 |  
+  \relative c'' {g16 fis16 e16 d16 c16 b16 a16 g16 r2 } | r1 | 
   
-  \relative c { g16 a16 b16 c16 d16 e16 f16 g16 r2 } | r1 |  
-  \relative c'' { g16 f16 e16 d16 c16 b16 a16 g16 r2 } | r1 | 
+  \relative c {g16 a16 b16 c16 d16 e16 f16 g16 r2 } | r1 |  
+  \relative c'' {g16 f16 e16 d16 c16 b16 a16 g16 r2 } | r1 | 
   
-  \relative c { g16 a16 bes16 c16 d16 e16 f16 g16 r2 } | r1 |  
-  \relative c'' { g16 f16 e16 d16 c16 bes16 a16 g16 r2 } | r1 | 
+  \relative c {g16 a16 bes16 c16 d16 e16 f16 g16 r2 } | r1 |  
+  \relative c'' {g16 f16 e16 d16 c16 bes16 a16 g16 r2 } | r1 | 
   
-  \relative c { g16 a16 bes16 c16 d16 ees16 f16 g16 r2 } | r1 |  
-  \relative c'' { g16 f16 ees16 d16 c16 bes16 a16 g16 r2 } | r1 | 
+  \relative c {g16 a16 bes16 c16 d16 ees16 f16 g16 r2 } | r1 |  
+  \relative c'' {g16 f16 ees16 d16 c16 bes16 a16 g16 r2 } | r1 | 
   
-  \relative c { g16 aes16 bes16 c16 d16 ees16 f16 g16 r2 } | r1 |  
-  \relative c'' { g16 f16 ees16 d16 c16 bes16 aes16 g16 r2 } | r1 | 
+  \relative c {g16 aes16 bes16 c16 d16 ees16 f16 g16 r2 } | r1 |  
+  \relative c'' {g16 f16 ees16 d16 c16 bes16 aes16 g16 r2 } | r1 | 
   
-  \relative c { g16 aes16 bes16 c16 des16 ees16 f16 g16 r2 } | r1 |  
-  \relative c'' { g16 f16 ees16 des16 c16 bes16 aes16 g16 r2 } | r1 | 
+  \relative c {g16 aes16 bes16 c16 des16 ees16 f16 g16 r2 } | r1 |  
+  \relative c'' {g16 f16 ees16 des16 c16 bes16 aes16 g16 r2 } | r1 | 
   
-  \relative c { ges16 aes16 bes16 c16 des16 ees16 f16 ges16 r2 } | r1 |  
-  \relative c'' { ges16 f16 ees16 des16 c16 bes16 aes16 ges16 r2 } | r1 | 
+  \relative c {ges16 aes16 bes16 c16 des16 ees16 f16 ges16 r2 } | r1 |  
+  \relative c'' {ges16 f16 ees16 des16 c16 bes16 aes16 ges16 r2 } | r1 | 
   
-  \relative c { ges16 aes16 bes16 ces16 des16 ees16 f16 ges16 r2 } | r1 |  
-  \relative c'' { ges16 f16 ees16 des16 ces16 bes16 aes16 ges16 r2 } | r1 | 
+  \relative c {ges16 aes16 bes16 ces16 des16 ees16 f16 ges16 r2 } | r1 |  
+  \relative c'' {ges16 f16 ees16 des16 ces16 bes16 aes16 ges16 r2 } | r1 | 
   
-  \relative c { fis16 gis16 ais16 b16 cis16 dis16 e16 fis16 r2 } | r1 |  
-  \relative c'' { fis16 e16 dis16 cis16 b16 ais16 gis16 fis16 r2 } | r1 | 
+  \relative c {fis16 gis16 ais16 b16 cis16 dis16 e16 fis16 r2 } | r1 |  
+  \relative c'' {fis16 e16 dis16 cis16 b16 ais16 gis16 fis16 r2 } | r1 | 
   
-  \relative c { fis16 gis16 a16 b16 cis16 dis16 e16 fis16 r2 } | r1 |  
-  \relative c'' { fis16 e16 dis16 cis16 b16 a16 gis16 fis16 r2 } | r1 | 
+  \relative c {fis16 gis16 a16 b16 cis16 dis16 e16 fis16 r2 } | r1 |  
+  \relative c'' {fis16 e16 dis16 cis16 b16 a16 gis16 fis16 r2 } | r1 | 
   
-  \relative c { fis16 gis16 a16 b16 cis16 d16 e16 fis16 r2 } | r1 |  
-  \relative c'' { fis16 e16 d16 cis16 b16 a16 gis16 fis16 r2 } | r1 | 
+  \relative c {fis16 gis16 a16 b16 cis16 d16 e16 fis16 r2 } | r1 |  
+  \relative c'' {fis16 e16 d16 cis16 b16 a16 gis16 fis16 r2 } | r1 | 
   
-  \relative c { fis16 g16 a16 b16 cis16 d16 e16 fis16 r2 } | r1 |  
-  \relative c'' { fis16 e16 d16 cis16 b16 a16 g16 fis16 r2 } | r1 | 
+  \relative c {fis16 g16 a16 b16 cis16 d16 e16 fis16 r2 } | r1 |  
+  \relative c'' {fis16 e16 d16 cis16 b16 a16 g16 fis16 r2 } | r1 | 
   
-  \relative c { fis16 g16 a16 b16 c16 d16 e16 fis16 r2 } | r1 |  
-  \relative c'' { fis16 e16 d16 c16 b16 a16 g16 fis16 r2 } | r1 | 
+  \relative c {fis16 g16 a16 b16 c16 d16 e16 fis16 r2 } | r1 |  
+  \relative c'' {fis16 e16 d16 c16 b16 a16 g16 fis16 r2 } | r1 | 
   
-  \relative c { f16 g16 a16 b16 c16 d16 e16 f16 r2 } | r1 |  
-  \relative c'' { f16 e16 d16 c16 b16 a16 g16 f16 r2 } | r1 | 
+  \relative c {f16 g16 a16 b16 c16 d16 e16 f16 r2 } | r1 |  
+  \relative c'' {f16 e16 d16 c16 b16 a16 g16 f16 r2 } | r1 | 
   
-  \relative c { f16 g16 a16 bes16 c16 d16 e16 f16 r2 } | r1 |  
-  \relative c'' { f16 e16 d16 c16 bes16 a16 g16 f16 r2 } | r1 | 
+  \relative c {f16 g16 a16 bes16 c16 d16 e16 f16 r2 } | r1 |  
+  \relative c'' {f16 e16 d16 c16 bes16 a16 g16 f16 r2 } | r1 | 
   
-  \relative c { f16 g16 a16 bes16 c16 d16 ees16 f16 r2 } | r1 |  
-  \relative c'' { f16 ees16 d16 c16 bes16 a16 g16 f16 r2 } | r1 | 
+  \relative c {f16 g16 a16 bes16 c16 d16 ees16 f16 r2 } | r1 |  
+  \relative c'' {f16 ees16 d16 c16 bes16 a16 g16 f16 r2 } | r1 | 
   
-  \relative c { f16 g16 aes16 bes16 c16 d16 ees16 f16 r2 } | r1 |  
-  \relative c'' { f16 ees16 d16 c16 bes16 aes16 g16 f16 r2 } | r1 | 
+  \relative c {f16 g16 aes16 bes16 c16 d16 ees16 f16 r2 } | r1 |  
+  \relative c'' {f16 ees16 d16 c16 bes16 aes16 g16 f16 r2 } | r1 | 
   
-  \relative c { f16 g16 aes16 bes16 c16 des16 ees16 f16 r2 } | r1 |  
-  \relative c'' { f16 ees16 des16 c16 bes16 aes16 g16 f16 r2 } | r1 | 
+  \relative c {f16 g16 aes16 bes16 c16 des16 ees16 f16 r2 } | r1 |  
+  \relative c'' {f16 ees16 des16 c16 bes16 aes16 g16 f16 r2 } | r1 | 
   
-  \relative c { f16 ges16 aes16 bes16 c16 des16 ees16 f16 r2 } | r1 |  
-  \relative c'' { f16 ees16 des16 c16 bes16 aes16 ges16 f16 r2 } | r1 | 
+  \relative c {f16 ges16 aes16 bes16 c16 des16 ees16 f16 r2 } | r1 |  
+  \relative c'' {f16 ees16 des16 c16 bes16 aes16 ges16 f16 r2 } | r1 | 
   
-  \relative c { f16 ges16 aes16 bes16 ces16 des16 ees16 f16 r2 } | r1 |  
-  \relative c'' { f16 ees16 des16 ces16 bes16 aes16 ges16 f16 r2 } | r1 | 
+  \relative c {f16 ges16 aes16 bes16 ces16 des16 ees16 f16 r2 } | r1 |  
+  \relative c'' {f16 ees16 des16 ces16 bes16 aes16 ges16 f16 r2 } | r1 | 
   
-  \relative c { e16 fis16 gis16 ais16 b16 cis16 dis16 e16 r2 } | r1 |  
-  \relative c'' { e16 dis16 cis16 b16 ais16 gis16 fis16 e16 r2 } | r1 | 
+  \relative c {e16 fis16 gis16 ais16 b16 cis16 dis16 e16 r2 } | r1 |  
+  \relative c'' {e16 dis16 cis16 b16 ais16 gis16 fis16 e16 r2 } | r1 | 
   
-  \relative c { e16 fis16 gis16 a16 b16 cis16 dis16 e16 r2 } | r1 |  
-  \relative c'' { e16 dis16 cis16 b16 a16 gis16 fis16 e16 r2 } | r1 | 
+  \relative c {e16 fis16 gis16 a16 b16 cis16 dis16 e16 r2 } | r1 |  
+  \relative c'' {e16 dis16 cis16 b16 a16 gis16 fis16 e16 r2 } | r1 | 
   
-  \relative c { e16 fis16 gis16 a16 b16 cis16 d16 e16 r2 } | r1 |  
-  \relative c'' { e16 d16 cis16 b16 a16 gis16 fis16 e16 r2 } | r1 | 
+  \relative c {e16 fis16 gis16 a16 b16 cis16 d16 e16 r2 } | r1 |  
+  \relative c'' {e16 d16 cis16 b16 a16 gis16 fis16 e16 r2 } | r1 | 
   
-  \relative c { e16 fis16 g16 a16 b16 cis16 d16 e16 r2 } | r1 |  
-  \relative c'' { e16 d16 cis16 b16 a16 g16 fis16 e16 r2 } | r1 | 
+  \relative c {e16 fis16 g16 a16 b16 cis16 d16 e16 r2 } | r1 |  
+  \relative c'' {e16 d16 cis16 b16 a16 g16 fis16 e16 r2 } | r1 | 
   
-  \relative c { e16 fis16 g16 a16 b16 c16 d16 e16 r2 } | r1 |  
-  \relative c'' { e16 d16 c16 b16 a16 g16 fis16 e16 r2 } | r1 | 
+  \relative c {e16 fis16 g16 a16 b16 c16 d16 e16 r2 } | r1 |  
+  \relative c'' {e16 d16 c16 b16 a16 g16 fis16 e16 r2 } | r1 | 
   
-  \relative c { e16 f16 g16 a16 b16 c16 d16 e16 r2 } | r1 |  
-  \relative c'' { e16 d16 c16 b16 a16 g16 f16 e16 r2 } | r1 | 
+  \relative c {e16 f16 g16 a16 b16 c16 d16 e16 r2 } | r1 |  
+  \relative c'' {e16 d16 c16 b16 a16 g16 f16 e16 r2 } | r1 | 
   
-  \relative c { e16 f16 g16 a16 bes16 c16 d16 e16 r2 } | r1 |  
-  \relative c'' { e16 d16 c16 bes16 a16 g16 f16 e16 r2 } | r1 | 
+  \relative c {e16 f16 g16 a16 bes16 c16 d16 e16 r2 } | r1 |  
+  \relative c'' {e16 d16 c16 bes16 a16 g16 f16 e16 r2 } | r1 | 
   
-  \relative c { ees16 f16 g16 a16 bes16 c16 d16 ees16 r2 } | r1 |  
-  \relative c'' { ees16 d16 c16 bes16 a16 g16 f16 ees16 r2 } | r1 | 
+  \relative c {ees16 f16 g16 a16 bes16 c16 d16 ees16 r2 } | r1 |  
+  \relative c'' {ees16 d16 c16 bes16 a16 g16 f16 ees16 r2 } | r1 | 
   
-  \relative c { ees16 f16 g16 aes16 bes16 c16 d16 ees16 r2 } | r1 |  
-  \relative c'' { ees16 d16 c16 bes16 aes16 g16 f16 ees16 r2 } | r1 | 
+  \relative c {ees16 f16 g16 aes16 bes16 c16 d16 ees16 r2 } | r1 |  
+  \relative c'' {ees16 d16 c16 bes16 aes16 g16 f16 ees16 r2 } | r1 | 
   
-  \relative c { ees16 f16 g16 aes16 bes16 c16 des16 ees16 r2 } | r1 |  
-  \relative c'' { ees16 des16 c16 bes16 aes16 g16 f16 ees16 r2 } | r1 | 
+  \relative c {ees16 f16 g16 aes16 bes16 c16 des16 ees16 r2 } | r1 |  
+  \relative c'' {ees16 des16 c16 bes16 aes16 g16 f16 ees16 r2 } | r1 | 
   
-  \relative c { ees16 f16 ges16 aes16 bes16 c16 des16 ees16 r2 } | r1 |  
-  \relative c'' { ees16 des16 c16 bes16 aes16 ges16 f16 ees16 r2 } | r1 | 
+  \relative c {ees16 f16 ges16 aes16 bes16 c16 des16 ees16 r2 } | r1 |  
+  \relative c'' {ees16 des16 c16 bes16 aes16 ges16 f16 ees16 r2 } | r1 | 
   
-  \relative c { ees16 f16 ges16 aes16 bes16 ces16 des16 ees16 r2 } | r1 |  
-  \relative c'' { ees16 des16 ces16 bes16 aes16 ges16 f16 ees16 r2 } | r1 | 
+  \relative c {ees16 f16 ges16 aes16 bes16 ces16 des16 ees16 r2 } | r1 |  
+  \relative c'' {ees16 des16 ces16 bes16 aes16 ges16 f16 ees16 r2 } | r1 | 
   
-  \relative c { dis16 e16 fis16 gis16 ais16 b16 cis16 dis16 r2 } | r1 |  
-  \relative c'' { dis16 cis16 b16 ais16 gis16 fis16 e16 dis16 r2 } | r1 | 
+  \relative c {dis16 e16 fis16 gis16 ais16 b16 cis16 dis16 r2 } | r1 |  
+  \relative c'' {dis16 cis16 b16 ais16 gis16 fis16 e16 dis16 r2 } | r1 | 
   
-  \relative c { dis16 e16 fis16 gis16 a16 b16 cis16 dis16 r2 } | r1 |  
-  \relative c'' { dis16 cis16 b16 a16 gis16 fis16 e16 dis16 r2 } | r1 | 
+  \relative c {dis16 e16 fis16 gis16 a16 b16 cis16 dis16 r2 } | r1 |  
+  \relative c'' {dis16 cis16 b16 a16 gis16 fis16 e16 dis16 r2 } | r1 | 
   
-  \relative c { d16 e16 fis16 gis16 a16 b16 cis16 d16 r2 } | r1 |  
-  \relative c'' { d16 cis16 b16 a16 gis16 fis16 e16 d16 r2 } | r1 | 
+  \relative c {d16 e16 fis16 gis16 a16 b16 cis16 d16 r2 } | r1 |  
+  \relative c'' {d16 cis16 b16 a16 gis16 fis16 e16 d16 r2 } | r1 | 
   
-  \relative c { d16 e16 fis16 g16 a16 b16 cis16 d16 r2 } | r1 |  
-  \relative c'' { d16 cis16 b16 a16 g16 fis16 e16 d16 r2 } | r1 | 
+  \relative c {d16 e16 fis16 g16 a16 b16 cis16 d16 r2 } | r1 |  
+  \relative c'' {d16 cis16 b16 a16 g16 fis16 e16 d16 r2 } | r1 | 
   
-  \relative c { d16 e16 fis16 g16 a16 b16 c16 d16 r2 } | r1 |  
-  \relative c'' { d16 c16 b16 a16 g16 fis16 e16 d16 r2 } | r1 | 
+  \relative c {d16 e16 fis16 g16 a16 b16 c16 d16 r2 } | r1 |  
+  \relative c'' {d16 c16 b16 a16 g16 fis16 e16 d16 r2 } | r1 | 
   
-  \relative c { d16 e16 f16 g16 a16 b16 c16 d16 r2 } | r1 |  
-  \relative c'' { d16 c16 b16 a16 g16 f16 e16 d16 r2 } | r1 | 
+  \relative c {d16 e16 f16 g16 a16 b16 c16 d16 r2 } | r1 |  
+  \relative c'' {d16 c16 b16 a16 g16 f16 e16 d16 r2 } | r1 | 
   
-  \relative c { d16 e16 f16 g16 a16 bes16 c16 d16 r2 } | r1 |  
-  \relative c'' { d16 c16 bes16 a16 g16 f16 e16 d16 r2 } | r1 | 
+  \relative c {d16 e16 f16 g16 a16 bes16 c16 d16 r2 } | r1 |  
+  \relative c'' {d16 c16 bes16 a16 g16 f16 e16 d16 r2 } | r1 | 
   
-  \relative c { d16 ees16 f16 g16 a16 bes16 c16 d16 r2 } | r1 |  
-  \relative c'' { d16 c16 bes16 a16 g16 f16 ees16 d16 r2 } | r1 | 
+  \relative c {d16 ees16 f16 g16 a16 bes16 c16 d16 r2 } | r1 |  
+  \relative c'' {d16 c16 bes16 a16 g16 f16 ees16 d16 r2 } | r1 | 
   
-  \relative c { d16 ees16 f16 g16 aes16 bes16 c16 d16 r2 } | r1 |  
-  \relative c'' { d16 c16 bes16 aes16 g16 f16 ees16 d16 r2 } | r1 | 
+  \relative c {d16 ees16 f16 g16 aes16 bes16 c16 d16 r2 } | r1 |  
+  \relative c'' {d16 c16 bes16 aes16 g16 f16 ees16 d16 r2 } | r1 | 
   
-  \relative c { des16 ees16 f16 g16 aes16 bes16 c16 des16 r2 } | r1 |  
-  \relative c'' { des16 c16 bes16 aes16 g16 f16 ees16 des16 r2 } | r1 | 
+  \relative c {des16 ees16 f16 g16 aes16 bes16 c16 des16 r2 } | r1 |  
+  \relative c'' {des16 c16 bes16 aes16 g16 f16 ees16 des16 r2 } | r1 | 
   
-  \relative c { des16 ees16 f16 ges16 aes16 bes16 c16 des16 r2 } | r1 |  
-  \relative c'' { des16 c16 bes16 aes16 ges16 f16 ees16 des16 r2 } | r1 | 
+  \relative c {des16 ees16 f16 ges16 aes16 bes16 c16 des16 r2 } | r1 |  
+  \relative c'' {des16 c16 bes16 aes16 ges16 f16 ees16 des16 r2 } | r1 | 
   
-  \relative c { des16 ees16 f16 ges16 aes16 bes16 ces16 des16 r2 } | r1 |  
-  \relative c'' { des16 ces16 bes16 aes16 ges16 f16 ees16 des16 r2 } | r1 | 
+  \relative c {des16 ees16 f16 ges16 aes16 bes16 ces16 des16 r2 } | r1 |  
+  \relative c'' {des16 ces16 bes16 aes16 ges16 f16 ees16 des16 r2 } | r1 | 
   
-  \relative c { cis16 dis16 e16 fis16 gis16 ais16 b16 cis16 r2 } | r1 |  
-  \relative c'' { cis16 b16 ais16 gis16 fis16 e16 dis16 cis16 r2 } | r1 | 
+  \relative c {cis16 dis16 e16 fis16 gis16 ais16 b16 cis16 r2 } | r1 |  
+  \relative c'' {cis16 b16 ais16 gis16 fis16 e16 dis16 cis16 r2 } | r1 | 
   
-  \relative c { cis16 dis16 e16 fis16 gis16 a16 b16 cis16 r2 } | r1 |  
-  \relative c'' { cis16 b16 a16 gis16 fis16 e16 dis16 cis16 r2 } | r1 | 
+  \relative c {cis16 dis16 e16 fis16 gis16 a16 b16 cis16 r2 } | r1 |  
+  \relative c'' {cis16 b16 a16 gis16 fis16 e16 dis16 cis16 r2 } | r1 | 
   
-  \relative c { cis16 d16 e16 fis16 gis16 a16 b16 cis16 r2 } | r1 |  
-  \relative c'' { cis16 b16 a16 gis16 fis16 e16 d16 cis16 r2 } | r1 | 
+  \relative c {cis16 d16 e16 fis16 gis16 a16 b16 cis16 r2 } | r1 |  
+  \relative c'' {cis16 b16 a16 gis16 fis16 e16 d16 cis16 r2 } | r1 | 
   
-  \relative c { cis16 d16 e16 fis16 g16 a16 b16 cis16 r2 } | r1 |  
-  \relative c'' { cis16 b16 a16 g16 fis16 e16 d16 cis16 r2 } | r1 | 
+  \relative c {cis16 d16 e16 fis16 g16 a16 b16 cis16 r2 } | r1 |  
+  \relative c'' {cis16 b16 a16 g16 fis16 e16 d16 cis16 r2 } | r1 | 
   
-  \relative c { c16 d16 e16 fis16 g16 a16 b16 c16 r2 } | r1 |  
-  \relative c'' { c16 b16 a16 g16 fis16 e16 d16 c16 r2 } | r1 | 
+  \relative c {c16 d16 e16 fis16 g16 a16 b16 c16 r2 } | r1 |  
+  \relative c'' {c16 b16 a16 g16 fis16 e16 d16 c16 r2 } | r1 | 
   
-  \relative c { c16 d16 e16 f16 g16 a16 b16 c16 r2 } | r1 |  
-  \relative c'' { c16 b16 a16 g16 f16 e16 d16 c16 r2 } | r1 | 
+  \relative c {c16 d16 e16 f16 g16 a16 b16 c16 r2 } | r1 |  
+  \relative c'' {c16 b16 a16 g16 f16 e16 d16 c16 r2 } | r1 | 
   
 
   < c, g, c' e g b > 1
@@ -269,7 +269,7 @@ Arps = {
 
 % Arpeggios:1 ends here
 
-% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle/modal-cycle.org::*Triads][Triads:1]]
+% [[file:~/ob-lilypond/examples/arrange-mode/Modal-Cycle/modal-cycle.org::*Triads][Triads:1]]
 
 Triads = {
   \relative a' {
@@ -786,7 +786,7 @@ Triads = {
 
 % Triads:1 ends here
 
-% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle/modal-cycle.org::*Drums%2520(four%2520bars)][Drums-\(four-bars\):1]]
+% [[file:~/ob-lilypond/examples/arrange-mode/Modal-Cycle/modal-cycle.org::*Drums%2520(four%2520bars)][Drums-\(four-bars\):1]]
 
 DrumsFourBars = {
     \drummode {
@@ -808,7 +808,7 @@ DrumsFourBars = {
 
 % Drums-\(four-bars\):1 ends here
 
-% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle/modal-cycle.org::*Drums%2520(four%2520bars)][Drums-\(four-bars\):2]]
+% [[file:~/ob-lilypond/examples/arrange-mode/Modal-Cycle/modal-cycle.org::*Drums%2520(four%2520bars)][Drums-\(four-bars\):2]]
 
 Drums = {
  \DrumsSixteenBars \DrumsSixteenBars \DrumsSixteenBars
@@ -823,7 +823,7 @@ Drums = {
 
 % Drums-\(four-bars\):2 ends here
 
-% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle/modal-cycle.org::*Bass][Bass:1]]
+% [[file:~/ob-lilypond/examples/arrange-mode/Modal-Cycle/modal-cycle.org::*Bass][Bass:1]]
 
 Bass = {
       \relative g, { 
@@ -1340,13 +1340,13 @@ Bass = {
 
 % Bass:1 ends here
 
-% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle/modal-cycle.org::*Number%2520of%2520bars%2520to%2520compile%2520(showLastLength)][Number-of-bars-to-compile-\(showLastLength\):1]]
+% [[file:~/ob-lilypond/examples/arrange-mode/Modal-Cycle/modal-cycle.org::*Number%2520of%2520bars%2520to%2520compile%2520(showLastLength)][Number-of-bars-to-compile-\(showLastLength\):1]]
 
 %  showLastLength = R1*17
 
 % Number-of-bars-to-compile-\(showLastLength\):1 ends here
 
-% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle/modal-cycle.org::*Score][Score:1]]
+% [[file:~/ob-lilypond/examples/arrange-mode/Modal-Cycle/modal-cycle.org::*Score][Score:1]]
 
 \score {
 
@@ -1389,7 +1389,7 @@ Bass = {
 
 % Score:1 ends here
 
-% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle/modal-cycle.org::*Paper][Paper:1]]
+% [[file:~/ob-lilypond/examples/arrange-mode/Modal-Cycle/modal-cycle.org::*Paper][Paper:1]]
 
 \paper {
   #(define dump-extents #t) 
@@ -1403,7 +1403,7 @@ Bass = {
 
 % Paper:1 ends here
 
-% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/song/Modal-Cycle/modal-cycle.org::*Header][Header:1]]
+% [[file:~/ob-lilypond/examples/arrange-mode/Modal-Cycle/modal-cycle.org::*Header][Header:1]]
 
 \header {
   title = \markup \center-column {"Modal Cycle"} 

@@ -2,7 +2,7 @@
 ** Processes
 *** Generate Bass Line
 
-#+source: generate_bassline(root="")
+#+name: generate_bassline(root="")
 #+begin_src ruby :results silent
 
 one_bar =
@@ -14,8 +14,8 @@ one_bar =
 
 *** Generate Triad
 
-#+source: generate_triad_sequence(root="c",chord="c")
-#+begin_src ruby
+#+name: generate_triad_sequence(root="c",chord="c")
+#+begin_src ruby :results silent
 
 @key_of_c = ["c","d","e","f","g","a","b"]
 @key_of_g = ["g","a","b","c","d","e","fis"]
@@ -39,7 +39,7 @@ end
 
 *** Generate arpeggio
 
-#+source: generate_arpeggio(root="c",ascending="t")
+#+name: generate_arpeggio(root="c",ascending="t")
 #+begin_src ruby :results silent
 
 @key_of_c = ["c","d","e","f","g","a","b"]

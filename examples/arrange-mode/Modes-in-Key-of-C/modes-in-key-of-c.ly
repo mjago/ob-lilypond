@@ -1,11 +1,11 @@
 
-% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.org::*Version][Version:1]]
+% [[file:~/ob-lilypond/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.org::*Version][Version:1]]
 
 \version "2.12.3"
 
 % Version:1 ends here
 
-% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.org::*Arpeggios][Arpeggios:1]]
+% [[file:~/ob-lilypond/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.org::*Arpeggios][Arpeggios:1]]
 
 Carp = {
   c'16 d'16 e'16 f'16 g'16 a'16 b'16 c''16 r2 
@@ -44,7 +44,7 @@ Farp = {
 
 % Arpeggios:1 ends here
 
-% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.org::*Triads][Triads:1]]
+% [[file:~/ob-lilypond/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.org::*Triads][Triads:1]]
 
 Ctriads = {
   < c' f'a'c'> 4< c' f'a'c'> 4< c' f'a'c'> 4< c' f'a'c'> 4
@@ -83,7 +83,7 @@ Ftriads = {
 
 % Triads:1 ends here
 
-% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.org::*Drums%2520(four%2520bars)][Drums-\(four-bars\):1]]
+% [[file:~/ob-lilypond/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.org::*Drums%2520(four%2520bars)][Drums-\(four-bars\):1]]
 
 DrumsFourBars = {
   \drummode {
@@ -100,13 +100,13 @@ DrumsFourBars = {
 
 % Drums-\(four-bars\):1 ends here
 
-% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.org::*Number%2520of%2520bars%2520to%2520compile%2520(showLastLength)][Number-of-bars-to-compile-\(showLastLength\):1]]
+% [[file:~/ob-lilypond/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.org::*Number%2520of%2520bars%2520to%2520compile%2520(showLastLength)][Number-of-bars-to-compile-\(showLastLength\):1]]
 
 %  showLastLength = R1*8
 
 % Number-of-bars-to-compile-\(showLastLength\):1 ends here
 
-% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.org::*Score][Score:1]]
+% [[file:~/ob-lilypond/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.org::*Score][Score:1]]
 
 \score {
 
@@ -216,7 +216,7 @@ DrumsFourBars = {
 
 % Score:1 ends here
 
-% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.org::*Paper][Paper:1]]
+% [[file:~/ob-lilypond/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.org::*Paper][Paper:1]]
 
 \paper {
   #(define dump-extents #t) 
@@ -230,7 +230,7 @@ DrumsFourBars = {
 
 % Paper:1 ends here
 
-% [[file:~/.emacs.d/martyn/martyn/ob-lilypond/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.org::*Header][Header:1]]
+% [[file:~/ob-lilypond/examples/arrange-mode/Modes-in-Key-of-C/modes-in-key-of-c.org::*Header][Header:1]]
 
 \header {
   title = \markup \center-column {"Modes in the Key of C"} 
