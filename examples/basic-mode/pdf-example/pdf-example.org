@@ -2,31 +2,20 @@
 #+DATE:
 #+OPTIONS: timestamp:nil num:nil toc:nil 
 #+LaTeX_HEADER: \usepackage[cm]{fullpage}
-#+source: version
-#+begin_src ruby :exports none :results silent
-"\\version \"2.12.3\""
-#+end_src
-#+source: paper
-#+begin_src ruby :exports none :results silent
-"\\paper{
-indent=0\\mm
-line-width=170\\mm
-oddFooterMarkup=##f
-oddHeaderMarkup=##f
-bookTitleMarkup=##f
-scoreTitleMarkup=##f
-}"
-#+end_src
-
 * Ionian Mode
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a enim commodo mollis. Praesent eleifend turpis sed mi accumsan eget fringilla odio malesuada. Mauris justo nibh, aliquam eget egestas eu, eleifend id enim. Maecenas sed arcu vel ligula consectetur porttitor dapibus at enim. Sed eu urna vel diam dignissim tempus. Sed in tortor turpis, eget commodo eros. Duis in elementum magna. Sed bibendum mattis leo, vel rutrum odio facilisis iaculis. Vestibulum odio tortor, vehicula eu tempor sit amet, ultrices eu mi. Integer accumsan lacus a leo mattis pretium. Proin velit quam, vestibulum at porttitor vel, fringilla a est.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a enim commodo mollis. 
 #+LaTeX: \linebreak
 #+ATTR_LaTeX: width=17cm 
 #+begin_src lilypond :file ionian.eps :noweb yes
-
-  <<version()>> 
-  <<paper()>>
+  \version "2.12.3"
+  \paper{
+  indent=0\mm
+  line-width=170\mm
+  oddFooterMarkup=##f
+  oddHeaderMarkup=##f
+  bookTitleMarkup=##f
+  scoreTitleMarkup=##f
+}
   \relative c' { 
     c d e f g a b c b a g f e d c d  
     e f g a b c b a g f e d c1
@@ -40,14 +29,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a enim commodo mollis. Praesent eleifend turpis sed mi accumsan eget fringilla odio malesuada. Mauris justo nibh, aliquam eget egestas eu, eleifend id enim. Maecenas sed arcu vel ligula consectetur porttitor dapibus at enim. Sed eu urna vel diam dignissim tempus. Sed in tortor turpis, eget commodo eros. Duis in elementum magna. Sed bibendum mattis leo, vel rutrum odio facilisis iaculis. Vestibulum odio tortor, vehicula eu tempor sit amet, ultrices eu mi. Integer accumsan lacus a leo mattis pretium. Proin velit quam, vestibulum at porttitor vel, fringilla a est.
 #+LaTeX: \linebreak
 #+ATTR_LaTeX: width=17cm
-#+begin_src lilypond :file dorian.eps :noweb yes
-
-  <<version()>> 
-  <<paper()>>
-  \relative c' { 
-    d e f g a b c d c b a g f e d e 
-    f g a b c d c b a g f e d1
-}
+#+begin_src lilypond :file dorian.eps  :noweb yes
+  
+    <<version-and-paper>>
+    \relative c' { 
+      d e f g a b c d c b a g f e d e 
+      f g a b c d c b a g f e d1
+  }
 #+end_src
 
 #+results[22b4b6d96bf6829d5fdf36d22fda3d559b225b11]:
@@ -57,27 +45,25 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a enim commodo mollis. Praesent eleifend turpis sed mi accumsan eget fringilla odio malesuada. Mauris justo nibh, aliquam eget egestas eu, eleifend id enim. Maecenas sed arcu vel ligula consectetur porttitor dapibus at enim. Sed eu urna vel diam dignissim tempus. Sed in tortor turpis, eget commodo eros. Duis in elementum magna. Sed bibendum mattis leo, vel rutrum odio facilisis iaculis. Vestibulum odio tortor, vehicula eu tempor sit amet, ultrices eu mi. Integer accumsan lacus a leo mattis pretium. Proin velit quam, vestibulum at porttitor vel, fringilla a est.
 #+LaTeX: \linebreak
 #+ATTR_LaTeX: width=17cm
-#+begin_src lilypond :file phrygian.eps :noweb yes
+#+begin_src lilypond :file phrygian.eps  :noweb yes
 
-  <<version()>> 
-  <<paper()>>
+  <<version-and-paper>>
   \relative c' { 
     e f g a b c d e d c b a g f e f
     g a b c d e d c b a g f e1
 }
 #+end_src
 
-#+results[061376b3007af82f0d1ebc4ee646c185537254a1]:
+#+results:
 [[file:phrygian.eps]]
 
 * Lydian Mode
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a enim commodo mollis. Praesent eleifend turpis sed mi accumsan eget fringilla odio malesuada. Mauris justo nibh, aliquam eget egestas eu, eleifend id enim. Maecenas sed arcu vel ligula consectetur porttitor dapibus at enim. Sed eu urna vel diam dignissim tempus. Sed in tortor turpis, eget commodo eros. Duis in elementum magna. Sed bibendum mattis leo, vel rutrum odio facilisis iaculis. Vestibulum odio tortor, vehicula eu tempor sit amet, ultrices eu mi. Integer accumsan lacus a leo mattis pretium. Proin velit quam, vestibulum at porttitor vel, fringilla a est.
 #+LaTeX: \linebreak
 #+ATTR_LaTeX: width=17cm
-#+begin_src lilypond :file lydian.eps :noweb yes
+#+begin_src lilypond :file lydian.eps  :noweb yes
 
-  <<version()>> 
-  <<paper()>>
+  <<version-and-paper>>
   \relative c' { 
     f g a b c d e f e d c b a g f g
     a b c d e f e d c b a g f1
@@ -86,15 +72,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a
 
 #+results[d58e00b534d68526a67778e04c1f7cd4d5a96484]:
 [[file:lydian.eps]]
-
 * Mixolydian Mode
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a enim commodo mollis. Praesent eleifend turpis sed mi accumsan eget fringilla odio malesuada. Mauris justo nibh, aliquam eget egestas eu, eleifend id enim. Maecenas sed arcu vel ligula consectetur porttitor dapibus at enim. Sed eu urna vel diam dignissim tempus. Sed in tortor turpis, eget commodo eros. Duis in elementum magna. Sed bibendum mattis leo, vel rutrum odio facilisis iaculis. Vestibulum odio tortor, vehicula eu tempor sit amet, ultrices eu mi. Integer accumsan lacus a leo mattis pretium. Proin velit quam, vestibulum at porttitor vel, fringilla a est.
 #+LaTeX: \linebreak
 #+ATTR_LaTeX: width=17cm
 #+begin_src lilypond :file mixolydian.eps :noweb yes
 
-  <<version()>> 
-  <<paper()>>
+  <<version-and-paper>>
   \relative c' { 
     g a b c d e f g f e d c b a g a
     b c d e f g f e d c b a g1
@@ -103,15 +87,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a
 
 #+results[1592576a07b686caa52b87d207c6bfe7f0d3140b]:
 [[file:mixolydian.eps]]
-
 * Aeolian Mode
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a enim commodo mollis. Praesent eleifend turpis sed mi accumsan eget fringilla odio malesuada. Mauris justo nibh, aliquam eget egestas eu, eleifend id enim. Maecenas sed arcu vel ligula consectetur porttitor dapibus at enim. Sed eu urna vel diam dignissim tempus. Sed in tortor turpis, eget commodo eros. Duis in elementum magna. Sed bibendum mattis leo, vel rutrum odio facilisis iaculis. Vestibulum odio tortor, vehicula eu tempor sit amet, ultrices eu mi. Integer accumsan lacus a leo mattis pretium. Proin velit quam, vestibulum at porttitor vel, fringilla a est.
 #+LaTeX: \linebreak
 #+ATTR_LaTeX: width=17cm
 #+begin_src lilypond :file aeolian.eps :noweb yes
 
-  <<version()>> 
-  <<paper()>>
+  <<version-and-paper>>
   \relative c' { 
     a b c d e f g a g f e d c b a b 
     c d e f g a g f e d c b a1
@@ -120,15 +102,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a
 
 #+results[26634ac681a45c0571dba57662f8242b19466847]:
 [[file:aeolian.eps]]
-
 * Locrian Mode
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a enim commodo mollis. Praesent eleifend turpis sed mi accumsan eget fringilla odio malesuada. Mauris justo nibh, aliquam eget egestas eu, eleifend id enim. Maecenas sed arcu vel ligula consectetur porttitor dapibus at enim.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a enim commodo mollis. Praesent eleifend turpis sed mi accumsan eget fringilla odio malesuada. Mauris justo nibh, aliquam eget egestas eu, eleifend id enim. Maecenas sed arcu vel ligula consectetur porttitor dapibus at enim. Sed eu urna vel diam dignissim tempus. Sed in tortor turpis, eget commodo eros. Duis in elementum magna. Sed bibendum mattis leo, vel rutrum odio facilisis iaculis. Vestibulum odio tortor, vehicula eu tempor sit amet, ultrices eu mi. Integer accumsan lacus a leo mattis pretium. Proin velit quam, vestibulum at porttitor vel, fringilla a est.
 #+LaTeX: \linebreak
 #+ATTR_LaTeX: width=17cm
 #+begin_src lilypond :file locrian.eps :noweb yes
-
-  <<version()>> 
-  <<paper()>>
+  <<version-and-paper>>
   \relative c' { 
     b c d e f g a b a g f e d c b c
     d e f g a b a g f e d c b1
@@ -137,5 +116,19 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a
 
 #+results[5f18b6e697933ec92767630f531d5ac5dbaa232e]:
 [[file:locrian.eps]]
+
+#+name: version-and-paper()
+#+begin_src org 
+  \version "2.12.3"
+  \paper{
+  indent=0\mm
+  line-width=170\mm
+  oddFooterMarkup=##f
+  oddHeaderMarkup=##f
+  bookTitleMarkup=##f
+  scoreTitleMarkup=##f
+}
+#+end_src
+
 
 
