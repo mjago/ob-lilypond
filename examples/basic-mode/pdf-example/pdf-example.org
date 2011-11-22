@@ -7,15 +7,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porta ipsum a
 #+LaTeX: \linebreak
 #+ATTR_LaTeX: width=17cm 
 #+begin_src lilypond :file ionian.eps :noweb yes
-  \version "2.12.3"
-  \paper{
-  indent=0\mm
-  line-width=170\mm
-  oddFooterMarkup=##f
-  oddHeaderMarkup=##f
-  bookTitleMarkup=##f
-  scoreTitleMarkup=##f
-}
+
+  <<version-and-paper>>
   \relative c' { 
     c d e f g a b c b a g f e d c d  
     e f g a b c b a g f e d c1
